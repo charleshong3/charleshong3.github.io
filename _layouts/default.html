@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>{{ page.title }}</title>
+            <!-- link to main stylesheet -->
+            <link rel="stylesheet" type="text/css" href="/css/main.css">
+        </head>
+        <body>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/61a">CS 61A</a></li>
+                </ul>
+            </nav>
+            <div class="container">
+            
+            {{ content }}
+            
+            </div><!-- /.container -->
+            <footer>
+                <ul>
+                    <li><a href="mailto:charleshong@berkeley.edu">email</a></li>
+                    <!-- <li><a href="https://github.com/charleshong3">github.com/charleshong3</a></li> -->
+                </ul>
+            </footer>
+        </body>
+    </html>
