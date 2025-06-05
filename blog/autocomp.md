@@ -144,18 +144,18 @@ To be clear, [Gemmini](https://github.com/ucb-bar/gemmini) isn't a chatbot or an
 * **Simulation Support.** It integrates with fast and cycle-accurate hardware simulators (specifically FireSim).   
 * **No Data Contamination.** Its low-resource nature makes it challenging to directly prompt LLMs.
 
-In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autocomp's performance. Check out our paper for the complete set of results, which covers a broader set of workloads including convolution and fine-grained linear algebra kernels.
+In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autocomp's performance. Check out our paper for the complete set of results, which covers a broader set of workloads, including convolution and fine-grained linear algebra kernels.
 
 | Baseline | Description |
 | :---- | :---- |
 | Gemmini Software Library | Uses heuristics to tile and run GEMMs/convs on generated accelerators. |
-| Exo (unoptimized) | DSL for tensor code \+ basic compiler for Gemmini accelerators. The starting point for Autocomp-based optimization. |
+| [Exo](https://exo-lang.dev/) (unoptimized) | DSL for tensor code \+ basic compiler for Gemmini accelerators. The starting point for Autocomp-based optimization. |
 | Exo (optimized) | Extensively hand-tuned Exo schedules written by experts for each GEMM and conv benchmark. |
 | Hardware FSM | Custom FSM units inside Gemmini for GEMM/conv ops. Highly tuned, fully parallel hardware reaching up to 99% compute utilization. We use this as an upper bound for GEMM/conv benchmarks. |
 
 ## GEMM Scheduling Results
 
-To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes matrix multiplication from the Resnet-50 model.   
+To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf), so we have a strong hand-optimized baseline to compare against.
 
 <figure>
     <img src="images_autocomp/image1.jpg"
