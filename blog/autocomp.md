@@ -45,7 +45,7 @@ Adapting compilers to new hardware platforms has always been difficult, due to t
          alt="LLM-generated cartoon of tensor accelerator developers hard at work."
          class="center"
          style="width:30vw;">
-    <figcaption style="text-align:center">Tensor accelerator developers hard at work\! (as imagined by GPT-4o)</figcaption>
+    <figcaption style="text-align:center">Tensor accelerator developers hard at work! (as imagined by GPT-4o)</figcaption>
 </figure>
 
 ## Tensor accelerator programming
