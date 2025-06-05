@@ -40,7 +40,7 @@ Adapting compilers to new hardware platforms has always been difficult, due to t
     <img src="images_autocomp/image3.png"
          alt="LLM-generated cartoon of tensor accelerator developers hard at work."
          class="center"
-         style="width:30vw;">
+         style="width:25vw;">
     <figcaption style="text-align:center">Tensor accelerator developers hard at work! (as imagined by GPT-4o)</figcaption>
 </figure>
 
@@ -109,8 +109,7 @@ Following phase 1, we have a plan that outlines the specific transformation for 
     <img src="images_autocomp/image5.gif" 
          alt="Autocomp's beam search"
          class="center"
-         style="width:100%;"
-         style="clip-path: inset(100px 0 50px 0);">
+         style="width:100%;">
 </figure>
 </div>
 
