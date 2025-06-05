@@ -215,9 +215,9 @@ First, we recorded the best known schedule for a particular GEMM. Then, during p
 
 Over several different GEMM types, we found that this process improved performance by 24% on average with a 100-sample budget. Here, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample budgets, the headstart provided by schedule reuse leads to consistently better results.
 
-# Key takeaways
+# Key Takeaways
 
-LLMs can't easily optimize low-resource code out of the box, but there are a few steps you can take that just might make your problem tractable.
+LLMs don't do a good job of optimizing low-resource code out of the box, but there are a few steps you can take that just might make your problem tractable.
 
 * **Don't try to zero-shot your problem.** We decompose code optimization into a search problem, then break each iteration down into 2 phases (planning and implementation). Then we explore every step of the way\!
 * **LLMs aren't always smarter than you.** We find that much of the prior work relies on an LLM to analyze bottlenecks or suggest optimizations. But when we asked LLMs to analyze our code, the responses were usually incorrect, and while some LLM suggestions were helpful, they weren't very diverse. Encoding domain knowledge via an optimization menu alleviates these issues.  
