@@ -108,7 +108,7 @@ Following phase 1, we have a plan that outlines the specific transformation for 
     <img src="images_autocomp/image5.gif" 
          alt="Autocomp's beam search"
          class="center"
-         style="width:40vw;height:250px;background-size:cover;background-position: center;">
+         style="width:40vw;height:340px;object-fit: cover;object-position: center;">
 </figure>
 
 ## Survival of the Fastest (and Correct): Beam Search
