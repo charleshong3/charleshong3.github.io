@@ -2,7 +2,7 @@
     <img src="images_autocomp/image4.png"
          alt="Images of accelerators including Google's TPU, AWS's Trainium, and others."
          class="center"
-         style="width:55vw;">
+         style="width:40vw;">
     <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
     <img src="images_autocomp/image2.png"
          alt="Autocomp's 2-phase prompt structure"
          class="center"
-         style="width:45vw;">
+         style="width:40vw;">
 </figure>
 
 ## Phase 1: Plan
@@ -157,7 +157,7 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
     <img src="images_autocomp/image1.jpg"
          alt="Bar chart showing Autocomp's performance far exceeds baselines."
          class="center"
-         style="width:55vw;">
+         style="width:45vw;">
 </figure>
 
 **Performance Comparison:**
