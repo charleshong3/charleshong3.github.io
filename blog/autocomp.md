@@ -97,7 +97,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
 
 ## Phase 1: Plan
 
-We prompt an LLM to select *one* optimization from a predefined menu of optimization options and to describe the concrete transformations required to apply it. Since we're working with a low-resource DSL, we make sure to include all necessary information in context. The planning prompt includes the following components: **Accelerator ISA**, **Current Code, Hardware Performance Feedback, Optimization Menu, Instruction,** and **Rules** (See the paper for full details)**.** We then sample $N$ different plans, since there are many possible ways to schedule a tensor accelerator workload\!
+We prompt an LLM to select *one* optimization from a predefined menu of optimization options and to describe the concrete transformations required to apply it. Since we're working with a low-resource DSL, we make sure to include all necessary information in context. The planning prompt includes the following components: **Accelerator ISA**, **Current Code, Hardware Performance Feedback, Optimization Menu, Instruction,** and **Rules** (See the paper for full details)**.** We then sample $`N`$ different plans, since there are many possible ways to schedule a tensor accelerator workload\!
 
 ## Phase 2: Implement
 
