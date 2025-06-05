@@ -179,7 +179,7 @@ In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autoco
 
 ## GEMM Scheduling Results
 
-To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf){:target="_blank" rel="noopener"}, so we have a strong hand-optimized baseline to compare against.
+To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf){:target="_blank" rel="noopener"}, so we have a strong hand-optimized baseline to compare against. We search for N=15 iterations, with beam width B=6, N=6 plans per candidate in the beam, and K=2 code implementations per plan.
 
 <figure>
     <img src="images_autocomp/image1.png"
@@ -188,16 +188,15 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
          style="width:100%;max-width:800px;">
 </figure>
 
-**Performance Comparison:**
+### Performance Comparison
 
 🚀 Autocomp consistently outperforms all baselines:
-
 * **1.4x** faster than Exo's hand-optimized code  
 * **2.9x** faster than unoptimized Exo baseline (our starting point)  
 * **5.6x** faster than Gemmini's default software library.  
 * Autocomp consistently reaches at least **85%** of the hardware FSM's utilization.
 
-**Why does it work so well?**
+### Why does it work so well?
 
 Autocomp shines because of its ability to effectively explore the optimization space, especially around double-buffering, software pipeline and loop tiling. This results in better overlap of data movement and computation resulting in significant performance boost. Appendix C of our paper breaks down how Autocomp optimizes one of the GEMM kernels over the course of multiple iterations.
 
