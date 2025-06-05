@@ -112,7 +112,7 @@ Following phase 1, we have a plan that outlines the specific transformation for 
          alt="Autocomp's beam search"
          class="center"
          style="width:40vw;"
-         style="clip-path: inset(50px 0 50px 0);">
+         style="clip-path: inset(100px 0 50px 0);">
 </figure>
 
 ## Survival of the Fastest (and Correct): Beam Search
