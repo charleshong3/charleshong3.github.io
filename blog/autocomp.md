@@ -97,11 +97,11 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
 
 ## Phase 1: Plan
 
-We prompt an LLM to select *one* optimization from a predefined menu of optimization options and to describe the concrete transformations required to apply it. Since we're working with a low-resource DSL, we make sure to include all necessary information in context. The planning prompt includes the following components: **Accelerator ISA**, **Current Code, Hardware Performance Feedback, Optimization Menu, Instruction,** and **Rules** (See the paper for full details)**.** We then sample $`N`$ different plans, since there are many possible ways to schedule a tensor accelerator workload\!
+We prompt an LLM to select *one* optimization from a predefined menu of optimization options and to describe the concrete transformations required to apply it. Since we're working with a low-resource DSL, we make sure to include all necessary information in context. The planning prompt includes the following components: **Accelerator ISA**, **Current Code, Hardware Performance Feedback, Optimization Menu, Instruction,** and **Rules** (see the paper for full details)**.** We then sample N different plans, since there are many possible ways to schedule a tensor accelerator workload\!
 
 ## Phase 2: Implement
 
-Following phase 1, we have a plan that outlines the specific transformation for the selected optimization. To generate optimized code, in phase 2 we prompt the LLM to apply the transformations in the plan to generate new, semantically equivalent code. The implementation prompt (phase 2\) contains many of the same elements as the planning prompt (phase 1). We sample $K$ independent code candidates for each plan to improve the likelihood of implementing the plan correctly.  
+Following phase 1, we have a plan that outlines the specific transformation for the selected optimization. To generate optimized code, in phase 2 we prompt the LLM to apply the transformations in the plan to generate new, semantically equivalent code. The implementation prompt (phase 2\) contains many of the same elements as the planning prompt (phase 1). We sample K independent code candidates for each plan to improve the likelihood of implementing the plan correctly.  
 
 <figure>
     <img src="images_autocomp/image5.gif"
@@ -113,12 +113,12 @@ Following phase 1, we have a plan that outlines the specific transformation for 
 
 ## Survival of the Fastest (and Correct): Beam Search
 
-To efficiently explore several optimizations in parallel, we use a traditional beam search, with beam width of $B$. The animated figure above shows how beam search would work for a beam size $B=2$. Our beam search integrates the two phases described above, but only candidates which meet the following criteria can enter the beam:
+To efficiently explore several optimizations in parallel, we use a traditional beam search, with beam width of B. The animated figure above shows how beam search would work for a beam size B=2. Our beam search integrates the two phases described above, but only candidates which meet the following criteria can enter the beam:
 
 * **✅Correctness.** After each code generation step, every candidate is compiled and run against our functional test suite.  
 * **⚡Performance.** Next, we measure the latency of functionally correct candidates via cycle-accurate simulation. Only candidates that are faster than their "parent" i.e., the version they were derived from are retained.
 
-Of the functionally correct candidates, we keep the best (lowest latency) $B$ to seed the next iteration of beam search. We run this loop for a fixed budget of iterations.
+Of the functionally correct candidates, we keep the best (lowest latency) B to seed the next iteration of beam search. We run this loop for a fixed budget of iterations.
 
 ## Increasing Plan and Code Diversity
 
