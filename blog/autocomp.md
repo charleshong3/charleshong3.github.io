@@ -64,7 +64,7 @@ Code transformations that enable these optimizations range from low-level change
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
-<div class="figure-wrapper" style="width:100%;">
+<div class="figure-wrapper" style="width:80%;">
 <figure class="center">
 
 ```c
