@@ -21,14 +21,14 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #376ead;
+    color: #3972b4;
     transition: all 0.2s ease;
     border-bottom: 1px solid transparent;
 }
 a:hover {
     text-decoration: none;
-    color: #2a6198;
-    border-bottom: 1px solid #275a8e;
+    color: #2c66a0;
+    border-bottom: 1px solid #296097;
 }
 h1 {
     font-size: 2.2em;
