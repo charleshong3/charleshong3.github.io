@@ -66,7 +66,7 @@ Code transformations that enable these optimizations range from low-level change
 
 <div class="center" style="width:100%;">
   <figure class="code-container">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; background-color: #f8f8f8;">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8;">
 
 ```c
 // Unoptimized
@@ -86,7 +86,8 @@ for (int k = 0; k < 8; k++) {
             compute(spad_addr + k_i * 16, ...);
         spad_addr += 64;
 ```
-    </div>
+
+</div>
   </figure>
     <figcaption>
         Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
