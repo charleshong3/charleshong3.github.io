@@ -44,7 +44,7 @@ Adapting compilers to new hardware platforms has always been difficult, due to t
     <img src="images_autocomp/image3.png"
          alt="LLM-generated cartoon of tensor accelerator developers hard at work."
          class="center"
-         style="width:55vw;">
+         style="width:30vw;">
     <figcaption style="text-align:center">Tensor accelerator developers hard at work\! (as imagined by GPT-4o)</figcaption>
 </figure>
 
@@ -62,7 +62,7 @@ Code transformations that enable these optimizations range from low-level change
     <img src="images_autocomp/image7.png"
          alt="Architecture and dataflow of a tensor accelerator system."
          class="center"
-         style="width:55vw;">
+         style="width:30vw;">
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
@@ -96,7 +96,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
     <img src="images_autocomp/image2.png"
          alt="Autocomp's 2-phase prompt structure"
          class="center"
-         style="width:55vw;">
+         style="width:45vw;">
 </figure>
 
 ## Phase 1: Plan
@@ -111,7 +111,7 @@ Following phase 1, we have a plan that outlines the specific transformation for 
     <img src="images_autocomp/image5.gif"
          alt="Autocomp's beam search"
          class="center"
-         style="width:55vw;">
+         style="width:40vw;margin-top:-50px;margin-bottom:-50px;">
 </figure>
 
 ## Survival of the Fastest (and Correct): Beam Search
@@ -182,7 +182,7 @@ First, we recorded the best known schedule for a particular GEMM. Then, during p
     <img src="images_autocomp/image6.png"
          alt="Line charts showing that scheduling with reuse produces greater speedups than scheduling without reuse."
          class="center"
-         style="width:55vw;">
+         style="width:40vw;">
 </figure>
 
 Over several different GEMM sizes, we found that this process improved performance by 24% under a 100-sample budget. And above, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample counts, the headstart provided by schedule reuse leads to consistently better results.
