@@ -103,7 +103,7 @@ We prompt an LLM to select *one* optimization from a predefined menu of optimiza
 
 Following phase 1, we have a plan that outlines the specific transformation for the selected optimization. To generate optimized code, in phase 2 we prompt the LLM to apply the transformations in the plan to generate new, semantically equivalent code. The implementation prompt (phase 2\) contains many of the same elements as the planning prompt (phase 1). We sample K independent code candidates for each plan to improve the likelihood of implementing the plan correctly.  
 
-<div class="crop-container" style="width:40vw;height:25vw;margin-top:100px;margin-bottom:100px;overflow:hidden;">
+<div class="crop-container" class="center" style="width:40vw;margin-top:100px;margin-bottom:100px;overflow:hidden;">
 <figure>
     <!-- 1512 x 1080 -->
     <img src="images_autocomp/image5.gif" 
