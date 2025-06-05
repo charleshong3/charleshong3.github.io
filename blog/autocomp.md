@@ -218,7 +218,7 @@ First, we recorded the best known schedule for a particular GEMM. Then, during p
          style="width:90%;max-width:800px;">
 </figure>
 
-Over several different GEMM sizes, we found that this process improved performance by 24% under a 100-sample budget. And above, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample counts, the headstart provided by schedule reuse leads to consistently better results.
+Over several different GEMM sizes, we found that this process improved performance by 24% under a 100-sample budget. Here, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample budgets, the headstart provided by schedule reuse leads to consistently better results.
 
 # Key takeaways
 
