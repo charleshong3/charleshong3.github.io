@@ -8,6 +8,22 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+@media screen and (max-width: 768px) {
+    body {
+        width: 90%;
+        margin: 30px auto;
+    }
+    
+    .center {
+        width: 100%;
+    }
+    
+    figcaption {
+        max-width: 100%;
+    }
+}
+
 nav ul, footer ul {
     padding: 0px;
     list-style: none;
