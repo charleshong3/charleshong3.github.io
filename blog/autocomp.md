@@ -81,7 +81,7 @@ for (int k = 0; k < 8; k++) {
     spad_addr = base_spad_addr;
     dma_mvin(A[0][k*64], spad_addr);
     for (int i = 0; i < 32; i++) {
-        dma_mvin(A\[(i+1)*16\]\[k*64\], spad_addr + 64);
+        dma_mvin(A[(i+1)*16][k*64], spad_addr + 64);
         for (int k_i = 0; k_i < 4; k_i++) {
             compute(spad_addr + k_i * 16, ...);
         spad_addr += 64;
