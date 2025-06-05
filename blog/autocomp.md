@@ -10,6 +10,8 @@
 
 [Charles Hong](https://charleshong3.github.io/), [Sahil Bhatia](https://x.com/sahilb17), [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/), and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/)
 
+UC Berkeley
+
 ### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574) for full technical details.
 
 ---
@@ -115,8 +117,8 @@ Following phase 1, we have a plan that outlines the specific transformation for 
 
 To efficiently explore several optimizations in parallel, we use a traditional beam search, with beam width of B. The animated figure above shows how beam search would work for a beam size B=2. Our beam search integrates the two phases described above, but only candidates which meet the following criteria can enter the beam:
 
-* **✅Correctness.** After each code generation step, every candidate is compiled and run against our functional test suite.  
-* **⚡Performance.** Next, we measure the latency of functionally correct candidates via cycle-accurate simulation. Only candidates that are faster than their "parent" i.e., the version they were derived from are retained.
+* **✅ Correctness.** After each code generation step, every candidate is compiled and run against our functional test suite.  
+* **⚡ Performance.** Next, we measure the latency of functionally correct candidates via cycle-accurate simulation. Only candidates that are faster than their "parent" i.e., the version they were derived from are retained.
 
 Of the functionally correct candidates, we keep the best (lowest latency) B to seed the next iteration of beam search. We run this loop for a fixed budget of iterations.
 
@@ -158,7 +160,7 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
 
 **Performance Comparison:**
 
-🚀Autocomp consistently outperforms all baselines:
+🚀 Autocomp consistently outperforms all baselines:
 
 * **1.4x** faster than Exo's hand-optimized code  
 * **2.9x** faster than unoptimized Exo baseline (our starting point)  
