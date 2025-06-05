@@ -9,21 +9,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        width: 90%;
-        margin: 30px auto;
-    }
-    
-    .center {
-        width: 100%;
-    }
-    
-    figcaption {
-        max-width: 100%;
-    }
-}
-
 nav ul, footer ul {
     padding: 0px;
     list-style: none;
@@ -119,3 +104,36 @@ table, th, td {
     border-collapse: collapse;
     padding: 10px;
 } 
+
+@media screen and (max-width: 1080px) {
+    body {
+      width: 90%;
+      margin: 20px auto;
+      font-size: 1.1em; /* Increases base font size */
+    }
+  
+    h1 {
+      font-size: 2.4em;
+    }
+  
+    h2 {
+      font-size: 1.8em;
+    }
+  
+    h3 {
+      font-size: 1.4em;
+    }
+  
+    p, ul, li, figcaption {
+      font-size: 1.1em;
+    }
+  
+    .center, img {
+      width: 100%;
+      height: auto;
+    }
+  
+    figcaption {
+      max-width: 100%;
+    }
+  }

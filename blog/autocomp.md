@@ -2,7 +2,7 @@
     <img src="images_autocomp/image4.png"
          alt="Images of accelerators including Google's TPU, AWS's Trainium, and others."
          class="center"
-         style="width:40vw;margin-top:30px;">
+         style="width:80vw;max-width:600px;margin-top:30px;">
     <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
 </figure>
 
@@ -42,7 +42,7 @@ Adapting compilers to new hardware platforms has always been difficult, due to t
     <img src="images_autocomp/image3.png"
          alt="LLM-generated cartoon of tensor accelerator developers hard at work."
          class="center"
-         style="width:25vw;">
+         style="width:80vw;max-width:400px;">
     <figcaption style="text-align:center">Tensor accelerator developers hard at work! (as imagined by GPT-4o)</figcaption>
 </figure>
 
@@ -60,7 +60,7 @@ Code transformations that enable these optimizations range from low-level change
     <img src="images_autocomp/image7.png"
          alt="Architecture and dataflow of a tensor accelerator system."
          class="center"
-         style="width:30vw;">
+         style="width:80vw;max-width:500px;">
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
     <img src="images_autocomp/image2.png"
          alt="Autocomp's 2-phase prompt structure"
          class="center"
-         style="width:40vw;">
+         style="width:80vw;max-width:600px;">
 </figure>
 
 ## Phase 1: Plan
@@ -161,7 +161,7 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
     <img src="images_autocomp/image1.jpg"
          alt="Bar chart showing Autocomp's performance far exceeds baselines."
          class="center"
-         style="width:45vw;">
+         style="width:80vw;max-width:600px;">
 </figure>
 
 **Performance Comparison:**
@@ -187,7 +187,7 @@ First, we recorded the best known schedule for a particular GEMM. Then, during p
     <img src="images_autocomp/image6.png"
          alt="Line charts showing that scheduling with reuse produces greater speedups than scheduling without reuse."
          class="center"
-         style="width:40vw;">
+         style="width:80vw;max-width:600px;">
 </figure>
 
 Over several different GEMM sizes, we found that this process improved performance by 24% under a 100-sample budget. And above, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample counts, the headstart provided by schedule reuse leads to consistently better results.
