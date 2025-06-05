@@ -103,17 +103,14 @@ We prompt an LLM to select *one* optimization from a predefined menu of optimiza
 
 Following phase 1, we have a plan that outlines the specific transformation for the selected optimization. To generate optimized code, in phase 2 we prompt the LLM to apply the transformations in the plan to generate new, semantically equivalent code. The implementation prompt (phase 2\) contains many of the same elements as the planning prompt (phase 1). We sample K independent code candidates for each plan to improve the likelihood of implementing the plan correctly.  
 
-<div class="center">
-<div class="crop-container" style="width:40vw;margin-top:100px;margin-bottom:100px;overflow:hidden;">
 <figure>
     <!-- 1512 x 1080 -->
     <img src="images_autocomp/image5.gif" 
          alt="Autocomp's beam search"
          class="center"
-         style="width:100%;">
+         style="width:40vw;height:200px;cover;object-position:center;">
 </figure>
-</div>
-</div>
+
 ## Survival of the Fastest (and Correct): Beam Search
 
 To efficiently explore several optimizations in parallel, we use a traditional beam search, with beam width of B. The animated figure above shows how beam search would work for a beam size B=2. Our beam search integrates the two phases described above, but only candidates which meet the following criteria can enter the beam:
