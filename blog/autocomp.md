@@ -8,17 +8,17 @@
 
 # Autocomp: LLM-Driven Code Optimization for Tensor Accelerators
 
-[Charles Hong](https://charleshong3.github.io/), [Sahil Bhatia](https://x.com/sahilb17), [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/), and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/)
+[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}, [Sahil Bhatia](https://x.com/sahilb17){:target="_blank" rel="noopener"}, [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"}, and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"}
 <br/>
 UC Berkeley
 
-### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574) for full technical details.
+### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} for full technical details.
 
 ---
 
 By this point, we're all aware of the remarkable capabilities of large language models (LLMs). Whether it's summarizing, rewriting, or generating new ideas, LLMs far exceed the abilities of previous techniques when it comes to dealing with any textual interface, including code. Yet, anyone who has tried to code with LLMs knows their limitations. While ChatGPT can whip up practically any boilerplate Python script you could ask for, it becomes much less reliable when more niche APIs or languages come into play, let alone new hardware platforms.
 
-As computer architecture researchers at UC Berkeley's [SLICE Lab](https://slice.eecs.berkeley.edu/), we became interested in leveraging LLMs to write low-level software for hardware accelerators (see below for why this is an important problem). However, we found that LLMs couldn't accomplish much in a zero-shot setting (see our [prior work](https://arxiv.org/abs/2408.03408)), and given the nature of pre-training, we don't think this will change any time soon. We believe this calls for a more domain-specific approach.
+As computer architecture researchers at UC Berkeley's [SLICE Lab](https://slice.eecs.berkeley.edu/){:target="_blank" rel="noopener"}, we became interested in leveraging LLMs to write low-level software for hardware accelerators (see below for why this is an important problem). However, we found that LLMs couldn't accomplish much in a zero-shot setting (see our [prior work](https://arxiv.org/abs/2408.03408){:target="_blank" rel="noopener"}), and given the nature of pre-training, we don't think this will change any time soon. We believe this calls for a more domain-specific approach.
 
 We present **Autocomp**, the first LLM-driven code optimization approach for low-resource tensor accelerator code generation. Autocomp incorporates domain knowledge, hardware correctness/performance feedback, and novel strategies for response diversity to automatically search for performant code. 
 
@@ -165,7 +165,7 @@ We use the following two techniques to boost the diversity in plan (and in the c
 
 # Applying Autocomp to Gemmini (Not Gemini\!)
 
-To be clear, [Gemmini](https://github.com/ucb-bar/gemmini) isn't a chatbot or an AI model. It's an open-source hardware generator developed by researchers at UC Berkeley for building custom tensor accelerators. Gemmini is ideal for evaluating Autocomp because:
+To be clear, [Gemmini](https://github.com/ucb-bar/gemmini){:target="_blank" rel="noopener"} isn't a chatbot or an AI model. It's an open-source hardware generator developed by researchers at UC Berkeley for building custom tensor accelerators. Gemmini is ideal for evaluating Autocomp because:
 
 * **Performance.** It generates accelerators with performance comparable to commercial hardware.  
 * **Customizable.** It's open-source, so we can tweak hardware design, modify the software stack and generate detailed performance data.  
@@ -177,13 +177,13 @@ In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autoco
 | Baseline | Description |
 | :---- | :---- |
 | Gemmini Software Library | Uses heuristics to tile and run GEMMs/convs on generated accelerators. |
-| [Exo](https://exo-lang.dev/) (unoptimized) | DSL for tensor code \+ basic compiler for Gemmini accelerators. The starting point for Autocomp-based optimization. |
+| [Exo](https://exo-lang.dev/){:target="_blank" rel="noopener"} (unoptimized) | DSL for tensor code \+ basic compiler for Gemmini accelerators. The starting point for Autocomp-based optimization. |
 | Exo (optimized) | Extensively hand-tuned Exo schedules written by experts for each GEMM and conv benchmark. |
 | Hardware FSM | Custom FSM units inside Gemmini for GEMM/conv ops. Highly tuned, fully parallel hardware reaching up to 99% compute utilization. We use this as an upper bound for GEMM/conv benchmarks. |
 
 ## GEMM Scheduling Results
 
-To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf), so we have a strong hand-optimized baseline to compare against.
+To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf){:target="_blank" rel="noopener"}, so we have a strong hand-optimized baseline to compare against.
 
 <figure>
     <img src="images_autocomp/image1.png"
