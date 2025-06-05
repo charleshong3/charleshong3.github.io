@@ -2,7 +2,7 @@
     <img src="images_autocomp/image4.png"
          alt="Images of accelerators including Google's TPU, AWS's Trainium, and others."
          class="center"
-         style="width:40vw;margin-top:50px;">
+         style="width:40vw;margin-top:30px;">
     <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
 </figure>
 
