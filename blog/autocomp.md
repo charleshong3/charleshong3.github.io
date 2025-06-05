@@ -97,7 +97,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
 **How?** Prior work across general-purpose LLM prompt design and LLM code generation shows that decomposing tasks into multiple steps can improve an LLM's ability to solve them. For code optimization, we split our workflow into two phases: optimization plan generation and code implementation. We repeat this **Plan-then-Implement** process on generated code, completing the optimization loop with an iterative beam search (animated below). Beam search allows us to keep the best code candidates at each step, as well as explore multiple optimization trajectories in parallel.
 
 <figure>
-    <img src="images_autocomp/image2.png"
+    <img src="images_autocomp/image2.svg"
          alt="Autocomp's 2-phase prompt structure"
          class="center"
          style="width:80vw;max-width:600px;">
