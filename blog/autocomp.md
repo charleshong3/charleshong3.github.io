@@ -64,7 +64,7 @@ Code transformations that enable these optimizations range from low-level change
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
-<div class="center" style="width:80%;">
+<div class="center" style="width:100%;">
 <figure class="center">
 
 ```c
@@ -86,7 +86,7 @@ for (int k = 0; k < 8; k++) {
         spad_addr += 64;
 ```
 </figure>
-<figcaption style="max-width:100%;">Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
+<figcaption style="max-width:80%;">Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
 </figcaption>
 </div>
 
