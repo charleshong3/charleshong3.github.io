@@ -82,7 +82,6 @@ ul.posts li {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
 } 
 
 figcaption {
@@ -112,6 +111,10 @@ table, th, td {
    margin-right: auto;
 }
 
+img {
+    width: 50%;
+}
+
 @media screen and (max-width: 1080px) {
     body {
       width: 90%;
@@ -137,7 +140,7 @@ table, th, td {
     }
   
     .center, img {
-      width: 100%;
+      width: 90%;
       height: auto;
     }
     .code-container {

@@ -41,8 +41,7 @@ Adapting compilers to new hardware platforms has always been difficult, due to t
 <figure>
     <img src="images_autocomp/image3.png"
          alt="LLM-generated cartoon of tensor accelerator developers hard at work."
-         class="center"
-         style="width:80vw;max-width:400px;">
+         class="center">
     <figcaption style="text-align:center">Tensor accelerator developers hard at work! (as imagined by GPT-4o)</figcaption>
 </figure>
 
@@ -59,8 +58,7 @@ Code transformations that enable these optimizations range from low-level change
 <figure>
     <img src="images_autocomp/image7.png"
          alt="Architecture and dataflow of a tensor accelerator system."
-         class="center"
-         style="width:80vw;max-width:500px;">
+         class="center" style="min-width: 60%">
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
@@ -130,7 +128,7 @@ Leveraging the recent advances in LLMs for code, we present Autocomp, which uses
     <img src="images_autocomp/image2.svg"
          alt="Autocomp's 2-phase prompt structure"
          class="center"
-         style="width:80vw;max-width:600px;">
+         style="min-width: 90%;">
 </figure>
 
 ## Phase 1: Plan
