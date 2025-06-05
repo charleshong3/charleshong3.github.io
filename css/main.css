@@ -1,6 +1,6 @@
 body {
     margin: 60px auto;
-    width: 70%;
+    width: 50%;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     line-height: 1.6;
     color: #2c3e50;
@@ -29,26 +29,26 @@ a:hover {
     border-bottom: 1px solid #357abd;
 }
 h1 {
-    font-size: 2.5em;
+    font-size: 2.2em;
     color: #2c3e50;
     margin-bottom: 0.5em;
     font-weight: 700;
     letter-spacing: -0.5px;
 }
 h2 {
-    font-size: 1.7em;
+    font-size: 1.5em;
     color: #34495e;
-    margin: 1.5em 0 0.8em;
+    margin: 0.8em 0 0.8em;
     font-weight: 600;
 }
 h3 {
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: #34495e;
-    margin: 1.2em 0 0.6em;
+    margin: 0.6em 0 0.6em;
     font-weight: 600;
 }
 p {
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.7;
     color: #2c3e50;
     margin-bottom: 1.2em;
@@ -61,7 +61,7 @@ footer {
     padding-top: 1em;
 }
 ul {
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.7;
     color: #2c3e50;
     margin-bottom: 1.2em;
@@ -69,7 +69,7 @@ ul {
 
 ul.posts { 
     margin: 20px auto 40px; 
-    font-size: 1.3em;
+    font-size: 1.1em;
 }
 ul.posts li {
     list-style: none;
