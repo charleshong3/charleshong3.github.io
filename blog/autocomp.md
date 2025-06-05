@@ -9,7 +9,7 @@
 # Autocomp: LLM-Driven Code Optimization for Tensor Accelerators
 
 [Charles Hong](https://charleshong3.github.io/), [Sahil Bhatia](https://x.com/sahilb17), [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/), and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/)
-
+<br/>
 UC Berkeley
 
 ### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574) for full technical details.
