@@ -2,7 +2,7 @@
     <img src="images_autocomp/image4.png"
          alt="Images of accelerators including Google's TPU, AWS's Trainium, and others."
          class="center"
-         style="min-width:75%;margin-top:30px;">
+         style="min-width:85%;margin-top:30px;">
     <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ Code transformations that enable these optimizations range from low-level change
 <figure>
     <img src="images_autocomp/image7.png"
          alt="Architecture and dataflow of a tensor accelerator system."
-         class="center" style="min-width: 60%">
+         class="center" style="min-width: 65%">
     <figcaption style="text-align:center">Architecture and dataflow of a tensor accelerator system.</figcaption>
 </figure>
 
