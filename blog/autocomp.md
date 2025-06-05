@@ -67,8 +67,7 @@ Code transformations that enable these optimizations range from low-level change
 <div class="center" style="width:100%;">
   <figure class="center">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; background-color: #f8f8f8;">
-<pre><code class="language-c">
-// Unoptimized
+<pre><code class="language-c">// Unoptimized
 for (int k = 0; k < 8; k++) {
     for (int i = 0; i < 32; i++) {
         dma_mvin(A[i*16][k*64], spad_addr);
@@ -83,8 +82,7 @@ for (int k = 0; k < 8; k++) {
         dma_mvin(A[(i+1)*16][k*64], spad_addr + 64);
         for (int k_i = 0; k_i < 4; k_i++) {
             compute(spad_addr + k_i * 16, ...);
-        spad_addr += 64;
-</code></pre>
+        spad_addr += 64;</code></pre>
     </div>
     <figcaption style="max-width:80%;">
       Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
@@ -144,7 +142,7 @@ Following phase 1, we have a plan that outlines the specific transformation for 
     <img src="images_autocomp/image5.gif" 
          alt="Autocomp's beam search"
          class="center"
-         style="width:600px;height:350px;object-fit: cover;object-position: center;border: 1px solid #494c64;border-radius: 8px;">
+         style="width:600px;height:350px;object-fit: cover;object-position: center;border: 1px solid #ccc;border-radius: 8px;">
 </figure>
 
 ## Survival of the Fastest (and Correct): Beam Search
