@@ -158,7 +158,7 @@ In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autoco
 To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf), so we have a strong hand-optimized baseline to compare against.
 
 <figure>
-    <img src="images_autocomp/image1.jpg"
+    <img src="images_autocomp/image1.png"
          alt="Bar chart showing Autocomp's performance far exceeds baselines."
          class="center"
          style="width:100%;max-width:800px;">
