@@ -218,7 +218,7 @@ Over several different GEMM types, we found that this process improved performan
 
 # Key takeaways
 
-LLMs can't zero-shot optimize low-resource code out of the box, but there are a few steps you can take that just might make your problem tractable.
+LLMs can't easily optimize low-resource code out of the box, but there are a few steps you can take that just might make your problem tractable.
 
 * **Don't try to zero-shot your problem.** We decompose code optimization into a search problem, then break each iteration down into 2 phases (planning and implementation). Then we explore every step of the way\!
 * **LLMs aren't always smarter than you.** We find that much of the prior work relies on an LLM to analyze bottlenecks or suggest optimizations. But when we asked LLMs to analyze our code, the responses were usually incorrect, and while some LLM suggestions were helpful, they weren't very diverse. Encoding domain knowledge via an optimization menu alleviates these issues.  
