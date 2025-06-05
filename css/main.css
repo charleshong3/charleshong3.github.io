@@ -106,6 +106,10 @@ table, th, td {
     padding: 10px;
 } 
 
+.code-container {
+   width: 60%;
+}
+
 @media screen and (max-width: 1080px) {
     body {
       width: 90%;
@@ -130,7 +134,7 @@ table, th, td {
       font-size: 1.1em;
     }
   
-    .center, img {
+    .center, img, .code-container {
       width: 100%;
       height: auto;
     }

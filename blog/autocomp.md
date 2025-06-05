@@ -65,9 +65,11 @@ Code transformations that enable these optimizations range from low-level change
 </figure>
 
 <div class="center" style="width:100%;">
-  <figure class="center">
+  <figure class="code-container">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding: 16px; background-color: #f8f8f8;">
-<pre><code class="language-c">// Unoptimized
+
+```c
+// Unoptimized
 for (int k = 0; k < 8; k++) {
     for (int i = 0; i < 32; i++) {
         dma_mvin(A[i*16][k*64], spad_addr);
@@ -79,15 +81,16 @@ for (int k = 0; k < 8; k++) {
     spad_addr = base_spad_addr;
     dma_mvin(A[0][k*64], spad_addr);
     for (int i = 0; i < 32; i++) {
-        dma_mvin(A[(i+1)*16][k*64], spad_addr + 64);
+        dma_mvin(A\[(i+1)*16\]\[k*64\], spad_addr + 64);
         for (int k_i = 0; k_i < 4; k_i++) {
             compute(spad_addr + k_i * 16, ...);
-        spad_addr += 64;</code></pre>
+        spad_addr += 64;
+```
     </div>
-    <figcaption style="max-width:80%;">
-      Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
-    </figcaption>
   </figure>
+    <figcaption>
+        Example of software pipelining in tensor accelerators. The A matrix tile is spread throughout accelerator memory rather than repeatedly loaded to the same location, allowing data loading to run ahead and overlap with computation.
+    </figcaption>
 </div>
 
 <!-- <div class="center" style="width:100%;">
