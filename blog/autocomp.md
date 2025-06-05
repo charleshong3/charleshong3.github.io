@@ -161,7 +161,7 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
     <img src="images_autocomp/image1.jpg"
          alt="Bar chart showing Autocomp's performance far exceeds baselines."
          class="center"
-         style="width:80vw;max-width:600px;">
+         style="width:100%;max-width:800px;">
 </figure>
 
 **Performance Comparison:**
@@ -187,7 +187,7 @@ First, we recorded the best known schedule for a particular GEMM. Then, during p
     <img src="images_autocomp/image6.png"
          alt="Line charts showing that scheduling with reuse produces greater speedups than scheduling without reuse."
          class="center"
-         style="width:80vw;max-width:600px;">
+         style="width:90%;max-width:800px;">
 </figure>
 
 Over several different GEMM sizes, we found that this process improved performance by 24% under a 100-sample budget. And above, you can see the full optimization trace for schedules transferred between two square matrices (1024×1024×1024 to 512×512×512) and between two column-dominant matrices (12544x256x64 to 12544x128x64). Across sample counts, the headstart provided by schedule reuse leads to consistently better results.
