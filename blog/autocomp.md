@@ -65,7 +65,7 @@ Code transformations that enable these optimizations range from low-level change
 <div class="center" style="width:100%;">
   <figure class="code-container">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8;">
-<code>// Unoptimized
+<pre><code>// Unoptimized
 for (int k = 0; k < 8; k++) {
     for (int i = 0; i < 32; i++) {
         dma_mvin(A[i*16][k*64], spad_addr);
@@ -80,7 +80,7 @@ for (int k = 0; k < 8; k++) {
         dma_mvin(A\[(i+1)*16\]\[k*64\], spad_addr + 64);
         for (int k_i = 0; k_i < 4; k_i++) {
             compute(spad_addr + k_i * 16, ...);
-        spad_addr += 64;</code>
+        spad_addr += 64;</code></pre>
 </div>
   </figure>
     <figcaption>
