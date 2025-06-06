@@ -152,6 +152,10 @@ To efficiently explore several optimizations in parallel, we use a traditional b
 
 Of the functionally correct candidates, we keep the best (lowest latency) B to seed the next iteration of beam search. We run this loop for a fixed budget of iterations.
 
+## Hardware Performance Feedback
+
+In addition to functional correctness and cycle count, we utilize more detailed hardware performance feedback to guide the search. Specifically, we measure the utilization of the accelerator's local memories (scratchpad and accumulator) and provide it in the **Hardware Performance Feedback** section of the planning prompt. Local memory utilization is a generally applicable yet important metric that can help the model select optimizations that increase memory utilization (such as double-buffering or increasing tile sizes) when the memories are underutilized, and avoid these optimizations when they are full.
+
 ## Increasing Plan and Code Diversity
 
 We use the following two techniques to boost the diversity in plan (and in the case of LLM ensembling, code) generation and prevent the model from repeatedly selecting the same optimization:
