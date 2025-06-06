@@ -12,7 +12,7 @@
 <br/>
 UC Berkeley
 
-### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} for full technical details.
+### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} and [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} (still under construction) for full technical details.
 
 ---
 
