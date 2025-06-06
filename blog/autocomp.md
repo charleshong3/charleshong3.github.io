@@ -179,7 +179,7 @@ In this blog, we optimize matrix multiplication (GEMM) code to illustrate Autoco
 
 ## GEMM Scheduling Results
 
-To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf){:target="_blank" rel="noopener"}, so we have a strong hand-optimized baseline to compare against. We search for N=15 iterations, with beam width B=6, N=6 plans per candidate in the beam, and K=2 code implementations per plan.
+To evaluate how well Autocomp performs, we optimize a variety of different shapes and sizes of matrix multiplication from ResNet-50. The developers of Exo and Gemmini used these benchmarks in [prior work](https://people.csail.mit.edu/yuka/pdf/exo_pldi2022_full.pdf){:target="_blank" rel="noopener"}, so we have a strong hand-optimized baseline to compare against. We search for T=15 iterations, with beam width B=6, N=6 plans per candidate in the beam, and K=2 code implementations per plan.
 
 <figure>
     <img src="images_autocomp/image1.png"
