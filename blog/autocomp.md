@@ -202,7 +202,7 @@ To evaluate how well Autocomp performs, we optimize a variety of different shape
 
 ### Why does it work so well?
 
-Autocomp shines because of its ability to effectively explore the optimization space, especially around double-buffering, software pipeline and loop tiling. This results in better overlap of data movement and computation resulting in significant performance boost. Appendix C of our paper breaks down exactly how Autocomp optimizes one of the GEMM kernels over the course of many iterations.
+Autocomp shines because of its ability to effectively explore the optimization space, especially around double-buffering, software pipeline and loop tiling. This results in better overlap of data movement and computation resulting in significant performance boost. [Appendix C](https://arxiv.org/pdf/2505.18574#appendix.1.C) of the paper breaks down exactly how Autocomp optimizes one of the GEMM kernels over the course of many iterations, and compares the optimizations applied by Autocomp to those used in the corresponding hand-optimized Exo schedule.
 
 # Improving Sample Efficiency With Schedule Reuse 
 
