@@ -8,7 +8,7 @@
 
 # Autocomp: LLM-Driven Code Optimization for Tensor Accelerators
 
-#### June 5, 2025
+#### June 4, 2025
 
 [Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}, [Sahil Bhatia](https://x.com/sahilb17){:target="_blank" rel="noopener"}, [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"}, and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"}
 <br/>
