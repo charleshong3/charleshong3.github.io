@@ -8,11 +8,11 @@
 
 # Autocomp: LLM-Driven Code Optimization for Tensor Accelerators
 
+#### June 5, 2025
+
 [Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}, [Sahil Bhatia](https://x.com/sahilb17){:target="_blank" rel="noopener"}, [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"}, and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"}
 <br/>
 UC Berkeley
-<br/>
-June 5, 2025
 
 ### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} and [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} (under construction) for full technical details.
 
