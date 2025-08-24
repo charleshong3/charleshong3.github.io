@@ -231,7 +231,7 @@ LLMs don't do a good job of optimizing low-resource code out of the box, but the
 
 Contact Charles ([charleshong@berkeley.edu](mailto:charleshong@berkeley.edu)) or Sahil ([sahilbhatia@berkeley.edu](mailto:sahilbhatia@berkeley.edu)) if you have any questions\!
 
-📜 **Citation**
+### 📜 Citation
 
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width:100%;">
