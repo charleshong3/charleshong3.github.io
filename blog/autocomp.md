@@ -230,3 +230,22 @@ LLMs don't do a good job of optimizing low-resource code out of the box, but the
 * **Introduce noise.** While sampling is extremely helpful, techniques that boost diversity (menu dropout and LLM ensembling) can push diversity of responses even further, allowing for more exploration.
 
 Contact Charles ([charleshong@berkeley.edu](mailto:charleshong@berkeley.edu)) or Sahil ([sahilbhatia@berkeley.edu](mailto:sahilbhatia@berkeley.edu)) if you have any questions\!
+
+📜 **Citation**
+
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8;">
+<pre><code>@misc{hong2025autocomp,
+      title={Autocomp: LLM-Driven Code Optimization for Tensor Accelerators}, 
+      author={Charles Hong and Sahil Bhatia and Alvin Cheung and Yakun Sophia Shao},
+      year={2025},
+      eprint={2505.18574},
+      archivePrefix={arXiv},
+      primaryClass={cs.PL},
+      url={https://arxiv.org/abs/2505.18574}, 
+}</code></pre>
+</div>
+  </figure>
+</div>
+
