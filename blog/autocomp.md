@@ -66,7 +66,7 @@ Code transformations that enable these optimizations range from low-level change
 
 <div class="center" style="width:100%;">
   <figure class="code-container">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8;">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>// Unoptimized
 for (int k = 0; k < 8; k++) {
     for (int i = 0; i < 32; i++) {
@@ -234,8 +234,8 @@ Contact Charles ([charleshong@berkeley.edu](mailto:charleshong@berkeley.edu)) or
 📜 **Citation**
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8;">
+  <figure class="code-container" style="width:100%;">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>@misc{hong2025autocomp,
       title={Autocomp: LLM-Driven Code Optimization for Tensor Accelerators}, 
       author={Charles Hong and Sahil Bhatia and Alvin Cheung and Yakun Sophia Shao},
