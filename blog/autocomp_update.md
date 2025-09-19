@@ -14,7 +14,7 @@ This past June we introduced Autocomp, a method for using LLMs to help hardware 
 
 However, nothing in Autocomp's approach inherently limits it to Gemmini, or to systolic array accelerators. In the paper, we include Gemmini's ISA in context due to its super low-resource nature, but with more common languages like CUDA, we can omit this component. Furthermore, Autocomp's optimization menu consists of simple, high-level optimizations. Some of these menu options are applicable across hardware platforms, and new ones can easily be added at the user's discretion.
 
-Incidentally, GPU kernel optimization is all the rage these days[^1] [^2] [^3] [^4] [^5]. And a little more quietly, RISCV-V vector (RVV) processors have also been gaining traction since version 1.0 of the RVV extension was ratified in 2021[^6] [^7] [^8] [^9].
+Incidentally, GPU kernel optimization is all the rage these days.[^1] [^2] [^3] [^4] [^5] And a little more quietly, RISCV-V vector (RVV) processors have also been gaining traction since version 1.0 of the RVV extension was ratified in 2021.[^6] [^7] [^8] [^9]
 
 ---
 
