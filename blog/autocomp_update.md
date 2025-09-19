@@ -27,9 +27,9 @@ While Autocomp is designed with tensor accelerators in mind, we were also curiou
 - Level 3: 50 Full model architectures
 - Level 4: 20 Whole model architectures from HuggingFace
 
-Due to time constraints, we optimize only the first 30 level 2 problems and the first 10 level 3 problems. We omit level 4 as this is an aspirational benchmark (as stated by KernelBench’s authors) with a lack of prior results.
+In a cursory investigation, we optimized the first 30 level 2 problems and the first 10 level 3 problems. We did not tackle level 4 as this is an aspirational benchmark (as stated by KernelBench’s authors) with a lack of prior results.
 
-Autocomp’s results are extremely positive. We achieved the following state-of-the-art speedups: 2.16x on the first 30 problems of level 2, and 2.11x on the first 10 problems of level 3.
+Autocomp’s results are extremely positive. We achieved the following state-of-the-art speedups: 2.61x on the first 30 problems of level 2, and 2.11x on the first 10 problems of level 3.
 
 ### Changes to Autocomp
 
@@ -74,8 +74,8 @@ And here are the results, by benchmark:
 <figure>
     <img src="images_autocomp_update/kb_results.png"
          alt="Column chart showing Autocomp beating baselines on individual KernelBench benchmarks."
-         class="center" style="min-width:90%;">
-    <figcaption style="text-align:center">Performance of Autocomp-generated code on individual KernelBench level 2/3 benchmarks.</figcaption>
+         class="center" style="min-width:100%;">
+    <figcaption style="text-align:center">Performance of Autocomp-generated code on individual KernelBench benchmarks.</figcaption>
 </figure>
 
 Looking through the generated code, I was able to confirm that Autocomp successfully generated CUDA, rather than simply optimizing PyTorch (except for a few special cases).
@@ -105,7 +105,7 @@ We made the following changes to Autocomp:
 
 - Shorten Accelerator ISA to the following: “This code is running on a Kendryte K230 with a XuanTie C908 RVV 1.0 compliant processor with 128-bit VLEN and 32KB L1 cache.”
 
-- Feedback only includes latency in cycles, due to lack of time
+- Hardware Performance Feedback includes only latency in cycles
 
 - Add new options to the Optimization Menu used for GEMM/conv on Gemmini:
 
@@ -124,13 +124,11 @@ We made the following changes to Autocomp:
     riscv64-unknown-linux-gnu-gcc -S -O1 -march=rv64gcv -mabi=lp64d -mcmodel=medany code.c -o code.s
     ```
 
-- Hardware Performance Feedback consists only of latency in cycles
-
 ### Results
 
 We compared Autocomp-generated code to two baselines:
 
-1. A simple hand-written 3-loop GEMM implementation written using RVV intrinsics (also used as the starting code for Autocomp)
+1. A simple hand-written 3-loop GEMM implementation written using RVV intrinsics (also used as the starting code for Autocomp).
 2. GCC auto-vectorization of a simple 3-loop scalar implementation, compiled using gcc 15.1.0 with flags `-O3`, `-ftree-vectorize`, and `-fopt-info-vec-optimized`.
 
 As this was a quick experiment to see if Autocomp works for RVV, our benchmark suite consists simply of two GEMM kernels.
@@ -157,7 +155,7 @@ I am not an expert CUDA or RVV programmer. But with Autocomp, I was able to achi
 
 The version of Autocomp used for CUDA optimization is available at the main branch of our [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, while the RVV version currently lives on the `k230` branch. Documentation coming soon.
 
-In future work (and future blog posts!), we hope to further explore how Autocomp can be used to optimize code across a variety of hardware platforms, as well as make Autocomp better and more efficient at optimizing code.
+In future work (and future blog posts!), we hope to further explore how Autocomp can be used to optimize code across a variety of hardware platforms, as well as make Autocomp even better and more efficient at optimizing code.
 
 Email me at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions.
 
