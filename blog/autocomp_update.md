@@ -35,7 +35,7 @@ While Autocomp is designed with tensor accelerators in mind, we were also curiou
 
 In a cursory investigation, we optimized the first 30 level 2 problems and the first 10 level 3 problems. We did not tackle level 4 as this is an aspirational benchmark (as stated by KernelBench’s authors) with a lack of prior results.
 
-Autocomp’s results are extremely positive. We achieved the following state-of-the-art speedups: 2.61x on the first 30 problems of level 2, and 2.11x on the first 10 problems of level 3.
+Autocomp’s results are extremely positive. We achieved the following state-of-the-art speedups: **2.61x** on the first 30 problems of level 2, and **2.11x** on the first 10 problems of level 3.
 
 ### Changes to Autocomp
 
