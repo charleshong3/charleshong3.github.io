@@ -1,11 +1,3 @@
-<figure>
-    <img src="images_autocomp_update/title.png"
-         alt="AI-generated image of Autocomp optimizing CUDA and RVV code."
-         class="center"
-         style="min-width:80%;margin-top:30px;">
-    <figcaption style="text-align:center">"Two worlds, one optimizing engine." - Google Gemini</figcaption>
-</figure>
-
 # Autocomp for All: Update on CUDA and RVV Optimization with Autocomp
 
 #### September 19, 2025
@@ -24,7 +16,13 @@ However, nothing in Autocomp's approach inherently limits it to Gemmini, or to s
 
 Incidentally, GPU kernel optimization is all the rage these days.[^1] [^2] [^3] [^4] [^5] And a little more quietly, RISCV-V vector (RVV) processors have also been gaining traction since version 1.0 of the RVV extension was ratified in 2021.[^6] [^7] [^8] [^9]
 
----
+<figure>
+    <img src="images_autocomp_update/title.png"
+         alt="AI-generated image of Autocomp optimizing CUDA and RVV code."
+         class="center"
+         style="min-width:80%;margin-top:30px;">
+    <figcaption style="text-align:center">"Two worlds, one optimizing engine." - Google Gemini</figcaption>
+</figure>
 
 ## CUDA Optimization
 
