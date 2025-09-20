@@ -2,7 +2,7 @@
     <img src="images_autocomp_update/title.png"
          alt="AI-generated image of Autocomp optimizing CUDA and RVV code."
          class="center"
-         style="min-width:100%;margin-top:30px;">
+         style="min-width:100%;margin-top:25px;">
     <figcaption style="text-align:center">"Two worlds, one optimizing engine." - Google Gemini</figcaption>
 </figure>
 
