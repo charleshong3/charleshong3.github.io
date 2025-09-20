@@ -1,6 +1,14 @@
+<figure>
+    <img src="images_autocomp_update/title.png"
+         alt="AI-generated image of Autocomp optimizing CUDA and RVV code."
+         class="center"
+         style="min-width:100%;margin-top:30px;">
+    <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
+</figure>
+
 # Autocomp for All: Update on CUDA and RVV Optimization with Autocomp
 
-#### September 18, 2025
+#### September 19, 2025
 
 [Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}, [Sahil Bhatia](https://x.com/sahilb17){:target="_blank" rel="noopener"}, [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"}, and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"}
 <br/>
@@ -33,23 +41,23 @@ Autocomp’s results are extremely positive. We achieved the following state-of-
 
 ### Changes to Autocomp
 
-We made the following changes to Autocomp (as implemented in the paper):
+We made the following changes to Autocomp. Please reference the [original paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} for the original implementation.
 
-- Beam search parameters: beam size 6, 6 plans per element in beam, 2 implementations per plan, 10 iterations
+- **Beam search parameters**: beam size 6, 6 plans per element in beam, 2 implementations per plan, 10 iterations
 
-- Increased menu option dropout to 80% due to large menu (see below).
+- **Increased menu option dropout** to **80%** due to large menu (see below).
 
-- Removed Accelerator ISA component of prompt, as Python/PyTorch/CUDA are relatively high-resource languages in comparison to Gemmini and other tensor accelerators (note that the Accelerator ISA is still important an important component for tensor accelerator code optimization, as shown in Appendix A of the original paper).
+- **Removed Accelerator ISA** component of prompt, as Python/PyTorch/CUDA are relatively high-resource languages in comparison to Gemmini and other tensor accelerators (note that the Accelerator ISA is still important an important component for tensor accelerator code optimization, as shown in Appendix A of the original paper).
 
-- Hardware Performance Feedback includes the latency of Current Code in milliseconds.
+- **Hardware Performance Feedback** includes the latency of Current Code in milliseconds.
     - As this was a quick experiment, we opted not to set up any additional tracing or performance analysis tools, and only used the latency (in ms) of the current code candidate as feedback. We achieve strong results nonetheless, meaning we could potentially do even better with more sophisticated feedback that can point search in the right direction.
 
-- In the first two iterations of search, as KernelBench provides only a Python baseline, we focus on generating an initial inline CUDA implementation using the following reduced menu:
+- In the **first two iterations** of search, as KernelBench provides only a Python baseline, we focus on generating an initial inline CUDA implementation using the following reduced menu:
 
           "Convert PyTorch code to functional PyTorch code",
           "Convert a PyTorch operation to inline CUDA C++ code",
 
-- A new Optimization Menu, designed by combining a subset of optimizations from Autocomp and human-written optimizations sourced from a variety of CUDA and GPU code optimization guides. For example,"Use shared memory to reduce global memory bandwidth usage", or "Minimize divergent branches within warps" (the full menu is available in [`llm_agent.py`](https://github.com/ucb-bar/autocomp/blob/aa3c1ff39ad22c31abc3aa4008baaa071136960b/autocomp/search/llm_agent.py#L836){:target="_blank" rel="noopener"}).
+- A new **Optimization Menu**, designed by combining a subset of optimizations from Autocomp and human-written optimizations sourced from a variety of CUDA and GPU code optimization guides. For example,"Use shared memory to reduce global memory bandwidth usage", or "Minimize divergent branches within warps" (the full menu is available in [`llm_agent.py`](https://github.com/ucb-bar/autocomp/blob/aa3c1ff39ad22c31abc3aa4008baaa071136960b/autocomp/search/llm_agent.py#L836){:target="_blank" rel="noopener"}).
 
 We compare to the following baselines:
 
@@ -95,26 +103,26 @@ This experiment illustrates Autocomp’s effectiveness on real world hardware ag
 
 The Canaan Kendryte K230 dev board contains an RVV 1.0-compliant XuanTie C908 core, used to accelerate tensor computation. We chose this board because it was available to us. Thanks to Autocomp’s portability, we were able to start optimizing code for it in just a couple days and can share preliminary results.
 
-Specifically, we optimize a 128x128x128 GEMM kernel starting from a simple hand-written RVV-based implementation, achieving 4.15x speedup over this baseline and 8.10x speedup over GCC auto-vectorization.
+Specifically, we optimize two GEMM kernels starting from a simple hand-written RVV-based implementation.
 
 We made the following changes to Autocomp:
 
-- Beam search parameters: same as GEMM in paper
+- **Beam search parameters**: same as GEMM in paper
 
-- Menu option dropout: 80%
+- **Menu option dropout: 80%**
 
-- Shorten Accelerator ISA to the following: “This code is running on a Kendryte K230 with a XuanTie C908 RVV 1.0 compliant processor with 128-bit VLEN and 32KB L1 cache.”
+- Shorten Accelerator ISA to the following: **“This code is running on a Kendryte K230 with a XuanTie C908 RVV 1.0 compliant processor with 128-bit VLEN and 32KB L1 cache.”**
 
-- Hardware Performance Feedback includes only latency in cycles
+- **Hardware Performance Feedback** includes only latency in cycles
 
-- Add new options to the Optimization Menu used for GEMM/conv on Gemmini:
+- Add new options to the **Optimization Menu** used for GEMM/conv on Gemmini:
 
               "prefetching",  
               "register blocking",  
               "maximize LMUL",  
               "use fused operations or instructions",
 
-- Use the following Rules:
+- Use the following **Rules**:
 
     1. The rewritten program should be semantically equivalent to the original program.
     2. Limit the scope of the plan to the selected optimization.
@@ -146,7 +154,7 @@ As this was a quick experiment to see if Autocomp works for RVV, our benchmark s
 | GCC auto-vectorization: simple 3-loop scalar implementation, compiled using gcc 15.1.0 w/ flags -O3 -ftree-vectorize -fopt-info-vec-optimized | 11,324,414 | 4.63% |
 | **Autocomp** | **1,398,023** | **37.5%** | -->
 
-**Autocomp beats GCC auto-vectorization by 8.10x and 7.39x respectively!**
+**Autocomp beats GCC auto-vectorization by 8.10x and 7.39x respectively!** It also improves upon the hand-written baseline by 4.15x and 3.82x respectively.
 The generated code includes optimizations such as register blocking, loop reordering and tiling, hoisting, and prefetching. 
 
 ## Conclusion
@@ -155,7 +163,7 @@ I am not an expert CUDA or RVV programmer. But with Autocomp, I was able to achi
 
 The version of Autocomp used for CUDA optimization is available at the main branch of our [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, while the RVV version currently lives on the `k230` branch. Documentation coming soon.
 
-In future work (and future blog posts!), we hope to further explore how Autocomp can be used to optimize code across a variety of hardware platforms, as well as make Autocomp even better and more efficient at optimizing code.
+In future work (and future blog posts), we hope to further explore how Autocomp can be used to optimize code across a variety of hardware platforms, as well as make Autocomp more efficient and even more effective at optimizing code.
 
 Email me at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions.
 
