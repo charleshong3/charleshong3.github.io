@@ -64,6 +64,16 @@ We compare to the following baselines:
 - [Kernelsseum](https://scalingintelligence.stanford.edu/KernelBenchLeaderboard/){:target="_blank" rel="noopener"}: The KernelBench authors collected the best zero-shot generation results across 5 models via a simple prompting-based approach.
 - [The AI CUDA Engineer](https://sakana.ai/ai-cuda-engineer/){:target="_blank" rel="noopener"} leverages an agentic flow including separate stages for code translation and evolutionary optimization, GPU profiling feedback, and RAG for retrieving related high-performance kernels. They report speedups from an NVIDIA H100, whereas baselines and our results use NVIDIA L40S GPUs. However, KernelBench reports comparable results on the H100 and the L40S (for example, they found that DeepSeek-R1 was able to speed up 42% of level 2 kernels on the H100, compared to 36% on the L40S), so we do not expect speedups to change drastically across these GPU models.
 
+### Note about KernelBench and The AI CUDA Engineer
+
+We would like to note that the version of The AI CUDA Engineer we are referencing has been retracted due to evaluation issues. Sakana AI just released a new version of the paper [here](https://arxiv.org/abs/2509.14279){:target="_blank" rel="noopener"}.
+
+We are using their old results (which have now been taken down from their website) as a baseline for a similarly LLM- and search-driven approach. We manually looked through these results and removed one speedup that was clearly bugged (Level 2 Benchmark 23), but all other speedups are as stated by Sakana AI and look reasonable compared to our results.
+
+Furthermore, we note that KernelBench v0 contains several issues with accurate evaluation and incorrectly constructed benchmarks. From a manual review, none of our results appear invalid. You may note that our speedup for Level 2 Benchmark 13 is massive (256x!), but this is because the benchmark itself is a no-op. So, this particularly result is not very meaningful, but it is interesting to see that Autocomp discovered this on its own. KernelBench has also released a new version containing larger sizes and eliminating non-meaningful benchmarks, which you can find at their GitHub repo.
+
+As a final disclaimer, this is a blog post meant to help users, not a peer-reviewed paper. All our results should be reproducible, but if you notice any issues, please let us know!
+
 ### Results
 
 Geomean speedups over PyTorch’s default eager execution mode are as follows:
@@ -84,7 +94,7 @@ And here are the results, by benchmark:
     <figcaption style="text-align:center">Performance of Autocomp-generated code on individual KernelBench benchmarks.</figcaption>
 </figure>
 
-Looking through the generated code, I was able to confirm that Autocomp successfully generated CUDA, rather than simply optimizing PyTorch (except for a few special cases).
+Looking through the generated code, we were able to confirm that Autocomp successfully generated CUDA, rather than simply optimizing PyTorch (except for a few special cases).
 
 The key differences between Autocomp and AI CUDA Engineer, another search-based approach to code optimization, include several of our contributions: Autocomp’s two-phase prompting (Plan-then-Implement), Optimization Menu, and Optimization Menu dropout.
 
