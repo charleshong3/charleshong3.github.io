@@ -64,7 +64,7 @@ We compare to the following baselines:
 - [Kernelsseum](https://scalingintelligence.stanford.edu/KernelBenchLeaderboard/){:target="_blank" rel="noopener"}: The KernelBench authors collected the best zero-shot generation results across 5 models via a simple prompting-based approach.
 - [The AI CUDA Engineer](https://sakana.ai/ai-cuda-engineer/){:target="_blank" rel="noopener"} leverages an agentic flow including separate stages for code translation and evolutionary optimization, GPU profiling feedback, and RAG for retrieving related high-performance kernels. They report speedups from an NVIDIA H100, whereas baselines and our results use NVIDIA L40S GPUs. However, KernelBench reports comparable results on the H100 and the L40S (for example, they found that DeepSeek-R1 was able to speed up 42% of level 2 kernels on the H100, compared to 36% on the L40S), so we do not expect speedups to change drastically across these GPU models.
 
-### Note about KernelBench and The AI CUDA Engineer
+### Note about KernelBench v0 and The AI CUDA Engineer
 
 We would like to note that the version of The AI CUDA Engineer we are referencing has been retracted due to evaluation issues. Sakana AI just released a new version of the paper [here](https://arxiv.org/abs/2509.14279){:target="_blank" rel="noopener"}.
 
