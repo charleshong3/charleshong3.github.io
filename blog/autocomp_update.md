@@ -3,7 +3,7 @@
          alt="AI-generated image of Autocomp optimizing CUDA and RVV code."
          class="center"
          style="min-width:100%;margin-top:30px;">
-    <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption>
+    <!-- <figcaption style="text-align:center">The growing landscape of tensor accelerators.</figcaption> -->
 </figure>
 
 # Autocomp for All: Update on CUDA and RVV Optimization with Autocomp
