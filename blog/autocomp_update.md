@@ -157,7 +157,7 @@ As this was a quick experiment to see if Autocomp works for RVV, our benchmark s
     <img src="images_autocomp_update/k230_perf.png"
          alt="Column chart showing Autocomp beating baselines by several times."
          class="center">
-    <figcaption style="text-align:center">Performance of the Autocomp-generated code on the Canaan Kendryte K230 dev board.</figcaption>
+    <figcaption style="text-align:center">Performance of Autocomp-generated code on the Canaan Kendryte K230 dev board.</figcaption>
 </figure>
 
 <!-- | Baseline | Latency (cycles) | Utilization |
