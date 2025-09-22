@@ -91,9 +91,10 @@ And here are the results, by benchmark:
     <img src="images_autocomp_update/kb_results_lvl2.png"
          alt="Column chart showing Autocomp beating baselines on individual KernelBench benchmarks."
          class="center" style="min-width:100%;">
+    <br>
     <img src="images_autocomp_update/kb_results_lvl3.png"
          alt="Column chart showing Autocomp beating baselines on individual KernelBench benchmarks."
-         class="center">
+         class="center" style="width:42%;">
     <figcaption style="text-align:center">Performance of Autocomp-generated code on individual KernelBench benchmarks.</figcaption>
 </figure>
 
