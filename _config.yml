@@ -1,2 +1,5 @@
 name: Charles Hong
 markdown: kramdown
+
+# Google Analytics
+google_analytics: G-5RMR47M0J3 # Add your GA4 Measurement ID here (e.g., G-XXXXXXXXXX)

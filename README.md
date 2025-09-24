@@ -1,1 +1,1 @@
-Under construction!
+Charles Hong's personal website.
