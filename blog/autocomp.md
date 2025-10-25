@@ -16,6 +16,26 @@ UC Berkeley
 
 ### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} and [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} for full technical details.
 
+## Table of Contents
+
+- [Background](#background)
+  - [Tensor accelerators](#tensor-accelerators)
+  - [How is accelerator code written today?](#how-is-accelerator-code-written-today)
+  - [Tensor accelerator programming](#tensor-accelerator-programming)
+- [The Autocomp Approach](#the-autocomp-approach)
+  - [Phase 1: Plan](#phase-1-plan)
+  - [Phase 2: Implement](#phase-2-implement)
+  - [Survival of the Fastest (and Correct): Beam Search](#survival-of-the-fastest-and-correct-beam-search)
+  - [Hardware Performance Feedback](#hardware-performance-feedback)
+  - [Increasing Plan and Code Diversity](#increasing-plan-and-code-diversity)
+- [Applying Autocomp to Gemmini (Not Gemini!)](#applying-autocomp-to-gemmini-not-gemini)
+  - [GEMM Scheduling Results](#gemm-scheduling-results)
+  - [Performance Comparison](#performance-comparison)
+  - [Why does it work so well?](#why-does-it-work-so-well)
+- [Improving Sample Efficiency With Schedule Reuse](#improving-sample-efficiency-with-schedule-reuse)
+- [Key Takeaways](#key-takeaways)
+- [Citation](#-citation)
+
 ---
 
 By this point, we're all aware of the remarkable capabilities of large language models (LLMs). Whether it's summarizing, rewriting, or generating new ideas, LLMs far exceed the abilities of previous techniques when it comes to dealing with any textual interface, including code. Yet, anyone who has tried to code with LLMs knows their limitations. While ChatGPT can whip up practically any boilerplate Python script you could ask for, it becomes much less reliable when more niche APIs or languages come into play, let alone new hardware platforms.
