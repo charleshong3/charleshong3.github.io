@@ -18,7 +18,7 @@ UC Berkeley
 
 <div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-<h2 style="margin-top: 0; margin-bottom: 15px; color: #333;">📋 Table of Contents</h2>
+<h3 style="margin-top: 0; margin-bottom: 15px; color: #333;">📋 Table of Contents</h3>
 
 <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
 <li><a href="#background">Background</a>
