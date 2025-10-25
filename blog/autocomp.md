@@ -16,25 +16,40 @@ UC Berkeley
 
 ### New LLM-driven methods for code optimization help hardware designers extract the full performance of AI accelerators. See the [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} and [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} for full technical details.
 
-## Table of Contents
+<div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-- [Background](#background)
-  - [Tensor accelerators](#tensor-accelerators)
-  - [How is accelerator code written today?](#how-is-accelerator-code-written-today)
-  - [Tensor accelerator programming](#tensor-accelerator-programming)
-- [The Autocomp Approach](#the-autocomp-approach)
-  - [Phase 1: Plan](#phase-1-plan)
-  - [Phase 2: Implement](#phase-2-implement)
-  - [Survival of the Fastest (and Correct): Beam Search](#survival-of-the-fastest-and-correct-beam-search)
-  - [Hardware Performance Feedback](#hardware-performance-feedback)
-  - [Increasing Plan and Code Diversity](#increasing-plan-and-code-diversity)
-- [Applying Autocomp to Gemmini (Not Gemini!)](#applying-autocomp-to-gemmini-not-gemini)
-  - [GEMM Scheduling Results](#gemm-scheduling-results)
-  - [Performance Comparison](#performance-comparison)
-  - [Why does it work so well?](#why-does-it-work-so-well)
-- [Improving Sample Efficiency With Schedule Reuse](#improving-sample-efficiency-with-schedule-reuse)
-- [Key Takeaways](#key-takeaways)
-- [Citation](#-citation)
+## 📋 Table of Contents
+
+<ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+<li><a href="#background">Background</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#tensor-accelerators">Tensor accelerators</a></li>
+    <li><a href="#how-is-accelerator-code-written-today">How is accelerator code written today?</a></li>
+    <li><a href="#tensor-accelerator-programming">Tensor accelerator programming</a></li>
+  </ul>
+</li>
+<li><a href="#the-autocomp-approach">The Autocomp Approach</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#phase-1-plan">Phase 1: Plan</a></li>
+    <li><a href="#phase-2-implement">Phase 2: Implement</a></li>
+    <li><a href="#survival-of-the-fastest-and-correct-beam-search">Survival of the Fastest (and Correct): Beam Search</a></li>
+    <li><a href="#hardware-performance-feedback">Hardware Performance Feedback</a></li>
+    <li><a href="#increasing-plan-and-code-diversity">Increasing Plan and Code Diversity</a></li>
+  </ul>
+</li>
+<li><a href="#applying-autocomp-to-gemmini-not-gemini">Applying Autocomp to Gemmini (Not Gemini!)</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#gemm-scheduling-results">GEMM Scheduling Results</a></li>
+    <li><a href="#performance-comparison">Performance Comparison</a></li>
+    <li><a href="#why-does-it-work-so-well">Why does it work so well?</a></li>
+  </ul>
+</li>
+<li><a href="#improving-sample-efficiency-with-schedule-reuse">Improving Sample Efficiency With Schedule Reuse</a></li>
+<li><a href="#key-takeaways">Key Takeaways</a></li>
+<li><a href="#-citation">Citation</a></li>
+</ul>
+
+</div>
 
 ---
 
