@@ -113,7 +113,7 @@ This experiment illustrates Autocomp’s effectiveness on real world hardware ag
     <figcaption style="text-align:center">The Canaan Kendryte K230 dev board.</figcaption>
 </figure>
 
-The Canaan Kendryte K230 dev board contains an RVV 1.0-compliant XuanTie C908 core, used to accelerate tensor computation. We chose this board because it was available to us. Thanks to Autocomp’s portability, we were able to start optimizing code for it in just a couple days and can share preliminary results.
+The Canaan Kendryte K230 dev board contains an RVV 1.0-compliant XuanTie C908 core, used to accelerate tensor computation. We chose this board because it was available to us. Thanks to Autocomp’s portability (and [Yufeng](https://chiyufeng.me/)'s help getting the compilation flow working), we were able to start optimizing code for it in just a couple days and can share preliminary results.
 
 Specifically, we optimize two GEMM kernels starting from a simple hand-written RVV-based implementation.
 
