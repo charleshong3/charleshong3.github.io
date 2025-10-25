@@ -8,16 +8,28 @@ UC Berkeley
 
 ### An update on our last [blog post](https://charleshong3.github.io/blog/autocomp.html): we have successfully applied Autocomp to two new hardware platforms—a GPU and a vector processor—achieving state-of-the-art performance! All code available now on our [GitHub repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}.
 
-## Table of Contents
+<div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
-1. [CUDA Optimization](#cuda-optimization)
-   - [Changes to Autocomp](#changes-to-autocomp)
-   - [Note about KernelBench v0 and The AI CUDA Engineer](#note-about-kernelbench-v0-and-the-ai-cuda-engineer)
-   - [Results](#results)
-2. [RVV Optimization](#rvv-optimization)
-   - [Results](#results-1)
-3. [Conclusion](#conclusion)
-4. [References](#references)
+<h2 style="margin-top: 0; margin-bottom: 15px; color: #333;">📋 Table of Contents</h2>
+
+<ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+<li><a href="#cuda-optimization">CUDA Optimization</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#changes-to-autocomp">Changes to Autocomp</a></li>
+    <li><a href="#note-about-kernelbench-v0-and-the-ai-cuda-engineer">Note about KernelBench v0 and The AI CUDA Engineer</a></li>
+    <li><a href="#results">Results</a></li>
+  </ul>
+</li>
+<li><a href="#rvv-optimization">RVV Optimization</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#results-1">Results</a></li>
+  </ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+
+</div>
 
 ---
 
