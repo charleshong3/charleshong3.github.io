@@ -69,7 +69,7 @@ For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We 
 
 As mentioned above, AWS provides a set of tutorial NKI implementations that demonstrate varying levels of optimization. These workloads include key deep learning operators of varying scopes, detailed in the table above. For these workloads, we start optimization from the unoptimized naive NKI implementation, if one is available (for RMSNorm and Stable Diffusion attention, we start from the optimized implementation).
 
-Many of the optimizations in our **Optimization Menu** for Trainium are based on these tutorials, so we expect Autocomp to at least match the performance of the fully optimized code. Autocomp not only does so, but as shown in the figure below, outperforms hand-optimized code by a geomean of 1.36x. In doing so, Autocomp speeds up the starting code used as input (either unoptimized or optimized NKI code) by a geomean of 2.51x.
+Many of the optimizations in our **Optimization Menu** for Trainium are based on these tutorials, so we expect Autocomp to at least match the performance of the fully optimized code. Autocomp not only does so, but as shown in the figure below, **outperforms hand-optimized code by a geomean of 1.36x**. In doing so, Autocomp speeds up the starting code used as input (either unoptimized or optimized NKI code) by a geomean of 2.51x.
 
 The `nki-samples` repository also contains PyTorch implementations of these operators, which we compile with Trainium's NeuronX compiler. Autocomp-generated code outperforms the code compiled from PyTorch by 13.52x.
 
@@ -96,9 +96,9 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 
 AWS also provides a set of highly optimized NKI implementations written by expert kernel engineers. For these workloads, we start search from the already optimized code. Since these workloads are already optimized, any improvement is a highly positive result. As shown in the figure below, we find that Autocomp is able to optimize these workloads by a geomean of 1.9x. Unfortunately, no matching PyTorch implementation is provided for these workloads.
 
-Notably, Autocomp speeds up 1D depthwise convolution by 17.37x. It does so through a sequence of optimizations that takes advantage of both the specific target shape as well as the code's inherent inefficiencies: first, it decreases allocated tile sizes in the scratchpad to prevent spilling to main memory, which allows the next iteration to move the new smaller tile-sized accumulations into the accumulator. Then, it swaps loop ordering to increase filter reuse over batches, and finally, re-expands scratchpad tile size by adding a new level of tiling over the long output dimension, increasing data reuse in the scratchpad.
+Notably, Autocomp speeds up 1D depthwise convolution by **17.37x**! It does so through a sequence of optimizations that takes advantage of both the specific target shape as well as the code's inherent inefficiencies: first, it decreases allocated tile sizes in the scratchpad to prevent spilling to main memory, which allows the next iteration to move the new smaller tile-sized accumulations into the accumulator. Then, it swaps loop ordering to increase filter reuse over batches, and finally, re-expands scratchpad tile size by adding a new level of tiling over the long output dimension, increasing data reuse in the scratchpad.
 
-Other highlights include speeding up 2D convolution by 2.98x and causal self-attention by up to 1.36x. 
+Other highlights include speeding up 2D convolution by **2.98x** and causal self-attention by up to **1.36x**. 
 
 <figure>
     <img src="images_autocomp_trainium/advanced_speedup_chart.png"
