@@ -8,6 +8,25 @@ UC Berkeley
 
 ### Autocomp now supports [AWS Trainium](https://aws.amazon.com/ai/machine-learning/trainium/){:target="_blank" rel="noopener"}! We are able to speed up several vendor-optimized kernels from the `contributed` directory of [`nki-samples`](https://github.com/aws-neuron/nki-samples){:target="_blank" rel="noopener"}, achieving up to 17x the performance of hand-written code. Code available now on [GitHub](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}.
 
+<div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+
+<h3 style="margin-top: 0; margin-bottom: 15px; color: #333;">📋 Table of Contents</h3>
+
+<ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+<li><a href="#about-trainium">About Trainium</a></li>
+<li><a href="#results">Results</a>
+  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
+    <li><a href="#tutorial-workloads">Tutorial Workloads</a></li>
+    <li><a href="#advanced-workloads">Advanced Workloads</a></li>
+  </ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+</div>
+
+---
+
 <figure>
     <img src="images_autocomp_trainium/Trainium2-blog-feat-img.png"
          alt="Image of Trainium chip."
