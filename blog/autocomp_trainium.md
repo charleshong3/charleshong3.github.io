@@ -6,7 +6,7 @@
 <br/>
 UC Berkeley
 
-### Autocomp now supports [AWS Trainium](https://aws.amazon.com/ai/machine-learning/trainium/){:target="_blank" rel="noopener"}! We are able to speed up several vendor-optimized kernels from the `contributed` directory of [`nki-samples`](https://github.com/aws-neuron/nki-samples){:target="_blank" rel="noopener"}, achieving up to 17x the performance of hand-written code. Code available now on [GitHub](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}.
+### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [AWS Trainium](https://aws.amazon.com/ai/machine-learning/trainium/){:target="_blank" rel="noopener"}! We are able to speed up several vendor-optimized kernels from the `contributed` directory of [`nki-samples`](https://github.com/aws-neuron/nki-samples){:target="_blank" rel="noopener"}, achieving up to 17x the performance of hand-optimized code.
 
 <div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
