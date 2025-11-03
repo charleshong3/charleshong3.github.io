@@ -29,7 +29,7 @@ UC Berkeley
     <img src="images_autocomp_trainium/Trn1_launch.jpg"
          alt="Image of Trainium chip."
          class="center"
-         style="min-width:70%;margin-top:30px;">
+         style="min-width:85%;margin-top:30px;">
     <figcaption style="text-align:center">From Trainium 1 announcement (<a href="https://www.nextplatform.com/2021/12/02/aws-sizes-trainium-for-ai-ml-model-boom/">The Next Platform</a>).</figcaption>
 </figure>
 
