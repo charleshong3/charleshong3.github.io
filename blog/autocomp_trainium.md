@@ -56,6 +56,10 @@ As discussed above, we optimize two categories of Trainium benchmarks: *Tutorial
 
 For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We search with 70% menu dropout, beam size B=6, N=6 plans per candidate in the beam, K=2 code implementations per plan, and T=10 iterations.
 
+The tables below detail the shapes and configurations used for our Trainium evaluation.
+Reference code was directly copied from the `nki-samples` repository, with some implementations requiring small modifications to run on a `trn1.2xlarge` instance.
+We attempted to use the same shapes as in the original `nki-samples` code, whenever examples were provided and the shapes were large enough to show meaningful performance improvements. 
+
 ### Tutorial Workloads
 
 | **Operator** | **Configuration** |
