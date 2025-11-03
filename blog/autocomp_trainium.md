@@ -25,8 +25,6 @@ UC Berkeley
 
 </div>
 
----
-
 <figure>
     <img src="images_autocomp_trainium/Trainium2-blog-feat-img.png"
          alt="Image of Trainium chip."
@@ -60,8 +58,6 @@ For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We 
 
 ### Tutorial Workloads
 
-<div align="center">
-
 | **Operator** | **Configuration** |
 |--------------|-------------------|
 | RMSNorm | 4096 × 512 |
@@ -70,8 +66,6 @@ For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We 
 | Mamba | batch=1, seq_len=2048, channel=256, state_size=16 |
 | Self-Attention | d_head=128, seq_len=4096 |
 | Stable Diffusion Attention | d_head=64, seq_len=4096 |
-
-</div>
 
 As mentioned above, AWS provides a set of tutorial NKI implementations that demonstrate varying levels of optimization. These workloads include key deep learning operators of varying scopes, detailed in the table above. For these workloads, we start optimization from the unoptimized naive NKI implementation, if one is available (for RMSNorm and Stable Diffusion attention, we start from the optimized implementation).
 
@@ -88,8 +82,6 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 
 ### Advanced Workloads
 
-<div align="center">
-
 | **Operator** | **Configuration** |
 |--------------|-------------------|
 | Cumsum | 4096 × 4096 |
@@ -101,8 +93,6 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 | Causal Self-Attention seq=2048 | d_head=128, seq_len=2048 |
 | Causal Self-Attention seq=16384 | d_head=128, seq_Q=512, seq_KV=16384 |
 | Multi-head Causal Self-Attention | n_head=8, d_head=128, seq_len=2048 |
-
-</div>
 
 AWS also provides a set of highly optimized NKI implementations written by expert kernel engineers. For these workloads, we start search from the already optimized code. Since these workloads are already optimized, any improvement is a highly positive result. As shown in the figure below, we find that Autocomp is able to optimize these workloads by a geomean of 1.9x. Unfortunately, no matching PyTorch implementation is provided for these workloads.
 
