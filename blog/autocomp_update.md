@@ -1,4 +1,4 @@
-# Autocomp for All: Update on CUDA and RVV Optimization with Autocomp
+# Autocomp for All: Update on CUDA and RVV optimization with Autocomp
 
 #### September 19, 2025
 
