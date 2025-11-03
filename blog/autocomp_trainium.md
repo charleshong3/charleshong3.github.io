@@ -113,4 +113,4 @@ We are excited but unsurprised to see that Autocomp works well for NKI kernels o
 
 Feel free to reach out at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions or want help getting started with Autocomp. More blog posts to come!
 
-Thanks to [Huijae An](https://www.linkedin.com/in/huijae-an/){:target="_blank" rel="noopener"} for help with understanding Trainium and getting it up and running.
+Thanks to [Huijae An](https://www.linkedin.com/in/huijae-an/){:target="_blank" rel="noopener"} for help with understanding Trainium and NKI.
