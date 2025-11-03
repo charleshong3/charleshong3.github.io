@@ -12,26 +12,26 @@ UC Berkeley
     <img src="images_autocomp_trainium/Trainium2-blog-feat-img.png"
          alt="Image of Trainium chip."
          class="center"
-         style="min-width:80%;margin-top:30px;">
+         style="min-width:60%;margin-top:30px;">
     <figcaption style="text-align:center">AWS Trainium</figcaption>
 </figure>
 
 ## About Trainium
 
-Trainium is a family of state-of-the-art tensor accelerators built and deployed by Amazon Web Services (AWS). Trainium's software stack includes several different entry points for users, including PyTorch, JAX, and the Neuron Kernel Interface (NKI). 
+Trainium is a family of state-of-the-art tensor accelerators built and deployed by Amazon Web Services (AWS).
 
 We optimize code for Trainium 1 (specifically, a `trn1.2xlarge` instance) as we were unable to easily access later generations of Trainium. 
 This instance contains two NeuronCore-v2, each of which contains scalar, vector, and tensor (systolic array) engines, as well as on-chip scratchpad and accumulator memories (called SBUF and PSUM), which communicate with main memory, and supports a wide range of data types. You can read more about Trainium's architecture in the AWS [documentation](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html#trainium-arch){:target="_blank" rel="noopener"}.
 
-Trainium can be run using high-level frontends like PyTorch. If you use PyTorch, Trainium's NeuronX compiler, based on the [XLA compiler](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-neuronx/api-reference-guide/inference/api-torch-neuronx-trace.html#torch-neuronx-trace-api){:target="_blank" rel="noopener"}, can automatically optimize a PyTorch module by tracing it and taking advantage of fixed shapes and fixed control flows to produce a fused computation graph. However, this prevents the user from implementing low-level optimizations
+Trainium's software stack includes several different entry points for users, including high-level frontends like PyTorch and JAX. If you use PyTorch, Trainium's NeuronX compiler, based on the [XLA compiler](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-neuronx/api-reference-guide/inference/api-torch-neuronx-trace.html#torch-neuronx-trace-api){:target="_blank" rel="noopener"}, can automatically optimize a PyTorch module by tracing it and taking advantage of fixed shapes and fixed control flows to produce a fused computation graph. However, this prevents the user from implementing low-level optimizations.
 
-In this blog post, we optimize code written in NKI, which enables lower-level control of computation and data movement.
+In this blog post, we optimize code written in the [Neuron Kernel Interface (NKI)](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/index.html){:target="_blank" rel="noopener"}, which enables lower-level control of computation and data movement.
 And while Trainium accelerators are a real-world, high-performance industry backend, they are very low-resource, as Trainium was first deployed in [2022](https://aws.amazon.com/blogs/aws/amazon-ec2-trn1-instances-for-high-performance-model-training-are-now-available/){:target="_blank" rel="noopener"} with NKI only being released in [2024](https://aws.amazon.com/about-aws/whats-new/2024/09/aws-neuron-nki-nxd-training-jax/){:target="_blank" rel="noopener"}. This makes Trainium a challenging target for LLM-based code generation and an ideal target for Autocomp. 
 
-For evaluation, Trainium provides the [`nki-samples`](https://github.com/aws-neuron/nki-samples){:target="_blank" rel="noopener"} repository, which contains naive, unoptimized NKI implementations of several tensor operations in the directory [`src/nki_samples/tutorial`](https://github.com/aws-neuron/nki-samples/tree/5cfeabca92a64f642a154ef835cbcede609016a3/src/nki_samples/tutorials){:target="_blank" rel="noopener"}.
-`nki-samples` also provides optimized versions of the naive tutorial implementations in the same directory. 
+For evaluation, Trainium provides the [`nki-samples`](https://github.com/aws-neuron/nki-samples){:target="_blank" rel="noopener"} repository, which contains naive, unoptimized NKI implementations of several tensor kernels in the directory [`src/nki_samples/tutorial`](https://github.com/aws-neuron/nki-samples/tree/5cfeabca92a64f642a154ef835cbcede609016a3/src/nki_samples/tutorials){:target="_blank" rel="noopener"}. For several of these kernels,
+`nki-samples` also provides optimized versions of these naive implementations in the same directory. 
 
-In addition, `nki-samples` provides a set of advanced implementations that "showcase cutting-edge optimizations and specialized implementations," in the directory [`contributed/neuron-team-kernels`](https://github.com/aws-neuron/nki-samples/tree/5cfeabca92a64f642a154ef835cbcede609016a3/contributed/neuron-team-kernels){:target="_blank" rel="noopener"}. These are optimized implementations written by kernel engineers at AWS.
+In addition, `nki-samples` provides a set of advanced implementations that "showcase cutting-edge optimizations and specialized implementations" of key kernels in the directory [`contributed/neuron-team-kernels`](https://github.com/aws-neuron/nki-samples/tree/5cfeabca92a64f642a154ef835cbcede609016a3/contributed/neuron-team-kernels){:target="_blank" rel="noopener"}. These are optimized implementations written by kernel engineers at AWS.
 
 Now, let's dive into the results!
 
@@ -43,6 +43,8 @@ For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We 
 
 ### Tutorial Workloads
 
+<div align="center">
+
 | **Operator** | **Configuration** |
 |--------------|-------------------|
 | RMSNorm | 4096 × 512 |
@@ -51,6 +53,8 @@ For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We 
 | Mamba | batch=1, seq_len=2048, channel=256, state_size=16 |
 | Self-Attention | d_head=128, seq_len=4096 |
 | Stable Diffusion Attention | d_head=64, seq_len=4096 |
+
+</div>
 
 As mentioned above, AWS provides a set of tutorial NKI implementations that demonstrate varying levels of optimization. These workloads include key deep learning operators of varying scopes, detailed in the table above. For these workloads, we start optimization from the unoptimized naive NKI implementation, if one is available (for RMSNorm and Stable Diffusion attention, we start from the optimized implementation).
 
@@ -67,6 +71,8 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 
 ### Advanced Workloads
 
+<div align="center">
+
 | **Operator** | **Configuration** |
 |--------------|-------------------|
 | Cumsum | 4096 × 4096 |
@@ -78,6 +84,8 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 | Causal Self-Attention seq=2048 | d_head=128, seq_len=2048 |
 | Causal Self-Attention seq=16384 | d_head=128, seq_Q=512, seq_KV=16384 |
 | Multi-head Causal Self-Attention | n_head=8, d_head=128, seq_len=2048 |
+
+</div>
 
 AWS also provides a set of highly optimized NKI implementations written by expert kernel engineers. For these workloads, we start search from the already optimized code. Since these workloads are already optimized, any improvement is a highly positive result. As shown in the figure below, we find that Autocomp is able to optimize these workloads by a geomean of 1.9x. Unfortunately, no matching PyTorch implementation is provided for these workloads.
 
