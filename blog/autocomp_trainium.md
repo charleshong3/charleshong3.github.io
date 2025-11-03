@@ -89,7 +89,7 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 | Max Pooling | 448 × 448, pool 3 × 3 |
 | RoPE | 128 × 4096 |
 | Depthwise Conv1D | 8, 512, 1, 2048 (NCHW) |
-| Conv2D | batch size 16, input 128×128, kernel 3×3, input channels 128, output channels 512 |
+| Conv2D | batch=16, input=128×128, kernel=3×3, in_channel=128, out_channel=512 |
 | Causal Self-Attention seq=2048 | d_head=128, seq_len=2048 |
 | Causal Self-Attention seq=16384 | d_head=128, seq_Q=512, seq_KV=16384 |
 | Multi-head Causal Self-Attention | n_head=8, d_head=128, seq_len=2048 |
