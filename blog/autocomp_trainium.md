@@ -18,9 +18,7 @@ UC Berkeley
 
 ## About Trainium
 
-Trainium is a family of state-of-the-art tensor accelerators built and deployed by Amazon Web Services (AWS).
-
-We optimize code for Trainium 1 (specifically, a `trn1.2xlarge` instance) as we were unable to easily access later generations of Trainium. 
+Trainium is a family of state-of-the-art tensor accelerators built and deployed by Amazon Web Services (AWS). We optimize code for Trainium 1 (specifically, a `trn1.2xlarge` instance). 
 This instance contains two NeuronCore-v2, each of which contains scalar, vector, and tensor (systolic array) engines, as well as on-chip scratchpad and accumulator memories (called SBUF and PSUM), which communicate with main memory, and supports a wide range of data types. You can read more about Trainium's architecture in the AWS [documentation](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/about-neuron/arch/neuron-hardware/trainium.html#trainium-arch){:target="_blank" rel="noopener"}.
 
 Trainium's software stack includes several different entry points for users, including high-level frontends like PyTorch and JAX. If you use PyTorch, Trainium's NeuronX compiler, based on the [XLA compiler](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/frameworks/torch/torch-neuronx/api-reference-guide/inference/api-torch-neuronx-trace.html#torch-neuronx-trace-api){:target="_blank" rel="noopener"}, can automatically optimize a PyTorch module by tracing it and taking advantage of fixed shapes and fixed control flows to produce a fused computation graph. However, this prevents the user from implementing low-level optimizations.
