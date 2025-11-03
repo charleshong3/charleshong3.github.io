@@ -76,7 +76,7 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 <figure>
     <img src="images_autocomp_trainium/tutorial_speedup_chart.png"
          alt="Column chart showing Autocomp beating hand-optimized code on tutorial workloads."
-         class="center" style="min-width:100%;">
+         class="center" style="min-width:90%;">
     <figcaption style="text-align:center">Performance of Autocomp-generated code on tutorial workloads.</figcaption>
 </figure>
 
@@ -103,7 +103,7 @@ Other highlights include speeding up 2D convolution by **2.98x** and causal self
 <figure>
     <img src="images_autocomp_trainium/advanced_speedup_chart.png"
          alt="Column chart showing Autocomp beating hand-optimized code on advanced workloads."
-         class="center" style="min-width:100%;">
+         class="center" style="min-width:90%;">
     <figcaption style="text-align:center">Performance of Autocomp-generated code on advanced workloads.</figcaption>
 </figure>
 
