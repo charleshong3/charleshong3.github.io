@@ -95,7 +95,7 @@ The `nki-samples` repository also contains PyTorch implementations of these oper
 | Depthwise Conv1D | 8, 512, 1, 2048 (NCHW) |
 | Conv2D | batch=16, input=128×128, kernel=3×3, in_channel=128, out_channel=512 |
 | Causal Self-Attention seq=2048 | d_head=128, seq_len=2048 |
-| Causal Self-Attention seq=16384 | d_head=128, seq_Q=512, seq_KV=16384 |
+| Causal Self-Attention seq=16384 | d_head=128, seq_Q=128, seq_KV=16384 |
 | Multi-head Causal Self-Attention | n_head=8, d_head=128, seq_len=2048 |
 
 AWS also provides a set of highly optimized NKI implementations written by expert kernel engineers. For these workloads, we start search from the already optimized code. Since these workloads are already optimized, any improvement is a highly positive result. As shown in the figure below, we find that Autocomp is able to optimize these workloads by a geomean of 1.9x. Unfortunately, no matching PyTorch implementation is provided for these workloads.
