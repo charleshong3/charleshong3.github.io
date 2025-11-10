@@ -1,3 +1,11 @@
+---
+layout: blog
+title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
+previous_post:
+  title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
+  url: "/blog/autocomp_update.html"
+---
+
 # Speeding up NKI (AWS Trainium) kernels with Autocomp
 
 #### November 3, 2025

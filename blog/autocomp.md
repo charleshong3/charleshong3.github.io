@@ -1,3 +1,11 @@
+---
+layout: blog
+title: "Autocomp: LLM-Driven Code Optimization for Tensor Accelerators"
+next_post:
+  title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
+  url: "/blog/autocomp_update.html"
+---
+
 <figure>
     <img src="images_autocomp/image4.png"
          alt="Images of accelerators including Google's TPU, AWS's Trainium, and others."

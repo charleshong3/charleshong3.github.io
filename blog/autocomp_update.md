@@ -1,3 +1,14 @@
+---
+layout: blog
+title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
+previous_post:
+  title: "Autocomp: LLM-Driven Code Optimization for Tensor Accelerators"
+  url: "/blog/autocomp.html"
+next_post:
+  title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
+  url: "/blog/autocomp_trainium.html"
+---
+
 # Autocomp for All: Update on CUDA and RVV optimization with Autocomp
 
 #### September 19, 2025
