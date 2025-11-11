@@ -62,7 +62,7 @@ Now, let's dive into the results!
 
 As discussed above, we optimize two categories of Trainium benchmarks: *Tutorial* (starting from naive code and comparing to optimized code) and *Advanced* (starting from optimized code). For each benchmark, we manually specify relevant instructions, and include a description and examples (sourced from Trainium's documentation) for only those instructions in the **Accelerator ISA** section of the prompt (see our updated [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"} for details). Furthermore, as Trainium's compiler provides decent error messages for syntax errors, when a code implementation fails correctness checking, we prompt the LLM with the Accelerator ISA, the code, and the compiler-generated error message, and then evaluate the fixed code again.
 
-For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We search with 70% menu dropout, beam size B=6, N=6 plans per candidate in the beam, K=2 code implementations per plan, and T=10 iterations.
+For all experiments, we ensemble OpenAI's o4-mini and gpt-5 for both phases. We search with 75% menu dropout, beam size B=6, N=6 plans per candidate in the beam, K=2 code implementations per plan, and T=10 iterations.
 
 The tables below detail the shapes and configurations used for our Trainium evaluation.
 Reference code was directly copied from the `nki-samples` repository, with some implementations requiring small modifications to run on a `trn1.2xlarge` instance.
