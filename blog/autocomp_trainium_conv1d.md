@@ -1,12 +1,12 @@
 ---
 layout: blog
-title: "How to speed up 1D convolution on Trainium by 17x!"
+title: "How we made AWS Trainium 17x faster"
 previous_post:
   title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
   url: "/blog/autocomp_trainium.html"
 ---
 
-# How to speed up 1D convolution on Trainium by 17x!
+# How we made AWS Trainium 17x faster
 
 #### November 17, 2025
 
@@ -23,16 +23,6 @@ UC Berkeley
 <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
 <li><a href="#about-conv1d">About `conv1d`</a></li>
 <li><a href="#optimization-steps">Optimization Steps</a>
-  <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
-    <li><a href="#step-0">Step 0</a></li>
-    <li><a href="#step-1">Step 1</a></li>
-    <li><a href="#step-2">Step 2</a></li>
-    <li><a href="#step-3">Step 3</a></li>
-    <li><a href="#step-4">Step 4</a></li>
-    <li><a href="#step-5">Step 5</a></li>
-    <li><a href="#step-6">Step 6</a></li>
-  </ul>
-</li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 
@@ -238,7 +228,7 @@ Now, let's use Trainium's [`neuron_profile`](https://awsdocs-neuron.readthedocs-
     <img src="images_autocomp_trainium_conv1d/image 1.png"
          alt="Profile viewer showing performance before Step 4 optimization."
          class="center"
-         style="min-width:85%;">
+         style="min-width:100%;">
 </figure>
 
 And **after** (`optimize_4`):
@@ -247,7 +237,7 @@ And **after** (`optimize_4`):
     <img src="images_autocomp_trainium_conv1d/image 2.png"
          alt="Profile viewer showing performance after Step 4 optimization."
          class="center"
-         style="min-width:85%;">
+         style="min-width:100%;">
 </figure>
 
 We see that once PSUM is utilized, the pressure on SBUF decreases and access to the filter weights becomes faster, leading to greater overall throughput and decreased latency.
@@ -331,7 +321,7 @@ For context, here is what the profile viewer shows us **before** the Step 6 opti
     <img src="images_autocomp_trainium_conv1d/8559580e-4953-47e3-ab78-c438f224298c.png"
          alt="Profile viewer showing performance before Step 6 optimization."
          class="center"
-         style="min-width:85%;">
+         style="min-width:100%;">
 </figure>
 
 <figure style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
@@ -349,7 +339,7 @@ And **after** the optimization (`optimize_6`):
     <img src="images_autocomp_trainium_conv1d/f45086d9-e66d-4baa-9010-4b0cd4405761.png"
          alt="Profile viewer showing performance after Step 6 optimization."
          class="center"
-         style="min-width:85%;">
+         style="min-width:100%;">
 </figure>
 
 <figure style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
@@ -393,13 +383,13 @@ Speedup Summary:
 | Loop Fusion + Optimized Memory Buffer Allocation | 7.934 | 1.01x |
 | PSUM Buffer Allocation | 5.602 | 1.43x |
 | Loop Order Interchange | 4.955 | 1.62x |
-| Tile Hint | 0.461 | 17.37x |
+| Tile Hint | **0.461** | **17.37x** |
 
 <figure>
     <img src="images_autocomp_trainium_conv1d/image 7.png"
          alt="Speedup chart showing optimization results."
          class="center"
-         style="min-width:90%;">
+         style="min-width:85%;">
     <figcaption style="text-align:center">Speedup summary chart.</figcaption>
 </figure>
 
