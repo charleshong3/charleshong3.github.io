@@ -1,12 +1,12 @@
 ---
 layout: blog
-title: "How we made AWS Trainium 17x faster"
+title: "How we made AWS Trainium 17x faster (for conv1d)"
 previous_post:
   title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
   url: "/blog/autocomp_trainium.html"
 ---
 
-# How we made AWS Trainium 17x faster
+# How we made AWS Trainium 17x faster (for `conv1d`)
 
 #### November 17, 2025
 
