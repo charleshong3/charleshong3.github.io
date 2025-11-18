@@ -78,7 +78,7 @@ Here's the rough pseudocode of the original kernel:
     # 5. Write the results back to the output in HBM
     for n in range(N):
         for c_tiled in range(C_out // 128):
-            nl.store(...)</code></pre>
+            nl.store(output[...], out_sb[...])</code></pre>
 </div>
   </figure>
 </div>
