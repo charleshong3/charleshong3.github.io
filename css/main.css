@@ -114,12 +114,14 @@ table, th, td {
 .code-container-small pre {
    margin: 0;
    padding: 0;
+   font-size: 0.9em;
    overflow-x: auto;
    background: transparent;
 }
 
 .code-container-small code {
    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+   font-size: 0.9em;
 }
 
 img {
