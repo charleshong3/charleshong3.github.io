@@ -72,7 +72,7 @@ Here's the rough pseudocode of the original kernel:
     for n in range(N):
         for c_tiled in range(C_in // 128):
             for w in range(W):
-                prod = nl.multiply(img[n, [c_tiled+:128], :, [w+:W_f]], filters[[c_tiled+:128], :, :, :])
+                prod = nl.multiply(img_local_prefetch_raw[n, [c_tiled+:128], :, [w+:W_f]], filter_local[[c_tiled+:128], :, :, :])
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
     # 5. Write the results back to the output in HBM
@@ -139,7 +139,7 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
             # HOISTED: reuse the same filter sub-tile for all w
             filt_tile = filter_local[[c_tiled+:128], :, :, :]
             for w in range(W):
-                prod = nl.multiply(img[n, [c_tiled+:128], :, [w+:W_f]], filt_tile)
+                prod = nl.multiply(img_local_prefetch_raw[n, [c_tiled+:128], :, [w+:W_f]], filt_tile)
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
     # ... (same as before)</code></pre>
