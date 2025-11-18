@@ -5,7 +5,7 @@ previous_post:
   title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
   url: "/blog/autocomp_update.html"
 next_post:
-  title: "Autocomp Case Study: Speeding Up Trainium’s conv1d by 17x!"
+  title: "How to speed up 1D convolution on Trainium by 17x!"
   url: "/blog/autocomp_trainium_conv1d.html"
 ---
 

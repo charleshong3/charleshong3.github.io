@@ -59,8 +59,6 @@ UC Berkeley
 
 </div>
 
----
-
 By this point, we're all aware of the remarkable capabilities of large language models (LLMs). Whether it's summarizing, rewriting, or generating new ideas, LLMs far exceed the abilities of previous techniques when it comes to dealing with any textual interface, including code. Yet, anyone who has tried to code with LLMs knows their limitations. While ChatGPT can whip up practically any boilerplate Python script you could ask for, it becomes much less reliable when more niche APIs or languages come into play, let alone new hardware platforms.
 
 As computer architecture researchers at UC Berkeley's [SLICE Lab](https://slice.eecs.berkeley.edu/){:target="_blank" rel="noopener"}, we became interested in leveraging LLMs to write low-level software for hardware accelerators (see below for why this is an important problem). However, we found that LLMs couldn't accomplish much in a zero-shot setting (see our [prior work](https://arxiv.org/abs/2408.03408){:target="_blank" rel="noopener"}), and given the nature of pre-training, we don't think this will change any time soon. We believe this calls for a more domain-specific approach.

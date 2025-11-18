@@ -1,12 +1,12 @@
 ---
 layout: blog
-title: "Autocomp Case Study: Speeding Up Trainium’s conv1d by 17x!"
+title: "How to speed up 1D convolution on Trainium by 17x!"
 previous_post:
   title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
   url: "/blog/autocomp_trainium.html"
 ---
 
-# Autocomp Case Study: Speeding Up Trainium’s conv1d by 17x!
+# How to speed up 1D convolution on Trainium by 17x!
 
 #### November 17, 2025
 
@@ -37,8 +37,6 @@ UC Berkeley
 </ul>
 
 </div>
-
----
 
 ## About `conv1d`
 
