@@ -42,10 +42,12 @@ UC Berkeley
 
 In our case, the kernel performs a depthwise 1D convolution, meaning each input channel is convolved independently with its own filter (meaning `in_channel = out_channel`).
 
-Here’s the rough pseudocode of the original kernel:
+Here's the rough pseudocode of the original kernel:
 
-```python
-def conv1d_depthwise_default(input, filters, output):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def conv1d_depthwise_default(input, filters, output):
     """
     Input Shape: [N, C_in, 1, W]
     Filter Shape: [C_out, 1, 1, W_f]
@@ -76,8 +78,10 @@ def conv1d_depthwise_default(input, filters, output):
     # 5. Write the results back to the output in HBM
     for n in range(N):
         for c_tiled in range(C_out // 128):
-            nl.store(...)
-```
+            nl.store(...)</code></pre>
+</div>
+  </figure>
+</div>
 
 Note that the output width matches the input width, rather than `input_width − filter_width + 1`. This is because we apply zero-padding on both sides of the input so that the output size stays consistent with the input.
 
@@ -95,8 +99,10 @@ We first begin by pre-processing the kernel to make it easier to pass into Autoc
 
 Pseudocode:
 
-```python
-def optimize_0(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_0(input, filters):
     # Inlined helper functions
     def div_ceil():
     def create_indices():
@@ -106,8 +112,10 @@ def optimize_0(input, filters):
 
     # The rest is semantically the same as before
 
-    return out_hbm
-```
+    return out_hbm</code></pre>
+</div>
+  </figure>
+</div>
 
 Slowest `nc_latency` from 10 samples (with 2 warmup iters): **8.007ms**
 
@@ -119,8 +127,10 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
 
 Pseudocode:
 
-```python
-def optimize_1(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_1(input, filters):
     # ... (same as before)
 
     # 4. Perform depthwise convolution
@@ -133,7 +143,10 @@ def optimize_1(input, filters):
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
     # ... (same as before)
-```
+</code></pre>
+</div>
+  </figure>
+</div>
 
 Latency: **8.007 (same as baseline)**
 
@@ -163,8 +176,10 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by �
 
 Pseudocode:
 
-```python
-def optimize_3(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_3(input, filters):
     # Fuse everything into a single global loop
     out_hbm = nl.array(...)
     
@@ -187,8 +202,10 @@ def optimize_3(input, filters):
             # Write to HBM immediately once results are ready
             nl.store(out_hbm[n, [c_tiled+:128], :, :], out_tile)
             
-		return out_hbm
-```
+        return out_hbm</code></pre>
+</div>
+  </figure>
+</div>
 
 Latency: **7.934ms (1.01x)**
 
@@ -201,8 +218,10 @@ Autocomp leverages [PSUM](https://awsdocs-neuron.readthedocs-hosted.com/en/lates
 
 Pseudocode:
 
-```python
-def optimize_4(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_4(input, filters):
     # ... (same as before)
     
             # Group W into batches of 512
@@ -219,8 +238,10 @@ def optimize_4(input, filters):
                 # Write the copied portion to HBM
                 nl.store(out_hbm[n, [c_tiled+:128], :, blk_base+:F_BLK], out_sbuf_blk)
     
-    return out_hbm
-```
+    return out_hbm</code></pre>
+</div>
+  </figure>
+</div>
 
 Now, let's use Trainium's [`neuron_profile`](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/neuron_profile_for_nki.html#neuron-profile-for-nki){:target="_blank" rel="noopener"} tool to take a deeper look at the differences before and after this optimization. Here is what the profile viewer shows us **before** the Step 4 optimization (i.e., `optimize_3`):
 
@@ -254,8 +275,10 @@ At the same time, Autocomp discards the Step 4 optimization that used PSUM to ac
 
 Pseudocode:
 
-```python
-def optimize_5(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_5(input, filters):
     out_hbm = nl.array(...)
 
     # Reorder the most & second most outer loops
@@ -273,8 +296,10 @@ def optimize_5(input, filters):
             
             nl.store(out_hbm[n, [c_tiled+:128], :, :], out_tile)
     
-    return out_hbm
-```
+    return out_hbm</code></pre>
+</div>
+  </figure>
+</div>
 
 Latency: **4.955ms (1.62x)**
 
@@ -282,15 +307,23 @@ Latency: **4.955ms (1.62x)**
 
 Inside the convolution loop, Autocomp tiles the output width dimension into groups of 64.
 
-```python
-for w in range(W):
-```
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>for w in range(W):</code></pre>
+</div>
+  </figure>
+</div>
 
-```python
-for w_out_tile in range(W // 64):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>for w_out_tile in range(W // 64):
 	for w_in_tile in range(64):
-		w = w_out_tile * 64 + w_in_tile
-```
+		w = w_out_tile * 64 + w_in_tile</code></pre>
+</div>
+  </figure>
+</div>
 
 What’s interesting here is that the transformation is syntactic - the kernel does not actually process each 64 element group as a single combined operation; i.e., there is no manual coalescing of `nl.multiply` (actually implemented as [`tensor_tensor`](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/api/generated/nki.isa.tensor_tensor.html){:target="_blank" rel="noopener"}) or `nl.sum` (actually implemented as [`tensor_reduce`](https://awsdocs-neuron.readthedocs-hosted.com/en/latest/nki/api/generated/nki.isa.tensor_reduce.html){:target="_blank" rel="noopener"}) operations into a smaller number of larger operations in the code. However, this restructuring is enough to signal to the compiler that the work can be grouped, enabling it to aggressively schedule and optimize the convolution as if those 64 outputs were actually being processed together.
 
@@ -300,8 +333,10 @@ It isn’t entirely clear why Autocomp chose a tile size of 64 instead of the mo
 
 Pseudocode:
 
-```python
-def optimize_6(input, filters):
+<div class="center" style="width:100%;">
+  <figure class="code-container">
+    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+<pre><code>def optimize_6(input, filters):
     # ... (same as before)
     
             NUM_FULL_BLOCKS = W // 64
@@ -312,8 +347,10 @@ def optimize_6(input, filters):
                     out_tile[:, :, :, base_out + w_in_tile] = nl.sum(prod)
             nl.store(out_hbm[n, [c_tiled+:128], :, :], out_tile)
             
-    return out_hbm
-```
+    return out_hbm</code></pre>
+</div>
+  </figure>
+</div>
 
 For context, here is what the profile viewer shows us **before** the Step 6 optimization (`optimize_5`):
 
