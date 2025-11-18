@@ -30,7 +30,7 @@ UC Berkeley
 
 ## About `conv1d`
 
-1D convolution (`conv1d`) is a specialized case of a standard [2D convolution](https://github.com/ucb-152/lab6-huijae-an?tab=readme-ov-file#overview-of-2d-convolution){:target="_blank" rel="noopener"} where the filter height is fixed to 1. If you're familiar with `conv2d`, you can think of `conv1d` as sliding a narrow filter horizontally across a single spatial dimension.
+1D convolution (`conv1d`) is a specialized case of a standard [2D convolution](https://github.com/ucb-152/lab6?tab=readme-ov-file#overview-of-2d-convolution){:target="_blank" rel="noopener"} where the filter height is fixed to 1. If you're familiar with `conv2d`, you can think of `conv1d` as sliding a narrow filter horizontally across a single spatial dimension.
 
 <figure>
     <img src="images_autocomp_trainium_conv1d/image.png"
