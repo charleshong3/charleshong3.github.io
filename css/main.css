@@ -114,21 +114,12 @@ table, th, td {
 .code-container-small pre {
    margin: 0;
    padding: 0;
-   font-size: 0.8em;
-   line-height: 1.4;
    overflow-x: auto;
    background: transparent;
 }
 
 .code-container-small code {
    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
-   font-size: 0.875em;
-   color: #333;
-}
-
-.code-container-small div {
-   padding: 10px 14px !important;
-   font-size: 0.875em;
 }
 
 img {

@@ -46,7 +46,7 @@ Here's the rough pseudocode of the original kernel:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def conv1d_depthwise_default(input, filters, output):
     """
     Input Shape: [N, C_in, 1, W]
@@ -101,7 +101,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_0(input, filters):
     # Inlined helper functions
     def div_ceil():
@@ -129,7 +129,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_1(input, filters):
     # ... (same as before)
 
@@ -177,7 +177,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_3(input, filters):
     # Fuse everything into a single global loop
     out_hbm = nl.array(...)
@@ -219,7 +219,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_4(input, filters):
     # ... (same as before)
     
@@ -276,7 +276,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_5(input, filters):
     out_hbm = nl.array(...)
 
@@ -308,7 +308,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">for w in range(W):</code></pre>
 </div>
   </figure>
@@ -316,7 +316,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">for w_out_tile in range(W // 64):
 	for w_in_tile in range(64):
 		w = w_out_tile * 64 + w_in_tile</code></pre>
@@ -334,7 +334,7 @@ Pseudocode:
 
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
-    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
+    <div style="border-radius: 6px; padding: 4px 8px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_6(input, filters):
     # ... (same as before)
     
