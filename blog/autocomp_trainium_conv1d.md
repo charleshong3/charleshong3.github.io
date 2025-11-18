@@ -45,7 +45,7 @@ In our case, the kernel performs a depthwise 1D convolution, meaning each input 
 Here's the rough pseudocode of the original kernel:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def conv1d_depthwise_default(input, filters, output):
     """
@@ -100,7 +100,7 @@ We first begin by pre-processing the kernel to make it easier to pass into Autoc
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_0(input, filters):
     # Inlined helper functions
@@ -117,7 +117,7 @@ Pseudocode:
   </figure>
 </div>
 
-Slowest `nc_latency` from 10 samples (with 2 warmup iters): **8.007ms**
+Slowest `nc_latency` from 10 samples (with 2 warmup iters): **8.007 ms**
 
 ### Step 1
 
@@ -128,7 +128,7 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_1(input, filters):
     # ... (same as before)
@@ -142,13 +142,12 @@ Pseudocode:
                 prod = nl.multiply(input[n, [c_tiled+:128], :, [w+:W_f]], filt_tile)
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
-    # ... (same as before)
-</code></pre>
+    # ... (same as before)</code></pre>
 </div>
   </figure>
 </div>
 
-Latency: **8.007 (same as baseline)**
+Latency: **8.007 ms (same as baseline)**
 
 ### Step 2
 
@@ -160,7 +159,7 @@ Note that in the first 2 optimization iterations, we allow slight increases in l
 
 [Pseudocode omitted]
 
-Latency: **8.010ms (0.99x speedup)**
+Latency: **8.010 ms (0.99x speedup)**
 
 ### Step 3
 
@@ -177,7 +176,7 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by �
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_3(input, filters):
     # Fuse everything into a single global loop
@@ -207,7 +206,7 @@ Pseudocode:
   </figure>
 </div>
 
-Latency: **7.934ms (1.01x)**
+Latency: **7.934 ms (1.01x)**
 
 ### Step 4
 
@@ -219,7 +218,7 @@ Autocomp leverages [PSUM](https://awsdocs-neuron.readthedocs-hosted.com/en/lates
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_4(input, filters):
     # ... (same as before)
@@ -263,7 +262,7 @@ And **after** (`optimize_4`):
 
 We see that once PSUM is utilized, the pressure on SBUF decreases and access to the filter weights becomes faster, leading to greater overall throughput and decreased latency.
 
-Latency: **5.602ms (1.43x)**
+Latency: **5.602 ms (1.43x)**
 
 ### Step 5
 
@@ -276,7 +275,7 @@ At the same time, Autocomp discards the Step 4 optimization that used PSUM to ac
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_5(input, filters):
     out_hbm = nl.array(...)
@@ -301,14 +300,14 @@ Pseudocode:
   </figure>
 </div>
 
-Latency: **4.955ms (1.62x)**
+Latency: **4.955 ms (1.62x)**
 
 ### Step 6
 
 Inside the convolution loop, Autocomp tiles the output width dimension into groups of 64.
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>for w in range(W):</code></pre>
 </div>
@@ -316,7 +315,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
 </div>
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>for w_out_tile in range(W // 64):
 	for w_in_tile in range(64):
@@ -334,7 +333,7 @@ It isn’t entirely clear why Autocomp chose a tile size of 64 instead of the mo
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container">
+  <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
 <pre><code>def optimize_6(input, filters):
     # ... (same as before)
@@ -394,7 +393,7 @@ These instructions combined were active for about 70% (55.56% + 14.85%) of the t
 
 **After:** In `optimize_6`, we see that the number of `tensor_tensor` and `tensor_reduce` operations are now both just 512 (equal to 65536 / 128), meaning both operations are now likely being fused across 128 partition tiles. Their execution times decrease from 3.84 → 0.2ms and 1.03 → 0.2ms, now totaling only 17% (8.39% + 8.31%) of the profiled runtime. Since the kernel is primarily compute-bound on these two operations, this reduction leads to a substantial overall speedup.
 
-Latency: **0.461ms (17.37x)**
+Latency: **0.461 ms (17.37x)**
 
 ## Conclusion
 
