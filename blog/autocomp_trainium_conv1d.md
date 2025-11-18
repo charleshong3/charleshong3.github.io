@@ -47,7 +47,7 @@ Here's the rough pseudocode of the original kernel:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def conv1d_depthwise_default(input, filters, output):
+<pre><code class="language-python">def conv1d_depthwise_default(img, filter, output):
     """
     Input Shape: [N, C_in, 1, W]
     Filter Shape: [C_out, 1, 1, W_f]
@@ -72,7 +72,7 @@ Here's the rough pseudocode of the original kernel:
     for n in range(N):
         for c_tiled in range(C_in // 128):
             for w in range(W):
-                prod = nl.multiply(input[n, [c_tiled+:128], :, [w+:W_f]], filters[[c_tiled+:128], :, :, :])
+                prod = nl.multiply(img[n, [c_tiled+:128], :, [w+:W_f]], filter[[c_tiled+:128], :, :, :])
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
     # 5. Write the results back to the output in HBM
@@ -102,7 +102,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_0(input, filters):
+<pre><code class="language-python">def optimize_0(img, filter):
     # Inlined helper functions
     def div_ceil():
     def create_indices():
@@ -130,7 +130,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_1(input, filters):
+<pre><code class="language-python">def optimize_1(img, filter):
     # ... (same as before)
 
     # 4. Perform depthwise convolution
@@ -139,7 +139,7 @@ Pseudocode:
             # HOISTED: reuse the same filter sub-tile for all w
             filt_tile = filter_local[[c_tiled+:128], :, :, :]
             for w in range(W):
-                prod = nl.multiply(input[n, [c_tiled+:128], :, [w+:W_f]], filt_tile)
+                prod = nl.multiply(img[n, [c_tiled+:128], :, [w+:W_f]], filt_tile)
                 out_sb[n, [c_tiled+:128], :, w] = nl.sum(prod)
     
     # ... (same as before)</code></pre>
@@ -178,7 +178,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_3(input, filters):
+<pre><code class="language-python">def optimize_3(img, filter):
     # Fuse everything into a single global loop
     out_hbm = nl.array(...)
     
@@ -190,8 +190,8 @@ Pseudocode:
             out_tile = nl.array(...)
 
             # Replace nl.load with nisa.dma_copy (no effect)
-            nisa.dma_copy(img_tile, input[n, [c_tiled+:128], :, :])
-            nisa.dma_copy(filt_tile, filters[[c_tiled+:128], :, :, :])
+            nisa.dma_copy(img_tile, img[n, [c_tiled+:128], :, :])
+            nisa.dma_copy(filt_tile, filter[[c_tiled+:128], :, :, :])
 
             for w in range(W):
                 # Omitted in pseudocode; no longer relies on create_indices
@@ -220,7 +220,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_4(input, filters):
+<pre><code class="language-python">def optimize_4(img, filter):
     # ... (same as before)
     
             # Group W into batches of 512
@@ -277,16 +277,16 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_5(input, filters):
+<pre><code class="language-python">def optimize_5(img, filter):
     out_hbm = nl.array(...)
 
     # Reorder the most & second most outer loops
     for c_tiled in range(C_in // 128):
         # Fetch the reusable filter and store in PSUM
-        filt_sbuf = nl.load(filters[[c_tiled+:128], :, :, :])
+        filt_sbuf = nl.load(filter[[c_tiled+:128], :, :, :])
         filt_psum = nisa.tensor_copy(filt_sbuf)
         for n in range(N):
-            img_tile = nl.load(input[n, [c_tiled+:128], :, :])
+            img_tile = nl.load(img[n, [c_tiled+:128], :, :])
             out_tile = nl.array(...)
 
             for w in range(W):
@@ -335,7 +335,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
-<pre><code class="language-python">def optimize_6(input, filters):
+<pre><code class="language-python">def optimize_6(img, filter):
     # ... (same as before)
     
             NUM_FULL_BLOCKS = W // 64
