@@ -21,7 +21,7 @@ UC Berkeley
 <h3 style="margin-top: 0; margin-bottom: 15px; color: #333;">📋 Table of Contents</h3>
 
 <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
-<li><a href="#about-conv1d">About `conv1d`</a></li>
+<li><a href="#about-conv1d">About <code>conv1d</code></a></li>
 <li><a href="#optimization-steps">Optimization Steps</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
@@ -110,7 +110,7 @@ Pseudocode:
     # Explicitly allocate the output tensor in HBM instead of taking it as an argument
     out_hbm = nl.array(...)
 
-    # The rest is semantically the same as before
+    # ... (same as before)
 
     return out_hbm</code></pre>
 </div>
