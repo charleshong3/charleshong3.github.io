@@ -117,7 +117,7 @@ We first begin by pre-processing the kernel to make it easier to pass into Autoc
   </figure>
 </div>
 
-Slowest `nc_latency` from 10 samples (with 2 warmup iters): **8.007 ms**
+**Slowest `nc_latency` from 10 samples (with 2 warmup iters):** **8.007 ms**
 
 ### Step 1
 
@@ -147,7 +147,7 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
   </figure>
 </div>
 
-**Latency:** 8.007 ms (same as baseline)
+**Latency:** **8.007 ms (same as baseline)**
 
 ### Step 2
 
@@ -159,7 +159,7 @@ Note that in the first 2 optimization iterations, we allow slight increases in l
 
 [Pseudocode omitted]
 
-**Latency:** 8.010 ms (0.99x speedup)
+**Latency:** **8.010 ms (0.99x speedup)**
 
 ### Step 3
 
@@ -206,7 +206,7 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by â
   </figure>
 </div>
 
-**Latency:** 7.934 ms (1.01x)
+**Latency:** **7.934 ms (1.01x)**
 
 ### Step 4
 
@@ -264,7 +264,7 @@ And **after** (`optimize_4`):
 
 We see that once PSUM is utilized, the pressure on SBUF decreases and access to the filter weights becomes faster, leading to greater overall throughput and decreasing latency.
 
-**Latency:** 5.602 ms (1.43x)
+**Latency:** **5.602 ms (1.43x)**
 
 ### Step 5
 
@@ -302,7 +302,7 @@ At the same time, Autocomp discards the Step 4 optimization that used PSUM to ac
   </figure>
 </div>
 
-**Latency:** 4.955 ms (1.62x)
+**Latency:** **4.955 ms (1.62x)**
 
 ### Step 6
 
