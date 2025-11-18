@@ -36,7 +36,7 @@ UC Berkeley
     <img src="images_autocomp_trainium_conv1d/image.png"
          alt="Diagram showing 1D convolution operation."
          class="center"
-         style="min-width:85%;">
+         style="min-width:80%;">
     <figcaption style="text-align:center">From <a href="https://ai.stackexchange.com/questions/28767/what-does-channel-mean-in-the-case-of-an-1d-convolution" target="_blank" rel="noopener">Stack Exchange</a>.</figcaption>
 </figure>
 
@@ -147,7 +147,7 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
   </figure>
 </div>
 
-Latency: **8.007 ms (same as baseline)**
+**Latency:** 8.007 ms (same as baseline)
 
 ### Step 2
 
@@ -159,7 +159,7 @@ Note that in the first 2 optimization iterations, we allow slight increases in l
 
 [Pseudocode omitted]
 
-Latency: **8.010 ms (0.99x speedup)**
+**Latency:** 8.010 ms (0.99x speedup)
 
 ### Step 3
 
@@ -206,7 +206,7 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by �
   </figure>
 </div>
 
-Latency: **7.934 ms (1.01x)**
+**Latency:** 7.934 ms (1.01x)
 
 ### Step 4
 
@@ -264,7 +264,7 @@ And **after** (`optimize_4`):
 
 We see that once PSUM is utilized, the pressure on SBUF decreases and access to the filter weights becomes faster, leading to greater overall throughput and decreasing latency.
 
-Latency: **5.602 ms (1.43x)**
+**Latency:** 5.602 ms (1.43x)
 
 ### Step 5
 
@@ -302,7 +302,7 @@ At the same time, Autocomp discards the Step 4 optimization that used PSUM to ac
   </figure>
 </div>
 
-Latency: **4.955 ms (1.62x)**
+**Latency:** 4.955 ms (1.62x)
 
 ### Step 6
 
@@ -397,7 +397,7 @@ These instructions combined were active for about 70% (55.56% + 14.85%) of the t
 
 **After:** In `optimize_6`, we see that the number of `tensor_tensor` and `tensor_reduce` operations are now both just 512 (equal to 65536 / 128), meaning both operations are now likely being fused across 128 partition tiles. Their execution times decrease from 3.84 → 0.2ms and 1.03 → 0.2ms, now totaling only 17% (8.39% + 8.31%) of the profiled runtime. Since the kernel is primarily compute-bound on these two operations, this reduction leads to a substantial overall speedup.
 
-Latency: **0.461 ms (17.37x)**
+**Latency:** **0.461 ms (17.37x)**
 
 ## Conclusion
 
