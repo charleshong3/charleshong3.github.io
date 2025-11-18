@@ -194,7 +194,7 @@ Pseudocode:
             nisa.dma_copy(filt_tile, filters[[c_tiled+:128], :, :, :])
 
             for w in range(W):
-		            # Omitted in pseudocode; no longer relies on create_indices
+                # Omitted in pseudocode; no longer relies on create_indices
                 prod = nl.multiply(img_tile[:, :, :, [w+:W_f]], filt_tile)
                 out_tile[:, :, :, w] = nl.sum(prod)
             
