@@ -7,6 +7,10 @@
             <link rel="preconnect" href="https://fonts.googleapis.com">
             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+            <!-- Prism.js for syntax highlighting (blog posts only) -->
+            {% if page.layout == 'blog' %}
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+            {% endif %}
             
             <!-- Google Analytics -->
             {% if site.google_analytics %}
@@ -44,5 +48,10 @@
                     <li><a href="https://scholar.google.com/citations?user=n-qES6QAAAAJ&hl=en">scholar</a></li>
                 </ul>
             </footer>
+            <!-- Prism.js for syntax highlighting (blog posts only) -->
+            {% if page.layout == 'blog' %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+            {% endif %}
         </body>
     </html>

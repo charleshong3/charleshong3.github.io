@@ -47,7 +47,7 @@ Here's the rough pseudocode of the original kernel:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def conv1d_depthwise_default(input, filters, output):
+<pre><code class="language-python">def conv1d_depthwise_default(input, filters, output):
     """
     Input Shape: [N, C_in, 1, W]
     Filter Shape: [C_out, 1, 1, W_f]
@@ -102,7 +102,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_0(input, filters):
+<pre><code class="language-python">def optimize_0(input, filters):
     # Inlined helper functions
     def div_ceil():
     def create_indices():
@@ -130,7 +130,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_1(input, filters):
+<pre><code class="language-python">def optimize_1(input, filters):
     # ... (same as before)
 
     # 4. Perform depthwise convolution
@@ -178,7 +178,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_3(input, filters):
+<pre><code class="language-python">def optimize_3(input, filters):
     # Fuse everything into a single global loop
     out_hbm = nl.array(...)
     
@@ -220,7 +220,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_4(input, filters):
+<pre><code class="language-python">def optimize_4(input, filters):
     # ... (same as before)
     
             # Group W into batches of 512
@@ -277,7 +277,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_5(input, filters):
+<pre><code class="language-python">def optimize_5(input, filters):
     out_hbm = nl.array(...)
 
     # Reorder the most & second most outer loops
@@ -309,7 +309,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>for w in range(W):</code></pre>
+<pre><code class="language-python">for w in range(W):</code></pre>
 </div>
   </figure>
 </div>
@@ -317,7 +317,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>for w_out_tile in range(W // 64):
+<pre><code class="language-python">for w_out_tile in range(W // 64):
 	for w_in_tile in range(64):
 		w = w_out_tile * 64 + w_in_tile</code></pre>
 </div>
@@ -335,7 +335,7 @@ Pseudocode:
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width: 100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>def optimize_6(input, filters):
+<pre><code class="language-python">def optimize_6(input, filters):
     # ... (same as before)
     
             NUM_FULL_BLOCKS = W // 64
