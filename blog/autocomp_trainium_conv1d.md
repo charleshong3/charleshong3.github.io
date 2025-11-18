@@ -22,7 +22,7 @@ UC Berkeley
 
 <ul style="margin: 0; padding-left: 20px; line-height: 1.4;">
 <li><a href="#about-conv1d">About `conv1d`</a></li>
-<li><a href="#optimization-steps">Optimization Steps</a>
+<li><a href="#optimization-steps">Optimization Steps</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 
