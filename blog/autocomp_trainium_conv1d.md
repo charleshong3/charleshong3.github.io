@@ -351,19 +351,7 @@ And **after** the optimization (`optimize_6`):
          style="flex: 1; min-width: 40%; max-width: 48%;">
 </figure>
 
-**Before:** In `optimize_5`, we had
-
-$$
-N \times \frac{C_{in}}{128} \times W = 65536
-$$
-
-individual `tensor_tensor` operations. Similarly,
-
-$$
-\frac{65536}{4} = 16384
-$$
-
-individual `tensor_reduce` operations. This seems to imply that the NKI compiler is eagerly fusing `tensor_reduce` calls across four partition tiles at a time when the total number of `tensor_reduce` calls in a loop is unknown at compile time. If any Trainium experts can confirm this, please let us know!
+**Before:** In `optimize_5`, we had $N * (C_{in} / 128) * W = 65536$ individual `tensor_tensor` operations. We also had 65536 / 4 = 16384 individual `tensor_reduce` operations. This seems to imply that the NKI compiler is eagerly fusing `tensor_reduce` calls across four partition tiles at a time when the total number of `tensor_reduce` calls in a loop is unknown at compile time. If any Trainium experts can confirm this, please let us know!
 
 These instructions combined were active for about 70% (55.56% + 14.85%) of the total profiled time, making them a prime target for optimization according to Amdahl’s law.
 
