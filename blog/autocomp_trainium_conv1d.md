@@ -423,4 +423,4 @@ Speedup Summary:
 
 In this case study, we saw how Autocomp applies a range of kernel optimization techniques to improve the `conv1d` kernel provided by the AWS Neuron team. From conventional memory traffic optimizations to NKI-specific behaviors, Autocomp systematically transformed the code, exploring design spaces and edge cases that human kernel writers might not easily consider. We're excited to continue expanding our use of Autocomp and see what other applications it can optimize next.
 
-Thanks to [Huijae An](https://www.linkedin.com/in/huijae-an/){:target="_blank" rel="noopener"}, an undergrad researcher working with us in the SLICE Lab, for leading the writeup of this blog post, and Haozheng Fan from the Neuron Science team for providing feedback and insights.
+Thanks to [Huijae An](https://www.linkedin.com/in/huijae-an/){:target="_blank" rel="noopener"}, a talented undergrad researcher working with us in the SLICE Lab, for leading the writeup of this blog post, and Haozheng Fan from the Neuron Science team for providing feedback and insights.
