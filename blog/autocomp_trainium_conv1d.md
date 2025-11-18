@@ -45,8 +45,8 @@ In our case, the kernel performs a depthwise 1D convolution, meaning each input 
 Here's the rough pseudocode of the original kernel:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def conv1d_depthwise_default(input, filters, output):
     """
     Input Shape: [N, C_in, 1, W]
@@ -100,8 +100,8 @@ We first begin by pre-processing the kernel to make it easier to pass into Autoc
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_0(input, filters):
     # Inlined helper functions
     def div_ceil():
@@ -128,8 +128,8 @@ Autocomp attempts a hoisting optimization where it moves indexing of the loop-in
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_1(input, filters):
     # ... (same as before)
 
@@ -176,8 +176,8 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by â
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_3(input, filters):
     # Fuse everything into a single global loop
     out_hbm = nl.array(...)
@@ -218,8 +218,8 @@ Autocomp leverages [PSUM](https://awsdocs-neuron.readthedocs-hosted.com/en/lates
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_4(input, filters):
     # ... (same as before)
     
@@ -275,8 +275,8 @@ At the same time, Autocomp discards the Step 4 optimization that used PSUM to ac
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_5(input, filters):
     out_hbm = nl.array(...)
 
@@ -307,16 +307,16 @@ Latency: **4.955 ms (1.62x)**
 Inside the convolution loop, Autocomp tiles the output width dimension into groups of 64.
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">for w in range(W):</code></pre>
 </div>
   </figure>
 </div>
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">for w_out_tile in range(W // 64):
 	for w_in_tile in range(64):
 		w = w_out_tile * 64 + w_in_tile</code></pre>
@@ -333,8 +333,8 @@ It isnâ€™t entirely clear why Autocomp chose a tile size of 64 instead of the mo
 Pseudocode:
 
 <div class="center" style="width:100%;">
-  <figure class="code-container" style="width: 100%;">
-    <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
+  <figure class="code-container code-container-small" style="width: 100%;">
+    <div style="border-radius: 6px; padding: 8px 12px; overflow-x: auto;">
 <pre><code class="language-python">def optimize_6(input, filters):
     # ... (same as before)
     
