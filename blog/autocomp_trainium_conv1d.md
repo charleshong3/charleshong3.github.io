@@ -323,7 +323,7 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
     <div style="overflow-x: auto;">
 <pre><code class="language-python">for w_out_tile in range(W // 64):
     for w_in_tile in range(64):
-		    w = w_out_tile * 64 + w_in_tile</code></pre>
+        w = w_out_tile * 64 + w_in_tile</code></pre>
 </div>
   </figure>
 </div>
