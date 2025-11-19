@@ -201,7 +201,7 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by â
             # Write to HBM immediately once results are ready
             nl.store(out_hbm[n, [c_tiled+:128], :, :], out_tile)
             
-        return out_hbm</code></pre>
+    return out_hbm</code></pre>
 </div>
   </figure>
 </div>
