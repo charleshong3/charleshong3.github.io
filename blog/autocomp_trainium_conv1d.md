@@ -200,8 +200,8 @@ Autocomp starts to make noticeable improvements to the kernel. It begins so by â
             
             # Write to HBM immediately once results are ready
             nl.store(out_hbm[n, [c_tiled+:128], :, :], out_tile)
-            
-        return out_hbm</code></pre>
+
+    return out_hbm</code></pre>
 </div>
   </figure>
 </div>
@@ -322,8 +322,8 @@ Inside the convolution loop, Autocomp tiles the output width dimension into grou
   <figure class="code-container code-container-small" style="width: 100%;">
     <div style="overflow-x: auto;">
 <pre><code class="language-python">for w_out_tile in range(W // 64):
-	for w_in_tile in range(64):
-		w = w_out_tile * 64 + w_in_tile</code></pre>
+    for w_in_tile in range(64):
+		    w = w_out_tile * 64 + w_in_tile</code></pre>
 </div>
   </figure>
 </div>
