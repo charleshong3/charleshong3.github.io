@@ -5,7 +5,7 @@ previous_post:
   title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
   url: "/blog/autocomp_trainium.html"
 next_post:
-  title: "Autocomp featured on Sky Lab ADRS Blog"
+  title: "Autocomp featured on Sky Lab ADRS blog"
   url: "/blog/autocomp_adrs.html"
 ---
 
