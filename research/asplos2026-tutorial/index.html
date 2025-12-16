@@ -1,0 +1,325 @@
+---
+layout: default
+title: LLMLift + Autocomp Tutorial - ASPLOS 2026
+---
+<style>
+    body {
+        max-width: 1000px;
+    }
+    .tutorial-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .tutorial-header h1 {
+        color: white;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 2em;
+    }
+    .tutorial-info {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+        font-size: 1em;
+    }
+    .tutorial-info div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .section {
+        margin-bottom: 40px;
+    }
+    .organizers-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .organizer {
+        text-align: center;
+    }
+    .organizer a {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        border-bottom: none;
+    }
+    .organizer a:hover .organizer-name {
+        color: #667eea;
+    }
+    .organizer a:hover img {
+        transform: scale(1.05);
+    }
+    .organizer img {
+        width: 110px !important;
+        height: 150px;
+        border-radius: 8px;
+        object-fit: cover;
+        margin-bottom: 8px;
+        border: 3px solid #667eea;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s ease;
+    }
+    .organizer-name {
+        font-size: 1.1em;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 4px;
+        transition: color 0.2s ease;
+    }
+    .organizer-title {
+        font-size: 0.9em;
+        color: #666;
+        line-height: 1.4;
+    }
+    .outline-item {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+    .outline-item h3 {
+        color: #667eea;
+        margin-bottom: 10px;
+    }
+    .outline-item ul {
+        margin-top: 10px;
+    }
+    .highlight-box {
+        background: #f8f9ff;
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+    .highlight-box h3 {
+        margin-top: 0;
+        color: #667eea;
+    }
+    @media screen and (max-width: 768px) {
+        .tutorial-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .organizers-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        .organizers-container {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="tutorial-header">
+    <h1>
+        LLMLift + Autocomp: Automating Accelerator Programming with LLM-Driven Code Translation and Optimization
+    </h1>
+    <div class="tutorial-info">
+        <div>📍 ASPLOS 2026, Pittsburgh, PA</div>
+        <div>📅 Monday, March 23, 2026</div>
+        <div>⏰ Half-day tutorial (3.5 hours)</div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Overview</h2>
+    <p>
+        Programming and optimizing hardware accelerators is notoriously difficult, requiring deep knowledge 
+        of both hardware and domain-specific languages (DSLs). Recent advances in large language models (LLMs) 
+        offer a new paradigm: leveraging pretrained models for verified code translation and hardware-aware 
+        optimization. This tutorial introduces <strong>LLMLift + Autocomp</strong>, two complementary frameworks 
+        that automate accelerator programming through LLM-driven compilation.
+    </p>
+    
+    <p>
+        <strong>LLMLift </strong> (NeurIPS 2024—<a href="https://arxiv.org/abs/2406.03003" target="_blank">arXiv</a>) demonstrates how LLMs 
+        can perform <i>verified lifting</i>—translating general-purpose code into accelerator DSLs while generating 
+        machine-checkable proofs of correctness. <strong>Autocomp</strong> (MLArchSys 2025 Outstanding Paper—<a href="https://arxiv.org/abs/2505.18574" target="_blank">arXiv</a>, 
+        <a href="https://github.com/ucb-bar/autocomp" target="_blank">code</a>) complements LLMLift by showing how LLMs can drive automated <i>optimization</i>.
+        Autocomp uses structured prompting, hardware feedback, 
+        and iterative search to generate high-performance accelerator code that surpasses expert hand-tuned 
+        implementations across diverse backends such as Gemmini, AWS Trainium, and NVIDIA GPUs.
+    </p>
+    
+    <p>
+        Through a mix of lectures and hands-on sessions, participants will learn how to use LLMs as reasoning 
+        engines for verified code transformation and as autonomous optimization agents for new hardware. The tutorial 
+        will cover principles of prompt engineering for compiler tasks, integration of LLMs with theorem provers 
+        and performance feedback loops, and practical workflows for applying these techniques to custom accelerators 
+        and DSLs. We hope attendees will leave with a better understanding of how LLMs can bridge the gap between hardware 
+        design and software optimization, as well as the ability to apply LLMLift and Autocomp to their own projects!
+    </p>
+</div>
+
+<div class="section">
+    <h2>Organizers</h2>
+    
+    <div class="organizers-container">
+        <div class="organizer">
+            <a href="https://charleshong3.github.io/" target="_blank">
+                <img src="img/charles.jpg" alt="Charles Hong">
+                <div class="organizer-name">Charles Hong</div>
+            </a>
+            <div class="organizer-title">Ph.D. Candidate<br>UC Berkeley</div>
+        </div>
+        
+        <div class="organizer">
+            <a href="https://x.com/sahilb17" target="_blank">
+                <img src="img/sahil.png" alt="Sahil Bhatia">
+                <div class="organizer-name">Sahil Bhatia</div>
+            </a>
+            <div class="organizer-title">Ph.D. Candidate<br>UC Berkeley</div>
+        </div>
+        
+        <div class="organizer">
+            <a href="https://people.eecs.berkeley.edu/~akcheung/" target="_blank">
+                <img src="img/alvin.png" alt="Alvin Cheung">
+                <div class="organizer-name">Alvin Cheung</div>
+            </a>
+            <div class="organizer-title">Associate Professor<br>UC Berkeley</div>
+        </div>
+        
+        <div class="organizer">
+            <a href="https://people.eecs.berkeley.edu/~ysshao/" target="_blank">
+                <img src="img/sophia.png" alt="Yakun Sophia Shao">
+                <div class="organizer-name">Yakun Sophia Shao</div>
+            </a>
+            <div class="organizer-title">Associate Professor<br>UC Berkeley</div>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Tutorial Outline</h2>
+    
+    <div class="outline-item">
+        <h3>1. Introduction (20 min)</h3>
+        <ul>
+            <li>Motivation: The growing complexity of accelerator programming</li>
+            <li>Challenges in DSL design, compiler optimization, and hardware specialization</li>
+            <li>The emerging role of LLMs in systems research</li>
+        </ul>
+    </div>
+    
+    <div class="outline-item">
+        <h3>2. LLMs for Code Translation and Verification: LLMLift (30 min)</h3>
+        <ul>
+            <li>Overview of verified lifting and its traditional symbolic approaches</li>
+            <li>LLMLift framework: Python as an intermediate representation (IR)</li>
+            <li>Integrating LLMs with theorem provers for verified code transpilation</li>
+            <li>Demonstration: Translating and verifying tensor programs</li>
+            <li>Discussion: Extending to new DSLs and verification backends</li>
+        </ul>
+    </div>
+    
+    <div class="outline-item">
+        <h3>3. LLMs for Accelerator Code Optimization: Autocomp (30 min)</h3>
+        <ul>
+            <li>Background: Optimization challenges in tensor accelerator programming</li>
+            <li>Autocomp framework:
+                <ul>
+                    <li>Two-phase (plan + implement) prompting and beam search</li>
+                    <li>Hardware-in-the-loop optimization using feedback (performance and correctness)</li>
+                    <li>Methods for increasing diversity of generated responses</li>
+                </ul>
+            </li>
+            <li>Demonstration: Optimizing Gemmini, Trainium, and CUDA kernels using Autocomp</li>
+            <li>Discussion: Portability, promising optimization targets, and future improvements to Autocomp</li>
+        </ul>
+    </div>
+    
+    <div class="outline-item">
+        <h3>4. Coffee Break (30 min)</h3>
+    </div>
+    
+    <div class="outline-item">
+        <h3>5. Hands-on Session (80 min)</h3>
+        <ul>
+            <li>Interactive walk-through:
+                <ul>
+                    <li>Translating Python to accelerator DSL using LLMLift</li>
+                    <li>Iteratively optimizing a Trainium kernel with Autocomp's workflow</li>
+                </ul>
+            </li>
+            <li>Example exercises and open-source repository walkthrough</li>
+        </ul>
+    </div>
+    
+    <div class="outline-item">
+        <h3>6. Open Discussion and Future Directions (20 min)</h3>
+        <ul>
+            <li>Integrating LLM-driven synthesis into existing compiler stacks</li>
+            <li>Opportunities for combining LLMLift and Autocomp (end-to-end verified optimization)</li>
+            <li>Q&A on open research challenges: verification, LLM post-training, hardware feedback, etc.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <div class="highlight-box">
+        <h3>Expected Audience and Outcomes</h3>
+        <p>
+            This tutorial is designed for <strong>researchers and practitioners of all levels</strong> in computer 
+            architecture, programming languages, and machine learning systems. Participants should have basic familiarity 
+            with compilers or accelerator programming, but no prior experience with LLM-based code generation is required.
+        </p>
+        
+        <p><strong>By the end of the session, attendees will:</strong></p>
+        <ul>
+            <li>Understand how LLMs can be integrated into compiler and synthesis workflows</li>
+            <li>Learn the design principles behind LLMLift and Autocomp</li>
+            <li>Gain hands-on experience using LLMs for verified code translation and optimization</li>
+            <li>Explore open research directions at the intersection of AI, compilers, and hardware design</li>
+        </ul>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Key Themes</h2>
+    <ul>
+        <li>
+            <strong>Verified Code Translation:</strong> How LLMs can generate provably correct code transformations
+        </li>
+        <li>
+            <strong>Hardware-Aware Optimization:</strong> Using performance feedback to guide LLM-based code optimization
+        </li>
+        <li>
+            <strong>Prompt Engineering for Compilers:</strong> Designing effective prompts for complex compiler tasks
+        </li>
+        <li>
+            <strong>Portability Across Accelerators:</strong> Techniques that work across diverse hardware backends
+        </li>
+        <li>
+            <strong>Future of Automated Compilation:</strong> The future of LLM-driven compiler toolchains
+        </li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>Papers & Code</h2>
+    <ul>
+        <li>
+            <strong>LLMLift:</strong> 
+            <a href="https://arxiv.org/abs/2406.03003" target="_blank">arXiv</a>
+        </li>
+        <li>
+            <strong>Autocomp:</strong> 
+            <a href="https://arxiv.org/abs/2505.18574" target="_blank">arXiv</a> | 
+            <a href="https://github.com/ucb-bar/autocomp" target="_blank">GitHub</a>
+        </li>
+    </ul>
+    
+    <h3 style="margin-top: 25px;">Blog Posts</h3>
+    <ul>
+        <li><a href="/blog/autocomp.html">Autocomp: LLM-Driven Code Optimization for Tensor Accelerators</a></li>
+        <li><a href="/blog/autocomp_update.html">Autocomp for All: Update on CUDA and RVV optimization</a></li>
+        <li><a href="/blog/autocomp_trainium.html">Speeding up NKI (AWS Trainium) kernels with Autocomp</a></li>
+    </ul>
+</div>
+
