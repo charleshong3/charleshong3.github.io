@@ -31,7 +31,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     .tutorial-header {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
-        padding: 24px;
+        padding: 30px;
         border-radius: 8px;
         margin-bottom: 24px;
         margin-top: 24px;
@@ -41,7 +41,14 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         color: white;
         margin-top: 0;
         margin-bottom: 12px;
-        font-size: 1.7em;
+        font-size: 1.8em;
+    }
+    .inline-logo {
+        height: 1.2em;
+        width: auto;
+        vertical-align: middle;
+        margin-right: 0px;
+        margin-top: -2px;
     }
     .tutorial-info {
         display: flex;
@@ -129,7 +136,71 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     .highlight-box p:last-child {
         margin-bottom: 0;
     }
+    .framework-boxes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 15px 0;
+    }
+    .framework-box {
+        background: #f8f9ff;
+        border: 2px solid #667eea;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 1em;
+        line-height: 1.4;
+    }
+    .framework-box h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #667eea;
+        font-size: 1.2em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .framework-box-links {
+        font-size: 0.8em;
+        font-weight: normal;
+        margin-left: 5px;
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+    }
+    .framework-box-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        background: #667eea;
+        padding: 4px 10px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        transition: opacity 0.2s ease;
+    }
+    .framework-box-links a:hover {
+        opacity: 0.85;
+    }
+    .framework-box-links a .icon {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .framework-box p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .framework-box img.inline-logo {
+        height: 1.1em;
+        margin-right: 1px;
+    }
     @media screen and (max-width: 768px) {
+        .framework-boxes {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
         .tutorial-info {
             flex-direction: column;
             gap: 8px;
@@ -148,7 +219,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
 
 <div class="tutorial-header">
     <h1>
-        Tutorial: Automating Accelerator Programming with LLM-Driven Code Translation and Optimization
+        Tutorial: AI-Driven Accelerator Programming with LLMLift and Autocomp
     </h1>
     <div class="tutorial-info">
         <div>📍 ASPLOS 2026, Pittsburgh, PA, USA</div>
@@ -161,21 +232,57 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     <h2>Overview</h2>
     <p>
         Programming and optimizing hardware accelerators is notoriously difficult, requiring deep knowledge 
-        of both hardware and domain-specific languages (DSLs). Recent advances in large language models (LLMs) 
+        of both hardware and domain-specific languages (DSLs). Recent advances in AI, in particular large language models (LLMs), 
         offer a new paradigm: leveraging pretrained models for verified code translation and hardware-aware 
         optimization. This tutorial introduces <strong>LLMLift + Autocomp</strong>, two complementary frameworks 
         that automate accelerator programming through LLM-driven compilation.
     </p>
     
-    <p>
-        <strong>LLMLift </strong> (NeurIPS 2024—<a href="https://arxiv.org/abs/2406.03003" target="_blank">arXiv</a>) demonstrates how LLMs 
-        can perform <i>verified lifting</i>—translating general-purpose code into DSLs (including accelerator DSLs), while also generating 
-        formal proofs of correctness. <strong>Autocomp</strong> (MLArchSys 2025 Outstanding Paper—<a href="https://arxiv.org/abs/2505.18574" target="_blank">arXiv</a>, 
-        <a href="https://github.com/ucb-bar/autocomp" target="_blank">GitHub</a>) complements LLMLift by showing how LLMs can drive automated <i>optimization</i>.
-        Autocomp uses structured prompting, hardware feedback, 
-        and iterative search to generate high-performance accelerator code that surpasses expert hand-tuned 
-        implementations across diverse backends such as Gemmini, AWS Trainium, and NVIDIA GPUs.
-    </p>
+    <div class="framework-boxes">
+        <div class="framework-box">
+            <h3>
+                <span>LLMLift</span>
+                <span class="framework-box-links">
+                    <a href="https://arxiv.org/abs/2406.03003" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        arXiv
+                    </a>
+                </span>
+            </h3>
+            <p>
+                <strong>LLMLift</strong> (NeurIPS 2024) demonstrates how LLMs 
+                can perform <i>verified lifting</i>—translating general-purpose code into DSLs (including accelerator DSLs), while also generating 
+                formal proofs of correctness.
+            </p>
+        </div>
+        <div class="framework-box">
+            <h3>
+                <span><img src="img/autocomp_logo_nobg.png" alt="Autocomp Logo" class="inline-logo"> Autocomp</span>
+                <span class="framework-box-links">
+                    <a href="https://arxiv.org/abs/2505.18574" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        arXiv
+                    </a>
+                    <a href="https://github.com/ucb-bar/autocomp" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </span>
+            </h3>
+            <p>
+                <strong>Autocomp</strong> (MLArchSys 2025 Outstanding Paper) shows how LLMs can drive automated <i>optimization</i>.
+                Autocomp uses structured prompting, hardware feedback, 
+                and iterative search to generate high-performance accelerator code that surpasses expert hand-tuned 
+                implementations across diverse backends such as Gemmini, AWS Trainium, and NVIDIA GPUs.
+            </p>
+        </div>
+    </div>
     
     <p>
         Through a mix of lectures and hands-on sessions, participants will learn how to use LLMs as reasoning 
