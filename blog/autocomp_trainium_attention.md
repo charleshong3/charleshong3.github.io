@@ -54,7 +54,9 @@ Note that this is not the *causal* (or *masked*) version of self-attention, wher
 
 ## The Original Kernel
 
-We copied the original kernel directly from AWS’s [Fused Self-Attention tutorial](https://awsdocs-neuron.readthedocs-hosted.com/en/v2.26.1/nki/tutorials/fused-self-attn.html). It is implemented in Trainium's [Neuron Kernel Interface (NKI)](https://awsdocs-neuron.readthedocs-hosted.com/en/v2.26.1/nki/index.html), Trainium's Python-embedded DSL for writing high-performance kernels. It already implements several optimizations, so we’ll take any speedup we can get. Note that we optimize for the specific case with the parameters `use_causal_mask=False, mixed_precision=True`. Here’s a rough pseudocode of the original kernel, assuming those parameter values:
+[Trainium](https://aws.amazon.com/ai/machine-learning/trainium/){:target="_blank" rel="noopener"} is Amazon's state-of-the-art tensor accelerator. It's currently one of the backends supported by Autocomp. The compiler teams at AWS have graciously provided several tutorials and reference kernels (discussed further in our [previous blog post](/blog/autocomp_trainium.html)).
+
+We copied the reference code for our attention kernel directly from AWS’s [Fused Self-Attention tutorial](https://awsdocs-neuron.readthedocs-hosted.com/en/v2.26.1/nki/tutorials/fused-self-attn.html). It is implemented in Trainium's [Neuron Kernel Interface (NKI)](https://awsdocs-neuron.readthedocs-hosted.com/en/v2.26.1/nki/index.html), Trainium's Python-embedded DSL for writing high-performance kernels. It already implements several optimizations, so we’ll take any speedup we can get. Note that we optimize for the specific case with the parameters `use_causal_mask=False, mixed_precision=True`. Here’s a rough pseudocode of the original kernel, assuming those parameter values:
 
 ```python
 def fused_self_attention(Q, K, V):
@@ -143,7 +145,7 @@ We’ll now walk through how Autocomp optimized this kernel.
 
 We use the original kernel as the baseline, making no changes and preserving its original semantics.
 
-**Slowest `nc_latency` from 10 runs (with 2 warmup runs): 0.558 ms**
+**Slowest `nc_latency` from 10 runs (with 2 warmup runs), on a `trn1.2xlarge` instance: 0.558 ms**
 
 ### Step 1
 
