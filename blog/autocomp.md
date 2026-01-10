@@ -277,7 +277,7 @@ Contact Charles ([charleshong@berkeley.edu](mailto:charleshong@berkeley.edu)) or
 <div class="center" style="width:100%;">
   <figure class="code-container" style="width:100%;">
     <div style="border: 1px solid #ccc; border-radius: 8px; padding-left: 16px; padding-right: 16px; background-color: #f8f8f8; overflow-x: auto;">
-<pre><code>@misc{hong2025autocomp,
+<pre><code class="language-bibtex">@misc{hong2025autocomp,
       title={Autocomp: LLM-Driven Code Optimization for Tensor Accelerators}, 
       author={Charles Hong and Sahil Bhatia and Alvin Cheung and Yakun Sophia Shao},
       year={2025},

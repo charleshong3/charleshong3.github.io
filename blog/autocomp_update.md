@@ -83,9 +83,10 @@ We made the following changes to Autocomp. Please reference the [original paper]
     - As this was a quick experiment, we opted not to set up any additional tracing or performance analysis tools, and only used the latency (in ms) of the current code candidate as feedback. We achieve strong results nonetheless, meaning we could potentially do even better with more sophisticated feedback that can point search in the right direction.
 
 - In the **first two iterations** of search, as KernelBench provides only a Python baseline, we focus on generating an initial inline CUDA implementation using the following reduced menu:
-
-          "Convert PyTorch code to functional PyTorch code",
-          "Convert a PyTorch operation to inline CUDA C++ code",
+  ```plaintext
+  "Convert PyTorch code to functional PyTorch code",
+  "Convert a PyTorch operation to inline CUDA C++ code",
+  ```
 
 - A new **Optimization Menu**, designed by combining a subset of optimizations from Autocomp and human-written optimizations sourced from a variety of CUDA and GPU code optimization guides. For example,"Use shared memory to reduce global memory bandwidth usage", or "Minimize divergent branches within warps" (the full menu is available in [`llm_agent.py`](https://github.com/ucb-bar/autocomp/blob/aa3c1ff39ad22c31abc3aa4008baaa071136960b/autocomp/search/llm_agent.py#L836){:target="_blank" rel="noopener"}).
 
@@ -161,10 +162,10 @@ We made the following changes to Autocomp:
 
 - Add new options to the **Optimization Menu** used for GEMM/conv on Gemmini:
 
-              "prefetching",  
-              "register blocking",  
-              "maximize LMUL",  
-              "use fused operations or instructions",
+      "prefetching",  
+      "register blocking",  
+      "maximize LMUL",  
+      "use fused operations or instructions",
 
 - Use the following **Rules**:
 
@@ -172,9 +173,9 @@ We made the following changes to Autocomp:
     2. Limit the scope of the plan to the selected optimization.
     3. Only function gemm_f32 will be imported during evaluation. Feel free to define new variables, functions, etc., but make sure they are used by gemm_f32.
     4. The code will be compiled with the following command:
-    ```
-    riscv64-unknown-linux-gnu-gcc -S -O1 -march=rv64gcv -mabi=lp64d -mcmodel=medany code.c -o code.s
-    ```
+  ```bash
+  riscv64-unknown-linux-gnu-gcc -S -O1 -march=rv64gcv -mabi=lp64d -mcmodel=medany code.c -o code.s
+  ```
 
 ### Results
 
