@@ -208,7 +208,7 @@ We use the following two techniques to boost the diversity in plan (and in the c
 
 # Applying Autocomp to Gemmini (Not Gemini\!)
 
-### 🔔 Since publishing this blog post, we have added support for NVIDIA GPUs, AWS Trainium, and RISC-V Vector to Autocomp. See subsequent [blog posts](https://ucb-bar.github.io/blog/) for more details.
+#### 🔔 Update: Since publishing this blog post, we have added support for NVIDIA GPUs, AWS Trainium, and RISC-V Vector to Autocomp. See subsequent [blog posts](https://ucb-bar.github.io/blog/) for more details!
 
 To be clear, [Gemmini](https://github.com/ucb-bar/gemmini){:target="_blank" rel="noopener"} isn't a chatbot or an AI model. It's an open-source hardware generator developed by researchers at UC Berkeley for building custom tensor accelerators. Gemmini is ideal for evaluating Autocomp because:
 
