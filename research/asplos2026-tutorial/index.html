@@ -355,7 +355,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     <p>Note that this is a tentative outline and is likely to change as we get closer to the date of the tutorial.</p>
     
     <div class="outline-item">
-        <h3>1. Introduction (20 min)</h3>
+        <h3>1. Introduction (10 min)</h3>
         <ul>
             <li>Motivation: The growing complexity of accelerator programming</li>
             <li>Challenges in DSL design, compiler optimization, and hardware specialization</li>
@@ -364,7 +364,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     </div>
     
     <div class="outline-item">
-        <h3>2. LLMs for Code Translation and Verification: LLMLift (30 min)</h3>
+        <h3>2. LLMs for Code Translation and Verification: LLMLift (25 min)</h3>
         <ul>
             <li>Overview of verified lifting and its traditional symbolic approaches</li>
             <li>LLMLift framework: Python as an intermediate representation (IR)</li>
@@ -375,7 +375,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     </div>
     
     <div class="outline-item">
-        <h3>3. LLMs for Accelerator Code Optimization: Autocomp (30 min)</h3>
+        <h3>3. LLMs for Accelerator Code Optimization: Autocomp (25 min)</h3>
         <ul>
             <li>Background: Optimization challenges in tensor accelerator programming</li>
             <li>Autocomp framework:
@@ -395,11 +395,12 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     </div>
     
     <div class="outline-item">
-        <h3>5. Hands-on Session (80 min)</h3>
+        <h3>5. Hands-on Session (110 min)</h3>
         <ul>
             <li>Interactive walk-through:
                 <ul>
                     <li>Translating Python to accelerator DSL using LLMLift</li>
+                    <li>Coffee Break (10 min)</li>
                     <li>Iteratively optimizing a Trainium kernel with Autocomp's workflow</li>
                 </ul>
             </li>
@@ -408,11 +409,11 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     </div>
     
     <div class="outline-item">
-        <h3>6. Open Discussion and Future Directions (20 min)</h3>
+        <h3>6. Open Discussion and Future Directions (10 min)</h3>
         <ul>
-            <li>Integrating LLM-driven synthesis into existing compiler stacks</li>
+            <li>Extending LLM-driven synthesis for new hardware platforms</li>
             <li>Opportunities for combining LLMLift and Autocomp (end-to-end verified optimization)</li>
-            <li>Q&A on open research challenges: verification, LLM post-training, hardware feedback, etc.</li>
+            <li>Q&A on open research challenges: verification, LLM post-training, compiler integration, context engineering, etc.</li>
         </ul>
     </div>
 </div>
@@ -423,15 +424,15 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         <p>
             This tutorial is designed for <strong>researchers and practitioners of all levels</strong> in computer 
             architecture, programming languages, and machine learning systems. Participants should have basic familiarity 
-            with compilers or accelerator programming, but no prior experience with LLM-based code generation is required.
+            with AI accelerators and accelerator programming, but no prior experience with LLM-based code generation is required.
         </p>
         
         <p><strong>By the end of the session, attendees will:</strong></p>
         <ul>
-            <li>Understand how LLMs can be integrated into compiler and synthesis workflows</li>
+            <li>Understand how LLMs can be integrated into ML code generation/optimization and accelerator bringup</li>
             <li>Learn the design principles behind LLMLift and Autocomp</li>
             <li>Gain hands-on experience using LLMs for verified code translation and optimization</li>
-            <li>Explore open research directions at the intersection of AI, compilers, and hardware design</li>
+            <li>Explore open research directions at the intersection of AI, code generation, and hardware design</li>
         </ul>
     </div>
 </div>
@@ -446,7 +447,7 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
             <strong>Hardware-Aware Optimization:</strong> Using performance feedback to guide LLM-based code optimization
         </li>
         <li>
-            <strong>Prompt Engineering for Compilers:</strong> Designing effective prompts for complex compiler tasks
+            <strong>Structured Prompting for Low-Resource DSLs:</strong> Designing effective prompts for complex ML code generation/optimization tasks with low-resource DSLs
         </li>
         <li>
             <strong>Portability Across Accelerators:</strong> Techniques that work across diverse hardware backends
@@ -479,5 +480,6 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         <li><a href="/blog/autocomp_update.html">Autocomp for All: Update on CUDA and RVV optimization</a></li>
         <li><a href="/blog/autocomp_trainium.html">Speeding up NKI (AWS Trainium) kernels with Autocomp</a></li>
         <li><a href="/blog/autocomp_trainium_conv1d.html">How we made AWS Trainium 17x faster (for conv1d)</a></li>
+        <li><a href="/blog/autocomp_trainium_attention.html">How we made attention 45% faster on AWS Trainium</a></li>
     </ul>
 </div>
