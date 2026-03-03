@@ -57,10 +57,18 @@ p {
 }
 footer {
     border-top: 1px solid #eaeaea;
-    font-size: .9em;
+    font-size: .95em;
     color: #7f8c8d;
     margin-top: 2em;
-    padding-top: 1em;
+    padding-top: 0.8em;
+}
+footer ul li a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+footer ul li a svg {
+    flex-shrink: 0;
 }
 ul {
     font-size: 1em;
