@@ -26,14 +26,11 @@
         <body>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/research">Research</a></li>
-                    <li><a href="/resume/Charles_Hong_Resume.pdf">CV</a></li>
-                    <li><a href="/blog">Blog</a></li>
-                    <li><a href="/misc">Misc</a></li>
-                    <!-- <li><a href="/projects">Projects</a></li> -->
-                    <!-- <li><a href="/61a">CS 61A</a></li>
-                    <li><a href="/61c">CS 61C</a></li> -->
+                    <li><a href="/" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="/research" {% if page.url contains '/research' %}class="active"{% endif %}>Research</a></li>
+                    <li><a href="/blog" {% if page.url contains '/blog' %}class="active"{% endif %}>Blog</a></li>
+                    <li><a href="/misc" {% if page.url contains '/misc' %}class="active"{% endif %}>Misc</a></li>
+                    <li><a href="/resume/Charles_Hong_Resume.pdf" target="_blank">CV <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-left: 1px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
                 </ul>
             </nav>
             <div class="container">

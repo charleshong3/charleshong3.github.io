@@ -15,9 +15,29 @@ nav ul, footer ul {
     list-style: none;
     font-weight: bold;
 }
+nav ul {
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 0;
+    margin-bottom: 1.5em;
+}
 nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
+}
+nav ul li a {
+    display: inline-block;
+    padding: 6px 2px 8px;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    color: #5a7fa8;
+}
+nav ul li a:hover {
+    color: #3972b4;
+    border-bottom: 2px solid #3972b4;
+}
+nav ul li a.active {
+    color: #3972b4;
+    border-bottom: 2px solid #3972b4;
 }
 a {
     text-decoration: none;
