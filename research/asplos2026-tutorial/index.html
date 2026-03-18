@@ -44,15 +44,16 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         font-size: 1.8em;
     }
     .tagline {
-        color: #2c3e50;
-        font-size: 1.2em;
+        color: rgba(255,255,255,0.85);
+        font-size: 1em;
         font-style: italic;
-        margin-top: 20px;
-        margin-bottom: 24px;
+        margin-top: 16px;
+        margin-bottom: 0;
         line-height: 1.5;
         font-weight: 400;
-        text-align: center;
-        padding: 0 20px;
+        text-align: left;
+        padding: 14px 0 0;
+        border-top: 1px solid rgba(255,255,255,0.2);
     }
     .inline-logo {
         height: 1.2em;
@@ -63,14 +64,18 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     }
     .tutorial-info {
         display: flex;
-        gap: 15px;
-        margin-top: 10px;
-        font-size: 0.9em;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 12px;
+        font-size: 0.85em;
     }
     .tutorial-info div {
         display: flex;
         align-items: center;
         gap: 6px;
+        background: rgba(255,255,255,0.13);
+        padding: 4px 12px;
+        border-radius: 16px;
     }
     .section {
         margin-bottom: 25px;
@@ -106,6 +111,25 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         transition: transform 0.2s ease;
     }
+    .organizer-img-wrap {
+        width: 100px;
+        height: 135px;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 3px solid #3972b4;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin: 0 auto 6px;
+        position: relative;
+    }
+    .organizer-img-wrap img {
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        margin-bottom: 0 !important;
+        object-fit: cover;
+    }
     .organizer-name {
         font-size: 1.1em;
         font-weight: 600;
@@ -118,17 +142,77 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
         color: #666;
         line-height: 1.3;
     }
-    .outline-item {
-        margin-bottom: 15px;
-        padding-left: 15px;
+    .schedule {
+        border: 1px solid #d0d7e0;
+        border-radius: 8px;
+        overflow: hidden;
     }
-    .outline-item h3 {
+    .schedule-row {
+        display: flex;
+        align-items: baseline;
+        padding: 12px 18px;
+        border-bottom: 1px solid #e8ecf0;
+        background: #f5f7fa;
+    }
+    .schedule-row:last-child {
+        border-bottom: none;
+    }
+    .schedule-row .sched-time {
+        width: 120px;
+        flex-shrink: 0;
+        font-size: 0.9em;
+        color: #3d4f5f;
+        font-weight: 600;
+    }
+    .schedule-row .sched-content {
+        flex: 1;
+    }
+    .schedule-row .sched-title {
+        font-size: 0.95em;
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    .schedule-row.section-header {
+    }
+    .schedule-row.section-header .sched-title {
+        font-weight: 600;
         color: #3972b4;
-        margin-bottom: 8px;
-        font-size: 1.1em;
     }
-    .outline-item ul {
-        margin-top: 6px;
+    .sub-sessions {
+        margin-top: 8px;
+    }
+    .sub-session {
+        display: flex;
+        align-items: baseline;
+        padding: 8px 12px;
+        background: white;
+        border-radius: 6px;
+        margin-bottom: 4px;
+    }
+    .sub-session:last-child {
+        margin-bottom: 0;
+    }
+    .sub-session .sub-time {
+        width: 100px;
+        flex-shrink: 0;
+        font-size: 0.85em;
+        color: #4a5c6d;
+        font-weight: 500;
+    }
+    .sub-session .sub-title {
+        font-size: 0.9em;
+        color: #2c3e50;
+        font-weight: 500;
+    }
+    .schedule-row .sched-details {
+        margin: 6px 0 0;
+        padding-left: 18px;
+        list-style: disc;
+    }
+    .schedule-row .sched-details li {
+        font-size: 0.88em;
+        color: #5a6776;
+        margin-bottom: 2px;
     }
     .highlight-box {
         background: #f0f4f9;
@@ -230,19 +314,18 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
 
 <div class="tutorial-header">
     <h1>
-        Tutorial: AI-Driven Accelerator Programming with LLMLift and Autocomp
+        AI-Driven Accelerator Programming with LLMLift and Autocomp
     </h1>
     <div class="tutorial-info">
-        <div>📍 ASPLOS 2026, Pittsburgh, PA, USA</div>
-        <div>📅 Monday, March 23, 2026 (Morning Session)</div>
-        <div>⏰ Half-day tutorial (3.5 hours)</div>
+        <div><a href="https://www.asplos-conference.org/asplos2026/workshops-and-tutorials" target="_blank" style="color: white; border-bottom: none;">🏛️ ASPLOS 2026</a></div>
+        <div>📍 Clemente Room, The Landing Hotel Pittsburgh (Pittsburgh, PA, USA)</div>
+        <div>📅 Monday, March 23, 2026 (8:30 AM – 12:00 PM)</div>
     </div>
-</div>
-
-<div class="tagline">
-    Stop hand-tuning accelerator code—let AI do it!<br>
-    Learn how we use LLMLift and Autocomp to turn weeks of manual tuning into a few hours of automation. <br>
-    Hands-on demo with Trainium compute and LLM credits provided!
+    <div class="tagline">
+        Stop hand-tuning accelerator code—let AI do it!<br>
+        Learn how we use LLMLift and Autocomp to turn weeks of manual tuning into a few hours of automation.<br>
+        Hands-on demo with Trainium compute and LLM credits provided!
+    </div>
 </div>
 
 <div class="section">
@@ -265,6 +348,12 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
                             <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                         </svg>
                         arXiv
+                    </a>
+                    <a href="https://github.com/metalift/metalift" target="_blank">
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                        GitHub
                     </a>
                 </span>
             </h3>
@@ -317,7 +406,9 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     <div class="organizers-container">
         <div class="organizer">
             <a href="https://charleshong3.github.io/" target="_blank">
-                <img src="img/charles.jpg" alt="Charles Hong">
+                <div class="organizer-img-wrap">
+                    <img src="img/charles.jpg" alt="Charles Hong" style="position: absolute; width: 140% !important; height: 140% !important; top: -12%; left: -20%; object-fit: cover;">
+                </div>
                 <div class="organizer-name">Charles Hong</div>
             </a>
             <div class="organizer-title">Ph.D. Candidate<br>UC Berkeley</div>
@@ -350,71 +441,66 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
 </div>
 
 <div class="section">
-    <h2>Tentative Outline</h2>
-
-    <p>Note that this is a tentative outline and is likely to change as we get closer to the date of the tutorial.</p>
+    <h2>Outline</h2>
     
-    <div class="outline-item">
-        <h3>1. Introduction (10 min)</h3>
-        <ul>
-            <li>Motivation: The growing complexity of accelerator programming</li>
-            <li>Challenges in DSL design, compiler optimization, and hardware specialization</li>
-            <li>The emerging role of LLMs in systems research</li>
-        </ul>
-    </div>
-    
-    <div class="outline-item">
-        <h3>2. LLMs for Code Translation and Verification: LLMLift (25 min)</h3>
-        <ul>
-            <li>Overview of verified lifting and its traditional symbolic approaches</li>
-            <li>LLMLift framework: Python as an intermediate representation (IR)</li>
-            <li>Integrating LLMs with theorem provers for verified code transpilation</li>
-            <li>Demonstration: Translating and verifying tensor programs</li>
-            <li>Discussion: Extending to new DSLs and verification backends</li>
-        </ul>
-    </div>
-    
-    <div class="outline-item">
-        <h3>3. LLMs for Accelerator Code Optimization: Autocomp (25 min)</h3>
-        <ul>
-            <li>Background: Optimization challenges in tensor accelerator programming</li>
-            <li>Autocomp framework:
-                <ul>
-                    <li>Two-phase (plan + implement) prompting and beam search</li>
-                    <li>Hardware-in-the-loop optimization using feedback (performance and correctness)</li>
-                    <li>Methods for increasing diversity of generated responses</li>
+    <div class="schedule">
+        <div class="schedule-row">
+            <span class="sched-time">8:30–8:40</span>
+            <div class="sched-content">
+                <span class="sched-title">Introduction</span>
+                <ul class="sched-details">
+                    <li>Motivation: The growing complexity and importance of accelerator programming</li>
+                    <li>Challenges in DSL design, compiler optimization, and hardware specialization</li>
+                    <li>The emerging role of AI in systems research</li>
                 </ul>
-            </li>
-            <li>Demonstration: Optimizing Gemmini, Trainium, and CUDA kernels using Autocomp</li>
-            <li>Discussion: Portability, promising optimization targets, and future improvements to Autocomp</li>
-        </ul>
-    </div>
-    
-    <div class="outline-item">
-        <h3>4. Coffee Break (30 min)</h3>
-    </div>
-    
-    <div class="outline-item">
-        <h3>5. Hands-on Session (110 min)</h3>
-        <ul>
-            <li>Interactive walk-through:
-                <ul>
-                    <li>Translating Python to accelerator DSL using LLMLift</li>
-                    <li>Coffee Break (10 min)</li>
-                    <li>Building a Trainium code optimizer with Autocomp</li>
+            </div>
+        </div>
+        <div class="schedule-row section-header">
+            <span class="sched-time">8:40–10:00</span>
+            <div class="sched-content">
+                <span class="sched-title">LLMLift</span>
+                <div class="sub-sessions">
+                    <div class="sub-session">
+                        <span class="sub-time">8:40–9:00</span>
+                        <span class="sub-title"><strong>Talk:</strong> LLMLift: Verified Code Transpilation with LLMs</span>
+                    </div>
+                    <div class="sub-session">
+                        <span class="sub-time">9:00–10:00</span>
+                        <span class="sub-title"><strong>Hands-on:</strong> Translating Python to Accelerator DSL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="schedule-row">
+            <span class="sched-time">10:00–10:30</span>
+            <span class="sched-title">Coffee Break ☕</span>
+        </div>
+        <div class="schedule-row section-header">
+            <span class="sched-time">10:30–11:50</span>
+            <div class="sched-content">
+                <span class="sched-title">Autocomp</span>
+                <div class="sub-sessions">
+                    <div class="sub-session">
+                        <span class="sub-time">10:30–10:50</span>
+                        <span class="sub-title"><strong>Talk:</strong> Autocomp: A Portable Code Optimizer for Tensor Accelerators</span>
+                    </div>
+                    <div class="sub-session">
+                        <span class="sub-time">10:50–11:50</span>
+                        <span class="sub-title"><strong>Hands-on:</strong> Building a Trainium Code Optimizer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="schedule-row">
+            <span class="sched-time">11:50–12:00</span>
+            <div class="sched-content">
+                <span class="sched-title">Q&A and Future Directions</span>
+                <ul class="sched-details">
+                    <li>Extending LLM-driven synthesis for new hardware platforms</li>
+                    <li>Open research challenges: verification, LLM post-training, compiler integration, context engineering, etc.</li>
                 </ul>
-            </li>
-            <li>Example exercises and open-source repository walkthrough</li>
-        </ul>
-    </div>
-    
-    <div class="outline-item">
-        <h3>6. Open Discussion and Future Directions (10 min)</h3>
-        <ul>
-            <li>Extending LLM-driven synthesis for new hardware platforms</li>
-            <li>Opportunities for combining LLMLift and Autocomp (end-to-end verified optimization)</li>
-            <li>Q&A on open research challenges: verification, LLM post-training, compiler integration, context engineering, etc.</li>
-        </ul>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -463,7 +549,8 @@ title: LLMLift + Autocomp Tutorial - ASPLOS 2026
     <ul>
         <li>
             <strong>LLMLift:</strong> 
-            <a href="https://arxiv.org/abs/2406.03003" target="_blank">arXiv</a>
+            <a href="https://arxiv.org/abs/2406.03003" target="_blank">arXiv</a> | 
+            <a href="https://github.com/metalift/metalift" target="_blank">GitHub</a>
         </li>
         <li>
             <strong>Autocomp:</strong> 
