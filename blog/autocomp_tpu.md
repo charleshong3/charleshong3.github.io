@@ -72,7 +72,7 @@ We directly pulled Google's highly optimized Flash Attention implementation dire
 
 **Step 1: Unnormalized online softmax** (0.371 → 0.332 ms). The baseline normalizes running softmax statistics on every K/V block iteration, dividing by the running sum of exponentials and rescaling the accumulator. Autocomp defers all normalization to a single pass after the loop, eliminating per-iteration reciprocal computations and matrix-vector multiplies.
 
-**Step 2: Causal wavefront microtiling** (0.332 → 0.271 ms). For causal attention with Q and KV sequence lengths of 2048, the Q×K matmul computes a 4×4 grid of subtiles. The causal mask zeroes out the 6 upper-triangular subtiles entirely. The baseline computes all 16 subtiles and masks afterward. Autocomp rewrites the inner loop to skip the 6 structurally zero subtiles, computing only the 10 that contribute to the output. This is an algorithmic insight — not a micro-optimization — and eliminates 37.5% of the MXU work.
+**Step 2: Causal wavefront microtiling** (0.332 → 0.271 ms). For causal attention with Q and KV sequence lengths of 2048, the Q×K matmul computes a 4×4 grid of subtiles. The causal mask zeroes out the 6 upper-triangular subtiles entirely. The baseline computes all 16 subtiles and masks afterward. Autocomp rewrites the inner loop to skip the 6 structurally zero subtiles, computing only the 10 that contribute to the output. This is an algorithmic insight, not a micro-optimization, and eliminates 37.5% of the MXU work.
 
 **Step 3: Head-axis coarsening** (0.271 → 0.264 ms). The v6e-1 has a single TensorCore, so per-head kernel launch overhead is nontrivial. Autocomp batches 2 heads per program, reducing launch count by half.
 
@@ -82,7 +82,7 @@ Different LLMs contributed different steps: Gemini 3 Flash planned the softmax r
 
 Ragged Paged Attention (RPA) is vLLM's decode-phase attention kernel for batched inference with a paged KV cache. Unlike Flash Attention, RPA is memory-bound, so there is no single algorithmic win to be had. Instead, Autocomp found **11 incremental optimizations** over 15 search iterations, each shaving off fractions of a millisecond:
 
-Hoisting loop-invariant computations, pre-folding query scaling into the Q tensor, removing redundant VMEM-to-VMEM transfers, restructuring data layouts for contiguous access, enabling parallel grid dimensions — each change is small on its own, but they compound to a **1.10x speedup** (0.644 ms → 0.587 ms).
+Hoisting loop-invariant computations, pre-folding query scaling into the Q tensor, removing redundant VMEM-to-VMEM transfers, restructuring data layouts for contiguous access, enabling parallel grid dimensions. Each change is small on its own, but they compound to a **1.10x speedup** (0.644 ms → 0.587 ms).
 
 This kind of improvement matters at serving scale: RPA runs on every decode step for every request, so even a 10% latency reduction translates directly to higher throughput and lower tail latency. See the [full optimization trace](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/ragged_paged_attention_trace.py){:target="_blank" rel="noopener"} and [final generated kernel](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/ragged_paged_attention_final.py){:target="_blank" rel="noopener"}.
 
