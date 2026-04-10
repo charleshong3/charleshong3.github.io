@@ -8,11 +8,9 @@ previous_post:
 
 # We pointed Autocomp at TPU docs. It came back with 4x faster kernels.
 
-#### March 16, 2026
+#### April 10, 2026
 
-[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}, [Sahil Bhatia](https://x.com/sahilb17){:target="_blank" rel="noopener"}, [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"}, and [Yakun Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"}
-<br/>
-UC Berkeley
+[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
 ### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent entirely from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels — including Flash Attention by **1.41x** and vanilla JAX workloads by up to **4.37x**. The output is readable, reviewable source code you can inspect and upstream: [see the generated kernels here](https://github.com/ucb-bar/autocomp/tree/main/examples/jaxbench-pallas){:target="_blank" rel="noopener"}.
 
