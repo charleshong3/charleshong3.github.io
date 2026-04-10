@@ -12,7 +12,7 @@ previous_post:
 
 [Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
-### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent entirely from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels — including Flash Attention by **1.41x** and vanilla JAX workloads by up to **4.37x**. The output is readable, reviewable source code you can inspect and upstream: [see the generated kernels here](https://github.com/ucb-bar/autocomp/tree/main/examples/jaxbench-pallas){:target="_blank" rel="noopener"}.
+### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent entirely from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels — including Flash Attention by **1.41x** and vanilla JAX workloads by up to **4.37x**.
 
 <div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
@@ -60,9 +60,9 @@ From these, the Agent Builder synthesized **37 optimization strategies** (15 gen
 
 ## Benchmarks
 
-We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Trillium) with runtime `v2-alpha-tpuv6e` and **JAX 0.6.2**:
+We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Trillium) with **JAX 0.6.2**:
 
-**Category 1 — Optimizing hand-tuned Pallas kernels.** Seven production kernels from [JAXBench](https://github.com/aryatschand/JAXBench){:target="_blank" rel="noopener"}, sourced from JAX and vLLM, already hand-optimized by Google engineers. These include [Flash Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/flash_attention.py){:target="_blank" rel="noopener"}, [Ragged Paged Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/ragged_paged_attention.py){:target="_blank" rel="noopener"}, Splash Attention, Paged Attention, matmul, MegaBlox GMM, and fused MoE. Model shapes are drawn from Llama-3.1-8B (attention and matmul kernels) and Qwen3-235B-A22B (MoE kernels). These are hard baselines — the starting code is already well-optimized.
+**Category 1 — Optimizing hand-tuned Pallas kernels.** Production kernels upstream JAX, already hand-optimized by Google engineers. Specifically we optimized the [Flash Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/flash_attention.py){:target="_blank" rel="noopener"} and [Ragged Paged Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/ragged_paged_attention.py){:target="_blank" rel="noopener"} kernels. Model shapes are drawn from Llama-3.1-8B. These are hard baselines — the starting code is already well-optimized.
 
 **Category 2 — Translating and optimizing vanilla JAX.** Five workloads starting as unoptimized JAX code, which Autocomp first translates into Pallas and then optimizes. These include MLA Attention, RetNet Retention, GQA Attention, Sparse MoE, and Mamba-2 SSD. Here the baseline is the original JAX implementation running through XLA, and there is significantly more headroom for optimization.
 
