@@ -12,7 +12,7 @@ previous_post:
 
 [Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
-### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent **automatically** from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels — including Flash Attention by **1.41x** and vanilla JAX workloads by up to **4.37x**.
+### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent **automatically** from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels, including Flash Attention by **1.41x** and vanilla JAX workloads by up to **4.37x**.
 
 <div style="background-color: #f8f9fa; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
 
@@ -39,7 +39,7 @@ previous_post:
 
 ## Building the TPU Agent
 
-Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, Trainium, NVIDIA GPUS, RVV), building the agent involved significant manual effort — copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
+Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, Trainium, NVIDIA GPUS, RVV), building the agent involved significant manual effort: copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
 
 For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder){:target="_blank" rel="noopener"} to generate the [entire agent](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"} automatically. We pointed it at four documentation sources:
 
@@ -48,7 +48,7 @@ For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/
 3. [TPU Pallas API reference](https://docs.jax.dev/en/latest/jax.experimental.pallas.tpu.html){:target="_blank" rel="noopener"} — full API surface
 4. [TPU hardware docs](https://docs.cloud.google.com/tpu/docs/){:target="_blank" rel="noopener"} — architecture, memory hierarchy
 
-From these, the Agent Builder synthesized **22 TPU-specific optimization strategies** (on top of 15 default strategies), a 3300-line ISA reference, an architecture summary, and correctness rules. This is the first Autocomp agent built entirely from public documentation — we never wrote a hand-built agent for TPU. Strategies like "mark grid dimensions as parallel" and "fuse RHS transpose into `dot_general`" turned out to be directly useful in the optimizations we describe below.
+From these, the Agent Builder synthesized **22 TPU-specific optimization strategies** (on top of 15 default strategies), a 3300-line ISA reference, an architecture summary, and correctness rules. This is the first Autocomp agent built from scratch with the Agent Builder; we never wrote a hand-built agent for TPU. Strategies like "mark grid dimensions as parallel" and "fuse RHS transpose into `dot_general`" turned out to be directly useful in the optimizations we describe below.
 
 <figure>
     <img src="images_autocomp_tpu/agent_builder.svg"
@@ -62,7 +62,7 @@ From these, the Agent Builder synthesized **22 TPU-specific optimization strateg
 
 We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Trillium) with **JAX 0.6.2**:
 
-**Category 1 — Optimizing hand-tuned Pallas kernels.** Production kernels from upstream JAX, already hand-optimized by Google engineers. Specifically we optimized the [Flash Attention](https://github.com/jax-ml/jax/blob/main/jax/experimental/pallas/ops/tpu/flash_attention.py){:target="_blank" rel="noopener"} and [Ragged Paged Attention](https://github.com/jax-ml/jax/tree/main/jax/experimental/pallas/ops/tpu/ragged_paged_attention){:target="_blank" rel="noopener"} kernels. Model shapes are drawn from Llama-3.1-8B. These are hard baselines — the starting code is already well-optimized.
+**Category 1 — Optimizing hand-tuned Pallas kernels.** Production kernels from upstream JAX, already hand-optimized by Google engineers. Specifically we optimized the [Flash Attention](https://github.com/jax-ml/jax/blob/main/jax/experimental/pallas/ops/tpu/flash_attention.py){:target="_blank" rel="noopener"} and [Ragged Paged Attention](https://github.com/jax-ml/jax/tree/main/jax/experimental/pallas/ops/tpu/ragged_paged_attention){:target="_blank" rel="noopener"} kernels. Model shapes are drawn from Llama-3.1-8B. These are hard baselines since the starting code is already well-optimized.
 
 **Category 2 — Translating and optimizing vanilla JAX.** Four workloads from [JAXBench](https://github.com/aryatschand/JAXBench){:target="_blank" rel="noopener"} starting as unoptimized JAX code, which Autocomp first translates into Pallas and then optimizes. These include MLA Attention, RetNet Retention, Sparse MoE, and Mamba-2 SSD. Here the baseline is the original JAX implementation running through XLA, and there is significantly more headroom for optimization.
 
@@ -70,7 +70,7 @@ We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Tril
 
 We directly pulled Google's highly optimized Flash Attention implementation directly pulled from JAX's codebase. Autocomp found a 3-step optimization chain that speeds it up by **1.41x** (0.371 ms → 0.264 ms):
 
-**Step 1: Unnormalized online softmax** (0.371 → 0.332 ms). The baseline normalizes running softmax statistics on every K/V block iteration — dividing by the running sum of exponentials and rescaling the accumulator. Autocomp defers all normalization to a single pass after the loop, eliminating per-iteration reciprocal computations and matrix-vector multiplies.
+**Step 1: Unnormalized online softmax** (0.371 → 0.332 ms). The baseline normalizes running softmax statistics on every K/V block iteration, dividing by the running sum of exponentials and rescaling the accumulator. Autocomp defers all normalization to a single pass after the loop, eliminating per-iteration reciprocal computations and matrix-vector multiplies.
 
 **Step 2: Causal wavefront microtiling** (0.332 → 0.271 ms). For causal attention with Q and KV sequence lengths of 2048, the Q×K matmul computes a 4×4 grid of subtiles. The causal mask zeroes out the 6 upper-triangular subtiles entirely. The baseline computes all 16 subtiles and masks afterward. Autocomp rewrites the inner loop to skip the 6 structurally zero subtiles, computing only the 10 that contribute to the output. This is an algorithmic insight — not a micro-optimization — and eliminates 37.5% of the MXU work.
 
@@ -80,7 +80,7 @@ Different LLMs contributed different steps: Gemini 3 Flash planned the softmax r
 
 ## Ragged Paged Attention: Death by a thousand cuts {#ragged-paged-attention}
 
-Ragged Paged Attention (RPA) is vLLM's decode-phase attention kernel for batched inference with a paged KV cache. Unlike Flash Attention, RPA is memory-bound — there is no single algorithmic win to be had. Instead, Autocomp found **11 incremental optimizations** over 15 search iterations, each shaving off fractions of a millisecond:
+Ragged Paged Attention (RPA) is vLLM's decode-phase attention kernel for batched inference with a paged KV cache. Unlike Flash Attention, RPA is memory-bound, so there is no single algorithmic win to be had. Instead, Autocomp found **11 incremental optimizations** over 15 search iterations, each shaving off fractions of a millisecond:
 
 Hoisting loop-invariant computations, pre-folding query scaling into the Q tensor, removing redundant VMEM-to-VMEM transfers, restructuring data layouts for contiguous access, enabling parallel grid dimensions — each change is small on its own, but they compound to a **1.10x speedup** (0.644 ms → 0.587 ms).
 
@@ -112,6 +112,6 @@ For Category 2 workloads, Autocomp first translates vanilla JAX code into Pallas
 
 ## Conclusion
 
-TPU is Autocomp's 5th hardware target (after Gemmini, Trainium, NVIDIA GPUS, and RISC-V Vector processors) and the first where the optimization agent was built fully autonomously by the Agent Builder from public documentation. The results show that this auto-generated agent is effective — it can speed up already-optimized production kernels and produce large gains on workloads translated from vanilla JAX.
+TPU is Autocomp's 5th hardware target (after Gemmini, Trainium, NVIDIA GPUS, and RISC-V Vector processors) and the first where the optimization agent was built fully autonomously by the Agent Builder from public documentation. The results show that this auto-generated agent is effective. It can speed up already-optimized production kernels and produce large gains on workloads translated from vanilla JAX.
 
 Check out the [Autocomp repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, our [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"}, the [TPU agent configuration](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"}, and the [generated kernels and traces](https://github.com/ucb-bar/autocomp/tree/main/examples){:target="_blank" rel="noopener"}. Feel free to reach out at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions or want help getting started.
