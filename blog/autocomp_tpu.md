@@ -92,8 +92,8 @@ This kind of improvement matters at serving scale: RPA runs on every decode step
 
 | **Kernel** | **Baseline** | **Autocomp** | **Speedup** |
 |---|---|---|---|
-| flash_attention | 0.371 ms | 0.264 ms | **1.41x** |
-| ragged_paged_attention | 0.644 ms | 0.587 ms | **1.10x** |
+| [flash_attention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_final.py){:target="_blank" rel="noopener"} | 0.371 ms | 0.264 ms | **1.41x** |
+| [ragged_paged_attention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/ragged_paged_attention_final.py){:target="_blank" rel="noopener"} | 0.644 ms | 0.587 ms | **1.10x** |
 
 <!-- TODO: add results for splash_attention, paged_attention, matmul, megablox_gmm, fused_moe once runs complete -->
 
@@ -101,10 +101,10 @@ This kind of improvement matters at serving scale: RPA runs on every decode step
 
 | **Kernel** | **JAX Baseline** | **Autocomp** | **Speedup** |
 |---|---|---|---|
-| [mamba2_ssd](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mamba2_ssd_trace.py){:target="_blank" rel="noopener"} | 1.587 ms | 0.363 ms | **4.37x** |
-| [retnet_retention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/retnet_retention_trace.py){:target="_blank" rel="noopener"} | 0.520 ms | 0.199 ms | **2.61x** |
-| [mla_attention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mla_attention_trace.py){:target="_blank" rel="noopener"} | 4.543 ms | 2.458 ms | **1.85x** |
-| [sparse_moe](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/sparse_moe_trace.py){:target="_blank" rel="noopener"} | 8.268 ms | 6.357 ms | **1.30x** |
+| [mamba2_ssd](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mamba2_ssd_final.py){:target="_blank" rel="noopener"} | 1.587 ms | 0.363 ms | **4.37x** |
+| [retnet_retention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/retnet_retention_final.py){:target="_blank" rel="noopener"} | 0.520 ms | 0.199 ms | **2.61x** |
+| [mla_attention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mla_attention_final.py){:target="_blank" rel="noopener"} | 4.543 ms | 2.458 ms | **1.85x** |
+| [sparse_moe](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/sparse_moe_final.py){:target="_blank" rel="noopener"} | 8.268 ms | 6.357 ms | **1.30x** |
 
 For Category 2 workloads, Autocomp first translates vanilla JAX code into Pallas kernels and then iteratively optimizes them. The largest win is on Mamba-2 SSD (**4.37x**), where the translation to Pallas with explicit memory management provides a large baseline improvement, and subsequent optimizations further close the gap to hardware limits.
 
