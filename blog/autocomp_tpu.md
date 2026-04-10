@@ -62,13 +62,13 @@ From these, the Agent Builder synthesized **37 optimization strategies** (15 gen
 
 We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Trillium) with **JAX 0.6.2**:
 
-**Category 1 — Optimizing hand-tuned Pallas kernels.** Production kernels upstream JAX, already hand-optimized by Google engineers. Specifically we optimized the [Flash Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/flash_attention.py){:target="_blank" rel="noopener"} and [Ragged Paged Attention](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/ragged_paged_attention.py){:target="_blank" rel="noopener"} kernels. Model shapes are drawn from Llama-3.1-8B. These are hard baselines — the starting code is already well-optimized.
+**Category 1 — Optimizing hand-tuned Pallas kernels.** Production kernels from upstream JAX, already hand-optimized by Google engineers. Specifically we optimized the [Flash Attention](https://github.com/jax-ml/jax/blob/main/jax/experimental/pallas/ops/tpu/flash_attention.py){:target="_blank" rel="noopener"} and [Ragged Paged Attention](https://github.com/jax-ml/jax/tree/main/jax/experimental/pallas/ops/tpu/ragged_paged_attention){:target="_blank" rel="noopener"} kernels. Model shapes are drawn from Llama-3.1-8B. These are hard baselines — the starting code is already well-optimized.
 
-**Category 2 — Translating and optimizing vanilla JAX.** Five workloads starting as unoptimized JAX code, which Autocomp first translates into Pallas and then optimizes. These include MLA Attention, RetNet Retention, GQA Attention, Sparse MoE, and Mamba-2 SSD. Here the baseline is the original JAX implementation running through XLA, and there is significantly more headroom for optimization.
+**Category 2 — Translating and optimizing vanilla JAX.** Four workloads from [JAXBench](https://github.com/aryatschand/JAXBench){:target="_blank" rel="noopener"} starting as unoptimized JAX code, which Autocomp first translates into Pallas and then optimizes. These include MLA Attention, RetNet Retention, Sparse MoE, and Mamba-2 SSD. Here the baseline is the original JAX implementation running through XLA, and there is significantly more headroom for optimization.
 
 ## Flash Attention: Eliminating 37.5% of wasted compute {#flash-attention}
 
-Flash Attention is a textbook example of a highly optimized kernel. The [JAXBench version](https://github.com/aryatschand/JAXBench/blob/main/pallas_kernels/flash_attention.py){:target="_blank" rel="noopener"} is adapted from JAX's reference implementation. Autocomp found a 3-step optimization chain that speeds it up by **1.41x** (0.371 ms → 0.264 ms):
+We directly pulled Google's highly optimized Flash Attention implementation directly pulled from JAX's codebase. Autocomp found a 3-step optimization chain that speeds it up by **1.41x** (0.371 ms → 0.264 ms):
 
 **Step 1: Unnormalized online softmax** (0.371 → 0.332 ms). The baseline normalizes running softmax statistics on every K/V block iteration — dividing by the running sum of exponentials and rescaling the accumulator. Autocomp defers all normalization to a single pass after the loop, eliminating per-iteration reciprocal computations and matrix-vector multiplies.
 
@@ -101,11 +101,10 @@ This kind of improvement matters at serving scale: RPA runs on every decode step
 
 | **Kernel** | **JAX Baseline** | **Autocomp** | **Speedup** |
 |---|---|---|---|
-| mamba2_ssd | 1.587 ms | 0.363 ms | **4.37x** |
-| retnet_retention | 0.520 ms | 0.199 ms | **2.61x** |
-| mla_attention | 4.543 ms | 2.458 ms | **1.85x** |
-| gqa_attention | 1.730 ms | 1.177 ms | **1.47x** |
-| sparse_moe | 8.268 ms | 6.357 ms | **1.30x** |
+| [mamba2_ssd](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mamba2_ssd_trace.py){:target="_blank" rel="noopener"} | 1.587 ms | 0.363 ms | **4.37x** |
+| [retnet_retention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/retnet_retention_trace.py){:target="_blank" rel="noopener"} | 0.520 ms | 0.199 ms | **2.61x** |
+| [mla_attention](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/mla_attention_trace.py){:target="_blank" rel="noopener"} | 4.543 ms | 2.458 ms | **1.85x** |
+| [sparse_moe](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-priority/sparse_moe_trace.py){:target="_blank" rel="noopener"} | 8.268 ms | 6.357 ms | **1.30x** |
 
 For Category 2 workloads, Autocomp first translates vanilla JAX code into Pallas kernels and then iteratively optimizes them. The largest win is on Mamba-2 SSD (**4.37x**), where the translation to Pallas with explicit memory management provides a large baseline improvement, and subsequent optimizations further close the gap to hardware limits.
 
@@ -115,4 +114,4 @@ For Category 2 workloads, Autocomp first translates vanilla JAX code into Pallas
 
 TPU is Autocomp's 5th hardware target (after Gemmini, Trainium, NVIDIA GPUS, and RISC-V Vector processors) and the first where the optimization agent was built fully autonomously by the Agent Builder from public documentation. The results show that this auto-generated agent is effective — it can speed up already-optimized production kernels and produce large gains on workloads translated from vanilla JAX.
 
-Check out the [Autocomp repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, our [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"}, the [TPU agent configuration](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"}, and the [generated kernels and traces](https://github.com/ucb-bar/autocomp/tree/main/examples/jaxbench-pallas){:target="_blank" rel="noopener"}. Feel free to reach out at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions or want help getting started.
+Check out the [Autocomp repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, our [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"}, the [TPU agent configuration](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"}, and the [generated kernels and traces](https://github.com/ucb-bar/autocomp/tree/main/examples){:target="_blank" rel="noopener"}. Feel free to reach out at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions or want help getting started.
