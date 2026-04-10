@@ -4,6 +4,9 @@ title: "How we made attention 45% faster on AWS Trainium"
 previous_post:
   title: "Autocomp featured on Sky Lab ADRS blog"
   url: "/blog/autocomp_adrs.html"
+next_post:
+  title: "We pointed Autocomp at TPU docs. It came back with 4x faster kernels."
+  url: "/blog/autocomp_tpu.html"
 ---
 
 # How we made attention 45% faster on AWS Trainium
