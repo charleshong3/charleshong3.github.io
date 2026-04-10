@@ -41,14 +41,14 @@ previous_post:
 
 Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, Trainium, NVIDIA GPUS, RVV), building the agent involved significant manual effort — copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
 
-For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder){:target="_blank" rel="noopener"} to generate the entire agent automatically. We pointed it at four documentation sources:
+For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder){:target="_blank" rel="noopener"} to generate the [entire agent](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"} automatically. We pointed it at four documentation sources:
 
 1. [Pallas overview](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} — `pallas_call`, grid/BlockSpec API
 2. [TPU Pallas guides](https://docs.jax.dev/en/latest/pallas/tpu/index.html){:target="_blank" rel="noopener"} — matmul, pipelining, DMA
 3. [TPU Pallas API reference](https://docs.jax.dev/en/latest/jax.experimental.pallas.tpu.html){:target="_blank" rel="noopener"} — full API surface
 4. [TPU hardware docs](https://docs.cloud.google.com/tpu/docs/){:target="_blank" rel="noopener"} — architecture, memory hierarchy
 
-From these, the Agent Builder synthesized **37 optimization strategies** (15 generic + 22 TPU-specific), a 3300-line ISA reference, an architecture summary, and correctness rules. This is the first Autocomp agent built entirely from public documentation — no hand-written optimization logic. Strategies like "mark grid dimensions as parallel" and "fuse RHS transpose into `dot_general`" turned out to be directly useful in the optimizations we describe below.
+From these, the Agent Builder synthesized **22 TPU-specific optimization strategies** (on top of 15 default strategies), a 3300-line ISA reference, an architecture summary, and correctness rules. This is the first Autocomp agent built entirely from public documentation — we never wrote a hand-built agent for TPU. Strategies like "mark grid dimensions as parallel" and "fuse RHS transpose into `dot_general`" turned out to be directly useful in the optimizations we describe below.
 
 <figure>
     <img src="images_autocomp_tpu/agent_builder.svg"
