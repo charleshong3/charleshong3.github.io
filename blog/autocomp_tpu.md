@@ -22,7 +22,7 @@ previous_post:
 <li><a href="#building-the-tpu-agent">Building the TPU Agent</a></li>
 <li><a href="#benchmarks">Benchmarks</a></li>
 <li><a href="#flash-attention">Flash Attention: Eliminating 37.5% of wasted compute</a></li>
-<li><a href="#ragged-paged-attention">Ragged Paged Attention: Death by a thousand cuts</a></li>
+<li><a href="#ragged-paged-attention">Ragged Paged Attention: The long tail of optimization</a></li>
 <li><a href="#results">Results</a></li>
 <li><a href="#conclusion">Conclusion</a></li>
 </ul>
@@ -78,7 +78,7 @@ We directly pulled Google's highly optimized Flash Attention implementation dire
 
 Different LLMs contributed different steps: Gemini 3 Flash planned the softmax rewrite, GPT-5.4 planned the wavefront tiling and head coarsening, and Claude Opus 4.5 wrote all three implementations. You can view the [full optimization trace](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_trace.py){:target="_blank" rel="noopener"} and [final generated kernel](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_final.py){:target="_blank" rel="noopener"}.
 
-## Ragged Paged Attention: Death by a thousand cuts {#ragged-paged-attention}
+## Ragged Paged Attention: The long tail of optimization {#ragged-paged-attention}
 
 Ragged Paged Attention (RPA) is vLLM's decode-phase attention kernel for batched inference with a paged KV cache. Unlike Flash Attention, RPA is memory-bound, so there is no single algorithmic win to be had. Instead, Autocomp found **11 incremental optimizations** over 15 search iterations, each shaving off fractions of a millisecond:
 
