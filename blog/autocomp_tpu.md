@@ -83,7 +83,7 @@ We optimized Google's highly optimized Flash Attention implementation directly p
 
 **Step 3: Head-axis coarsening** (0.271 → 0.264 ms). The v6e-1 has a single TensorCore, so per-head kernel launch overhead is nontrivial. Autocomp batches 2 heads per program, reducing launch count by half.
 
-Different LLMs contributed different steps: Gemini 3 Flash planned the softmax rewrite, GPT-5.4 planned the wavefront tiling and head coarsening, and Claude Opus 4.5 wrote all three implementations. You can view the [full optimization trace](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_trace.py){:target="_blank" rel="noopener"} and [final generated kernel](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_final.py){:target="_blank" rel="noopener"}.
+Different LLMs contributed different steps: Gemini 3 Flash planned the softmax rewrite, GPT-5.4 planned the wavefront tiling and head coarsening, and Claude Opus 4.5 wrote all three implementations. We've uploaded the [full optimization trace](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_trace.py){:target="_blank" rel="noopener"} and [final generated kernel](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_final.py){:target="_blank" rel="noopener"} for you to explore.
 
 <figure>
     <img src="images_autocomp_tpu/causal_tiling.svg"
