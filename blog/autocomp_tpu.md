@@ -75,7 +75,7 @@ We evaluate on two categories of workloads, all running on a **TPU v6e-1** (Tril
 
 ## Flash Attention: Eliminating 37.5% of wasted compute {#flash-attention}
 
-We directly pulled Google's highly optimized Flash Attention implementation directly pulled from JAX's codebase. Autocomp found a 3-step optimization chain that speeds it up by **1.41x** (0.371 ms → 0.264 ms):
+We optimized Google's highly optimized Flash Attention implementation directly pulled from JAX's codebase. Autocomp found a 3-step optimization chain that speeds it up by **1.41x** (0.371 ms → 0.264 ms):
 
 **Step 1: Unnormalized online softmax** (0.371 → 0.332 ms). The baseline normalizes running softmax statistics on every K/V block iteration, dividing by the running sum of exponentials and rescaling the accumulator. Autocomp defers all normalization to a single pass after the loop, eliminating per-iteration reciprocal computations and matrix-vector multiplies.
 

@@ -15,7 +15,7 @@
     </linearGradient>
   </defs>
 
-  <rect width="840" height="330" rx="12" fill="url(#bg-grad)" stroke="#e8eaed" stroke-width="1"/>
+  <rect width="840" height="330" rx="12" fill="none"/>
 
   <!-- Left section header -->
   <text x="210" y="36" text-anchor="middle" font-size="13" font-weight="600" fill="#5f6368" letter-spacing="0.5">OPTIMIZING HAND-TUNED PALLAS</text>
