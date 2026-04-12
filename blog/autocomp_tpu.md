@@ -41,7 +41,7 @@ previous_post:
     <img src="images_autocomp_tpu/results_overview.svg"
          alt="Results overview: 1.41x on Flash Attention, up to 4.37x on vanilla JAX workloads."
          class="center"
-         style="min-width:90%;margin-top:20px;">
+         style="width:100%;margin-top:20px;">
 </figure>
 
 ## Building the TPU Agent
