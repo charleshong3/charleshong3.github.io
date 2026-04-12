@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 440" font-family="Inter, Helvetica Neue, sans-serif">
+  <defs>
+    <linearGradient id="active" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4285F4"/>
+      <stop offset="100%" stop-color="#1a6ddb"/>
+    </linearGradient>
+    <linearGradient id="diag" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#34A853"/>
+      <stop offset="100%" stop-color="#1e8e3e"/>
+    </linearGradient>
+    <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#ccc" stroke-width="1.5"/>
+    </pattern>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#202124"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="410" y="32" text-anchor="middle" font-size="18" font-weight="700" fill="#202124">Causal Wavefront Microtiling &#x2014; Flash Attention on TPU v6e</text>
+
+  <!-- LEFT: Before -->
+  <text x="175" y="68" text-anchor="middle" font-size="15" font-weight="600" fill="#5f6368">Baseline: computes all 16 subtiles</text>
+  <text x="175" y="92" text-anchor="middle" font-size="12" fill="#80868b">K/V blocks &#x2192;</text>
+  <text x="22" y="238" text-anchor="middle" font-size="12" fill="#80868b" transform="rotate(-90 22 238)">Q blocks &#x2192;</text>
+
+  <!-- Grid - Before (all tiles computed) -->
+  <rect x="50" y="100" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="115" y="100" width="60" height="60" rx="4" fill="#e8eaed"/>
+  <rect x="180" y="100" width="60" height="60" rx="4" fill="#e8eaed"/>
+  <rect x="245" y="100" width="60" height="60" rx="4" fill="#e8eaed"/>
+
+  <rect x="50" y="165" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="115" y="165" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="180" y="165" width="60" height="60" rx="4" fill="#e8eaed"/>
+  <rect x="245" y="165" width="60" height="60" rx="4" fill="#e8eaed"/>
+
+  <rect x="50" y="230" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="115" y="230" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="180" y="230" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="245" y="230" width="60" height="60" rx="4" fill="#e8eaed"/>
+
+  <rect x="50" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="115" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="180" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="245" y="295" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+
+  <!-- X marks on wasted tiles -->
+  <g stroke="#9aa0a6" stroke-width="2" stroke-linecap="round">
+    <line x1="125" y1="110" x2="165" y2="150"/><line x1="165" y1="110" x2="125" y2="150"/>
+    <line x1="190" y1="110" x2="230" y2="150"/><line x1="230" y1="110" x2="190" y2="150"/>
+    <line x1="255" y1="110" x2="295" y2="150"/><line x1="295" y1="110" x2="255" y2="150"/>
+    <line x1="190" y1="175" x2="230" y2="215"/><line x1="230" y1="175" x2="190" y2="215"/>
+    <line x1="255" y1="175" x2="295" y2="215"/><line x1="295" y1="175" x2="255" y2="215"/>
+    <line x1="255" y1="240" x2="295" y2="280"/><line x1="295" y1="240" x2="255" y2="280"/>
+  </g>
+
+  <text x="175" y="380" text-anchor="middle" font-size="13" fill="#9aa0a6">16 MXU matmuls computed</text>
+  <text x="175" y="398" text-anchor="middle" font-size="13" font-weight="600" fill="#d93025">6 produce only zeros (37.5% waste)</text>
+
+  <!-- Arrow -->
+  <line x1="360" y1="215" x2="420" y2="215" stroke="#202124" stroke-width="2.5" marker-end="url(#arrowhead)"/>
+
+  <!-- RIGHT: After -->
+  <text x="610" y="68" text-anchor="middle" font-size="15" font-weight="600" fill="#5f6368">Autocomp: skips structurally zero tiles</text>
+  <text x="610" y="92" text-anchor="middle" font-size="12" fill="#80868b">K/V blocks &#x2192;</text>
+  <text x="470" y="238" text-anchor="middle" font-size="12" fill="#80868b" transform="rotate(-90 470 238)">Q blocks &#x2192;</text>
+
+  <!-- Grid - After -->
+  <rect x="485" y="100" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="550" y="100" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="615" y="100" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="680" y="100" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+
+  <rect x="485" y="165" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="550" y="165" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="615" y="165" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="680" y="165" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+
+  <rect x="485" y="230" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="550" y="230" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="615" y="230" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+  <rect x="680" y="230" width="60" height="60" rx="4" fill="url(#hatch)" stroke="#e0e0e0" stroke-width="1"/>
+
+  <rect x="485" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="550" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="615" y="295" width="60" height="60" rx="4" fill="url(#active)" opacity="0.9"/>
+  <rect x="680" y="295" width="60" height="60" rx="4" fill="url(#diag)" opacity="0.9"/>
+
+  <!-- "skip" text -->
+  <g font-size="11" fill="#bbb" text-anchor="middle" font-weight="500">
+    <text x="580" y="135">skip</text>
+    <text x="645" y="135">skip</text>
+    <text x="710" y="135">skip</text>
+    <text x="645" y="200">skip</text>
+    <text x="710" y="200">skip</text>
+    <text x="710" y="265">skip</text>
+  </g>
+
+  <text x="610" y="380" text-anchor="middle" font-size="13" font-weight="600" fill="#1a73e8">10 MXU matmuls &#x2014; only tiles that matter</text>
+  <text x="610" y="398" text-anchor="middle" font-size="13" font-weight="700" fill="#34A853">0.332 ms &#x2192; 0.271 ms (1.23x faster)</text>
+
+  <!-- Legend -->
+  <g transform="translate(230, 420)">
+    <rect x="0" y="0" width="14" height="14" rx="2" fill="url(#active)"/>
+    <text x="20" y="12" font-size="11" fill="#5f6368">Lower triangle (non-zero)</text>
+    <rect x="170" y="0" width="14" height="14" rx="2" fill="url(#diag)"/>
+    <text x="190" y="12" font-size="11" fill="#5f6368">Diagonal (partial mask)</text>
+    <rect x="340" y="0" width="14" height="14" rx="2" fill="#e8eaed"/>
+    <text x="360" y="12" font-size="11" fill="#5f6368">Upper triangle (all zeros)</text>
+  </g>
+</svg>

@@ -37,6 +37,13 @@ previous_post:
     <figcaption style="text-align:center">TODO: TPU hero image.</figcaption>
 </figure> -->
 
+<figure>
+    <img src="images_autocomp_tpu/results_overview.svg"
+         alt="Results overview: 1.41x on Flash Attention, up to 4.37x on vanilla JAX workloads."
+         class="center"
+         style="min-width:90%;margin-top:20px;">
+</figure>
+
 ## Building the TPU Agent
 
 Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, Trainium, NVIDIA GPUS, RVV), building the agent involved significant manual effort: copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
@@ -77,6 +84,14 @@ We directly pulled Google's highly optimized Flash Attention implementation dire
 **Step 3: Head-axis coarsening** (0.271 → 0.264 ms). The v6e-1 has a single TensorCore, so per-head kernel launch overhead is nontrivial. Autocomp batches 2 heads per program, reducing launch count by half.
 
 Different LLMs contributed different steps: Gemini 3 Flash planned the softmax rewrite, GPT-5.4 planned the wavefront tiling and head coarsening, and Claude Opus 4.5 wrote all three implementations. You can view the [full optimization trace](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_trace.py){:target="_blank" rel="noopener"} and [final generated kernel](https://github.com/ucb-bar/autocomp/blob/main/examples/jaxbench-pallas/flash_attention_final.py){:target="_blank" rel="noopener"}.
+
+<figure>
+    <img src="images_autocomp_tpu/causal_tiling.svg"
+         alt="Causal wavefront microtiling: the baseline computes all 16 Q×K subtiles, but 6 are structurally zero due to the causal mask. Autocomp skips them, eliminating 37.5% of MXU work."
+         class="center"
+         style="min-width:90%;">
+    <figcaption style="text-align:center">Causal wavefront microtiling eliminates 37.5% of wasted MXU compute by skipping structurally zero subtiles in the Q×K matmul.</figcaption>
+</figure>
 
 ## Ragged Paged Attention: The long tail of optimization {#ragged-paged-attention}
 
