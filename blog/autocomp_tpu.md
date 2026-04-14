@@ -125,6 +125,6 @@ For Category 2 workloads, Autocomp first translates vanilla JAX code into Pallas
 
 ## Conclusion
 
-TPU is Autocomp's 5th hardware target (after Gemmini, Trainium, NVIDIA GPUS, and RISC-V Vector processors) and the first where the optimization agent was built fully autonomously by the Agent Builder from public documentation. The results show that this auto-generated agent is effective. It can speed up already-optimized production kernels and produce large gains on workloads translated from vanilla JAX.
+TPU is Autocomp's 5th hardware target (after Gemmini, AWS Trainium, NVIDIA GPUs, and RISC-V Vector processors) and the first where the optimization agent was built fully autonomously by the Agent Builder from public documentation. The results show that this auto-generated agent is effective. It can speed up already-optimized production kernels and produce large gains on workloads translated from vanilla JAX.
 
 Check out the [Autocomp repo](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"}, our [paper](https://arxiv.org/abs/2505.18574){:target="_blank" rel="noopener"}, the [TPU agent configuration](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"}, and the [generated kernels and traces](https://github.com/ucb-bar/autocomp/tree/main/examples){:target="_blank" rel="noopener"}. Feel free to reach out at [charleshong@berkeley.edu](mailto:charleshong@berkeley.edu) if you have any questions or want help getting started.
