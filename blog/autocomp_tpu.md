@@ -44,7 +44,7 @@ order: 7
 
 ## Building the TPU Agent
 
-Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, Trainium, NVIDIA GPUs, RISC-V Vector), building the agent involved significant manual effort: copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
+Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, AWS Trainium, NVIDIA GPUs, RISC-V Vector), building the agent involved significant manual effort: copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
 
 For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder){:target="_blank" rel="noopener"} to generate the [entire agent](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"} automatically. We pointed it at four documentation sources:
 
