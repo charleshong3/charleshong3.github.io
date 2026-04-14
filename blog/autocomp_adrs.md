@@ -1,12 +1,7 @@
 ---
 layout: blog
 title: "Autocomp featured on Sky Lab ADRS blog"
-previous_post:
-  title: "How we made AWS Trainium 17x faster (for conv1d)"
-  url: "/blog/autocomp_trainium_conv1d.html"
-next_post:
-  title: "How we made attention 45% faster on AWS Trainium"
-  url: "/blog/autocomp_trainium_attention.html"
+order: 5
 ---
 
 # Autocomp featured on Sky Lab ADRS blog

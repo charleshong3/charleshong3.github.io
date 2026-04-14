@@ -6,27 +6,45 @@ layout: default
     {{ content }}
 </article>
 
+{% assign blog_pages = site.pages | where: "layout", "blog" | sort: "order" %}
+{% assign current_index = nil %}
+{% for p in blog_pages %}
+    {% if p.url == page.url %}
+        {% assign current_index = forloop.index0 %}
+    {% endif %}
+{% endfor %}
+
+{% if current_index != nil %}
+    {% assign prev_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
+    {% if prev_index >= 0 %}
+        {% assign prev_post = blog_pages[prev_index] %}
+    {% endif %}
+    {% if next_index < blog_pages.size %}
+        {% assign next_post = blog_pages[next_index] %}
+    {% endif %}
+{% endif %}
+
 <nav class="blog-navigation" style="margin-top: 60px; padding-top: 30px; border-top: 2px solid #e9ecef;">
     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
         <div style="flex: 1; min-width: 200px;">
-            {% if page.previous_post %}
+            {% if prev_post %}
             <div style="text-align: left;">
                 <span style="color: #666; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px;">← Previous</span>
                 <br>
-                <a href="{{ page.previous_post.url }}" style="font-weight: 500; font-size: 1.1em;">{{ page.previous_post.title }}</a>
+                <a href="{{ prev_post.url }}" style="font-weight: 500; font-size: 1.1em;">{{ prev_post.title }}</a>
             </div>
             {% endif %}
         </div>
         
         <div style="flex: 1; min-width: 200px;">
-            {% if page.next_post %}
+            {% if next_post %}
             <div style="text-align: right;">
                 <span style="color: #666; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px;">Next →</span>
                 <br>
-                <a href="{{ page.next_post.url }}" style="font-weight: 500; font-size: 1.1em;">{{ page.next_post.title }}</a>
+                <a href="{{ next_post.url }}" style="font-weight: 500; font-size: 1.1em;">{{ next_post.title }}</a>
             </div>
             {% endif %}
         </div>
     </div>
 </nav>
-

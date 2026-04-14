@@ -1,9 +1,7 @@
 ---
 layout: blog
 title: "Autocomp: LLM-Driven Code Optimization for Tensor Accelerators"
-next_post:
-  title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
-  url: "/blog/autocomp_update.html"
+order: 1
 ---
 
 <figure>

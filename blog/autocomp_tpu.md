@@ -1,12 +1,10 @@
 ---
 layout: blog
-title: "We pointed Autocomp at TPU docs. It came back with 4x faster kernels."
-previous_post:
-  title: "How we made attention 45% faster on AWS Trainium"
-  url: "/blog/autocomp_trainium_attention.html"
+title: "We pointed our automatic agent builder at TPU docs. It came back with 4x faster kernels."
+order: 7
 ---
 
-# We pointed Autocomp at TPU docs. It came back with 4x faster kernels.
+# We pointed our automatic agent builder at TPU docs. It came back with 4x faster kernels.
 
 #### April 10, 2026
 

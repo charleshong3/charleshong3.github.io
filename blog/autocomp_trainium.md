@@ -1,12 +1,7 @@
 ---
 layout: blog
 title: "Speeding up NKI (AWS Trainium) kernels with Autocomp"
-previous_post:
-  title: "Autocomp for All: Update on CUDA and RVV optimization with Autocomp"
-  url: "/blog/autocomp_update.html"
-next_post:
-  title: "How we made AWS Trainium 17x faster (for conv1d)"
-  url: "/blog/autocomp_trainium_conv1d.html"
+order: 3
 ---
 
 # Speeding up NKI (AWS Trainium) kernels with Autocomp
