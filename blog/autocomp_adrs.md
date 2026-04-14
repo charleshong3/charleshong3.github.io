@@ -8,9 +8,7 @@ order: 5
 
 #### November 20, 2025
 
-[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"}
-<br/>
-UC Berkeley
+[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
 ### Link to the blog post: [https://adrs-ucb.notion.site/autocomp](https://adrs-ucb.notion.site/autocomp){:target="_blank" rel="noopener"}
 
