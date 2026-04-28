@@ -46,6 +46,8 @@ order: 7
 
 ## Building the TPU Agent
 
+A quick recap: [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} is our LLM-driven code optimization framework for tensor accelerators. It integrates domain knowledge, hardware correctness/performance feedback, and novel strategies for response diversity to automatically search for performant code.
+
 Adding a new hardware target to Autocomp requires two things: a hardware-aware optimization agent and an evaluation backend. For previous targets (Gemmini, AWS Trainium, NVIDIA GPUs, RISC-V Vector), building the agent involved significant manual effort: copy-and-pasting documentation, writing optimization strategies by hand, and encoding hardware-specific constraints.
 
 For TPU, we used Autocomp's [Agent Builder](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder){:target="_blank" rel="noopener"} to generate the [entire agent](https://github.com/ucb-bar/autocomp/tree/main/autocomp/agent_builder/.built/tpu-v6e){:target="_blank" rel="noopener"} automatically. We pointed it at four documentation sources:
