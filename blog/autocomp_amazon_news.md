@@ -18,4 +18,4 @@ order: 8
 >
 > The next phase of the Autocomp project will extend the system from individual operations to full end-to-end pipelines for models like Llama and Qwen, running on Trainium's most powerful configurations.
 
-Thanks to the AWS team for the feature, and to our advisors [Sophia Shao](https://people.eecs.berkeley.edu/~ysshao/){:target="_blank" rel="noopener"} and [Alvin Cheung](https://people.eecs.berkeley.edu/~akcheung/){:target="_blank" rel="noopener"} for their continued support of this work.
+Thanks to the AWS team for the feature and their continued support!
