@@ -1,10 +1,10 @@
 ---
 layout: blog
-title: "Autocomp featured on Amazon News"
+title: "We were featured on Amazon News!"
 order: 8
 ---
 
-# Autocomp featured on Amazon News
+# We were featured on Amazon News!
 
 #### May 18, 2026
 
