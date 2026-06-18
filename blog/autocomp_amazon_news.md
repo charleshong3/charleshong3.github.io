@@ -8,7 +8,7 @@ order: 8
 
 #### May 18, 2026
 
-[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley & Google)
+[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
 ### Link to the article: [https://www.aboutamazon.com/news/aws/amazon-trainium-investment-university-ai-research](https://www.aboutamazon.com/news/aws/amazon-trainium-investment-university-ai-research){:target="_blank" rel="noopener"}
 

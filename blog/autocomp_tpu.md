@@ -8,9 +8,7 @@ order: 7
 
 #### April 10, 2026
 
-[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley & Google)
-
-*This work was done at UC Berkeley.*
+[Charles Hong](https://charleshong3.github.io/){:target="_blank" rel="noopener"} (UC Berkeley)
 
 ### [Autocomp](https://github.com/ucb-bar/autocomp){:target="_blank" rel="noopener"} now supports [Google TPU](https://cloud.google.com/tpu/docs/intro-to-tpu){:target="_blank" rel="noopener"}! We built the optimization agent **automatically** from public documentation, and used it to speed up production [Pallas](https://docs.jax.dev/en/latest/pallas/index.html){:target="_blank" rel="noopener"} kernels, including FlashAttention, by up to **1.41x** and vanilla JAX workloads by up to **4.37x**.
 
