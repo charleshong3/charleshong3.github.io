@@ -157,38 +157,39 @@ img {
 }
 
 @media screen and (max-width: 1080px) {
-    body {
+    body:not(.responsive-page) {
       width: 90%;
       max-width: 90%;
       margin: 20px auto;
       font-size: 1.8em; /* Increases base font size */
     }
   
-    h1 {
+    :where(body:not(.responsive-page)) h1 {
       font-size: 2.4em;
     }
   
-    h2 {
+    :where(body:not(.responsive-page)) h2 {
       font-size: 1.8em;
     }
   
-    h3 {
+    :where(body:not(.responsive-page)) h3 {
       font-size: 1.4em;
     }
   
-    p, ul, li, figcaption {
+    :where(body:not(.responsive-page)) :is(p, ul, li, figcaption) {
       font-size: 1.1em;
     }
   
-    .center, img {
+    :where(body:not(.responsive-page)) .center,
+    :where(body:not(.responsive-page)) img {
       width: 90%;
       height: auto;
     }
-    .code-container {
+    :where(body:not(.responsive-page)) .code-container {
       width: 90%;
     }
   
-    figcaption {
+    :where(body:not(.responsive-page)) figcaption {
       max-width: 100%;
     }
   }

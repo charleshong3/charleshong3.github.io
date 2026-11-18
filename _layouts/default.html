@@ -1,7 +1,11 @@
 <!DOCTYPE html>
     <html>
         <head>
+            <meta charset="utf-8">
             <title>{{ page.title }}</title>
+            {% if page.responsive %}
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            {% endif %}
             <!-- link to main stylesheet -->
             <link rel="stylesheet" type="text/css" href="/css/main.css">
             <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +27,7 @@
             </script>
             {% endif %}
         </head>
-        <body>
+        <body{% if page.responsive %} class="responsive-page"{% endif %}>
             <nav>
                 <ul>
                     <li><a href="/" {% if page.url == '/' %}class="active"{% endif %}>Home</a></li>
