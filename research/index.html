@@ -4,104 +4,202 @@ title: Research - Charles Hong
 responsive: true
 ---
 <style>
-    body.responsive-page {
-        max-width: 850px;
+    body.responsive-page:has(.research-page) {
+        max-width: 860px;
     }
-    .research-page header h1 {
-        margin-bottom: 0.35em;
+    .research-page {
+        --research-ink: #172c42;
+        --research-muted: #536170;
+        --research-rule: #dce1e5;
+        --research-rule-strong: #a5afb9;
     }
-    .research-page header p {
-        margin: 0 0 0.65em;
+    .research-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 31%);
+        align-items: end;
+        gap: 1rem clamp(1.5rem, 4vw, 2.75rem);
+        padding: clamp(0.75rem, 2.5vw, 1.5rem) 0 clamp(1.75rem, 4vw, 2.75rem);
     }
-    .research-page section {
-        margin-top: 2.25rem;
+    .research-intro h1 {
+        margin: 0 0 0.65rem;
+        color: var(--research-ink);
+        font-size: clamp(2.125rem, 5.5vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.045em;
     }
-    .research-page section h2 {
-        margin: 0 0 0.55rem;
+    .research-intro p {
+        max-width: 38em;
+        margin: 0;
+        color: var(--research-muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+    .research-resources {
+        display: grid;
+        border-top: 1px solid var(--research-rule);
+    }
+    .research-resources a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--research-rule);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+    .research-resources a:hover {
+        border-color: currentColor;
+    }
+    .research-section + .research-section {
+        margin-top: clamp(1.75rem, 4vw, 2.75rem);
+    }
+    .research-section h2 {
+        margin: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--research-rule-strong);
+        color: var(--research-ink);
+        font-size: 1.125rem;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
     }
     .research-entry {
         display: grid;
-        grid-template-columns: min(14rem, 38%) minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 34%);
         align-items: center;
-        gap: 1.5rem;
-        border-top: 1px solid #dfe5eb;
-        padding: 1.375rem 0;
+        gap: 1rem clamp(1.25rem, 3vw, 2rem);
+        padding: clamp(1.25rem, 3.25vw, 1.75rem) 0;
+    }
+    .research-entry + .research-entry {
+        border-top: 1px solid var(--research-rule);
+    }
+    .research-entry h3 {
+        margin: 0 0 0.3rem;
+        color: var(--research-ink);
+        font-size: clamp(1.35rem, 3vw, 1.625rem);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+    }
+    .research-entry h3,
+    .research-section h2 {
+        scroll-margin-top: 1rem;
+    }
+    .research-entry p {
+        margin: 0.5rem 0 0;
+        line-height: 1.6;
+    }
+    .research-entry .research-meta {
+        margin: 0;
+        color: var(--link-color);
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+    .research-meta span {
+        display: inline-block;
+    }
+    .research-entry .research-authors {
+        color: var(--research-muted);
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+    .research-authors strong {
+        color: var(--research-ink);
+        font-weight: 600;
+    }
+    .research-figure {
+        aspect-ratio: 3 / 2;
+    }
+    .research-figure-autocomp {
+        aspect-ratio: 4 / 3;
     }
     .research-thumbnail {
         display: block;
         width: 100%;
-        height: auto;
-        mix-blend-mode: multiply;
-    }
-    .research-thumbnail-padded {
-        box-sizing: border-box;
-        padding: 0.375rem;
-    }
-    .research-entry h3 {
-        font-size: 1.1em;
-        margin: 0;
-    }
-    .research-entry p {
-        margin: 0.3rem 0 0.45rem;
-    }
-    .research-authors {
-        color: #52677c;
-        font-size: 0.9em;
-        line-height: 1.5;
-    }
-    .research-authors strong {
-        color: #2c3e50;
-    }
-    .research-meta {
-        margin-left: 0.35rem;
-        color: #52677c;
-        font-size: 0.8em;
-        font-weight: 400;
-        white-space: nowrap;
+        height: 100%;
+        object-fit: contain;
     }
     .research-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.35rem 1.1rem;
-        font-size: 0.92em;
+        gap: 0.4rem 1rem;
+        margin-top: 0.6rem;
     }
-    .research-page header .research-links {
-        flex-direction: column;
-        align-items: flex-start;
-        font-size: 1em;
-        font-weight: 700;
+    .research-links a {
+        border-bottom: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: var(--research-rule-strong);
+        text-underline-offset: 0.2em;
     }
-    @media (max-width: 520px) {
+    .research-links a:hover {
+        text-decoration-color: currentColor;
+    }
+    .research-page a:focus-visible {
+        outline: 2px solid var(--link-color);
+        outline-offset: 3px;
+    }
+    @media (max-width: 680px) {
+        .research-intro,
         .research-entry {
             grid-template-columns: minmax(0, 1fr);
-            gap: 0.875rem;
-            padding: 1.25rem 0;
+        }
+        .research-resources {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.5rem 1.25rem;
+            max-width: 22rem;
+            border-top: 0;
+        }
+        .research-resources a {
+            justify-content: flex-start;
+            gap: 0.4rem;
+        }
+        .research-figure {
+            width: min(100%, 18rem);
+            aspect-ratio: auto;
         }
         .research-thumbnail {
-            width: min(100%, 14rem);
-            justify-self: center;
+            height: auto;
+            max-height: 11rem;
+            object-position: left center;
+        }
+        .research-figure-autocomp .research-thumbnail {
+            max-height: 12.25rem;
+        }
+    }
+    @media (max-width: 460px) {
+        body.responsive-page:has(.research-page) > nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0 0.35rem;
+        }
+        body.responsive-page:has(.research-page) > nav li {
+            margin-right: 0;
         }
     }
 </style>
 
 <main class="research-page">
-    <header>
-        <h1>Research</h1>
-        <p>I build tools that automate how we design and program hardware accelerators, from exploring chip configurations to generating and optimizing kernels.</p>
-        <div class="research-links">
-            <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2026/EECS-2026-167.html">PhD Dissertation</a>
-            <a href="https://scholar.google.com/citations?user=n-qES6QAAAAJ&amp;hl=en">Google Scholar</a>
+    <header class="research-intro">
+        <div>
+            <h1>Research</h1>
+            <p>I build tools that automate how we design and program hardware accelerators, from exploring chip configurations to generating and optimizing kernels.</p>
+        </div>
+        <div class="research-resources">
+            <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2026/EECS-2026-167.html">PhD Dissertation <span aria-hidden="true">↗</span></a>
+            <a href="https://scholar.google.com/citations?user=n-qES6QAAAAJ&amp;hl=en">Google Scholar <span aria-hidden="true">↗</span></a>
         </div>
     </header>
 
-    <section aria-labelledby="accelerator-programming">
+    <section class="research-section" aria-labelledby="accelerator-programming">
         <h2 id="accelerator-programming">Accelerator programming</h2>
         <article class="research-entry" aria-labelledby="saltyrn">
-            <img class="research-thumbnail" src="{{ '/research/images/saltyrn.webp' | relative_url }}"
-                 width="1658" height="1076"
-                 alt="SALTyRN workflow for translating, optimizing, and verifying vector kernels" loading="lazy" decoding="async">
             <div>
-                <h3 id="saltyrn">SALTyRN <span class="research-meta">CGO 2027</span></h3>
+                <h3 id="saltyrn">SALTyRN</h3>
+                <p class="research-meta">CGO 2027</p>
                 <p class="research-authors">Keagan Chern, <strong>Charles Hong</strong>, Sophia Shao, Alvin Cheung</p>
                 <p>Symbolically models RVV intrinsics for formal verification of Arm Neon ports. Then tunes translated kernels with Autocomp, yielding a 1.4x speedup over handwritten RVV across 35 kernels, with several upstreamed to XNNPACK.</p>
                 <div class="research-links">
@@ -109,13 +207,16 @@ responsive: true
                     <a href="https://riseproject.dev/2026/07/27/saltyrn-turning-neon-kernels-into-fast-verified-rvv-code-with-llms/">RISE Blog</a>
                 </div>
             </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/saltyrn.webp' | relative_url }}"
+                     width="1658" height="1076"
+                     alt="SALTyRN workflow for translating, optimizing, and verifying vector kernels" loading="lazy" decoding="async">
+            </div>
         </article>
         <article class="research-entry" aria-labelledby="jaxbench">
-            <img class="research-thumbnail research-thumbnail-padded" src="{{ '/research/images/jaxbench.webp' | relative_url }}"
-                 width="1560" height="1264"
-                 alt="TPU v6e roofline plot showing achieved performance and operational intensity for all 50 JAXBench workloads" loading="lazy" decoding="async">
             <div>
-                <h3 id="jaxbench">JAXBench <span class="research-meta">EACL 2027</span></h3>
+                <h3 id="jaxbench">JAXBench</h3>
+                <p class="research-meta">EACL 2027</p>
                 <p class="research-authors">
                     Arya Tschand*, <strong>Charles Hong*</strong>, Julian Walker, Nina Cai, Shangkun Wang, Suvinay Subramanian, Sundar Dev, Vijay Janapa Reddi, Amir Yazdanbakhsh, Sethu Sankaran
                     <br><small>* Equal contribution</small>
@@ -126,17 +227,16 @@ responsive: true
                     <a href="https://github.com/AI-Hypercomputer/accelerator-agents/tree/main/JAXBench">Benchmark and code</a>
                 </div>
             </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/jaxbench.webp' | relative_url }}"
+                     width="1560" height="1264"
+                     alt="TPU v6e roofline plot showing achieved performance and operational intensity for all 50 JAXBench workloads" loading="lazy" decoding="async">
+            </div>
         </article>
         <article class="research-entry" aria-labelledby="autocomp">
-            <img class="research-thumbnail research-thumbnail-padded" src="{{ '/research/images/autocomp.webp' | relative_url }}"
-                 width="1560" height="1398"
-                 alt="Autocomp beam search uses hardware feedback to select correct, faster kernels" decoding="async">
             <div>
-                <h3 id="autocomp">
-                    Autocomp
-                    <span class="research-meta">MLArchSys 2025 Best Paper,</span>
-                    <span class="research-meta">ASPLOS 2026 Tutorial</span>
-                </h3>
+                <h3 id="autocomp">Autocomp</h3>
+                <p class="research-meta"><span>MLArchSys 2025 Best Paper,</span> <span>ASPLOS 2026 Tutorial</span></p>
                 <p class="research-authors"><strong>Charles Hong</strong>, Sahil Bhatia, Alvin Cheung, Yakun Sophia Shao</p>
                 <p>The first agentic system to outperform humans in optimizing low-resource accelerator code. Delivers speedups of 5.6x over Gemmini's GEMM library, 1.9x over hand-tuned AWS Trainium kernels, and 3.8x over TVM on NVIDIA L40S.</p>
                 <div class="research-links">
@@ -148,30 +248,36 @@ responsive: true
                     <a href="{{ '/research/asplos2026-tutorial/' | relative_url }}">ASPLOS 2026 tutorial and slides</a>
                 </div>
             </div>
+            <div class="research-figure research-figure-autocomp">
+                <img class="research-thumbnail" src="{{ '/research/images/autocomp.webp' | relative_url }}"
+                     width="1560" height="1398"
+                     alt="Autocomp beam search uses hardware feedback to select correct, faster kernels" decoding="async">
+            </div>
         </article>
         <article class="research-entry" aria-labelledby="llm-aided-compilation">
-            <img class="research-thumbnail" src="{{ '/research/images/islad.webp' | relative_url }}"
-                 width="1578" height="384"
-                 alt="Gemmini compilation workflow with code synthesis, verification, and cost model feedback" loading="lazy" decoding="async">
             <div>
-                <h3 id="llm-aided-compilation">LLM-Aided Compilation for Tensor Accelerators <span class="research-meta">ISLAD 2024</span></h3>
+                <h3 id="llm-aided-compilation">LLM-Aided Compilation for Tensor Accelerators</h3>
+                <p class="research-meta">ISLAD 2024</p>
                 <p class="research-authors"><strong>Charles Hong</strong>, Sahil Bhatia, Altan Haan, Shengjun Kris Dong, Dima Nikiforov, Alvin Cheung, Yakun Sophia Shao</p>
                 <p>The first paper to demonstrate successful use of LLMs to write low-resource accelerator code. Uses GPT-4 to "compile" robotics kernels to Gemmini, Berkeley's tensor accelerator.</p>
                 <div class="research-links">
                     <a href="https://arxiv.org/abs/2408.03408">Paper</a>
                 </div>
             </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/islad.webp' | relative_url }}"
+                     width="1578" height="384"
+                     alt="Gemmini compilation workflow with code synthesis, verification, and cost model feedback" loading="lazy" decoding="async">
+            </div>
         </article>
     </section>
 
-    <section aria-labelledby="hardware-design">
+    <section class="research-section" aria-labelledby="hardware-design">
         <h2 id="hardware-design">Hardware design</h2>
         <article class="research-entry" aria-labelledby="hdl2v">
-            <img class="research-thumbnail" src="{{ '/research/images/hdl2v.webp' | relative_url }}"
-                 width="1560" height="738"
-                 alt="How hdl2v collects Verilog, C, and VHDL training examples" loading="lazy" decoding="async">
             <div>
-                <h3 id="hdl2v">hdl2v <span class="research-meta">MLCAD 2025</span></h3>
+                <h3 id="hdl2v">hdl2v</h3>
+                <p class="research-meta">MLCAD 2025</p>
                 <p class="research-authors"><strong>Charles Hong</strong>, Brendan Roberts, Huijae An, Alex Um, Advay Ratan, Yakun Sophia Shao</p>
                 <p>A Verilog dataset constructed by translating designs from VHDL, Chisel, and PyMTL3. Fine-tuning a 32B-parameter code model with hdl2v improves VerilogEvalV2 pass@10 by up to 23%.</p>
                 <div class="research-links">
@@ -180,13 +286,16 @@ responsive: true
                     <a href="https://zenodo.org/records/16435239">Artifact</a>
                 </div>
             </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/hdl2v.webp' | relative_url }}"
+                     width="1560" height="738"
+                     alt="How hdl2v collects Verilog, C, and VHDL training examples" loading="lazy" decoding="async">
+            </div>
         </article>
         <article class="research-entry" aria-labelledby="dosa">
-            <img class="research-thumbnail" src="{{ '/research/images/dosa.webp' | relative_url }}"
-                 width="1510" height="784"
-                 alt="DOSA workflow for jointly optimizing accelerator hardware and layer mappings" loading="lazy" decoding="async">
             <div>
-                <h3 id="dosa">DOSA <span class="research-meta">MICRO 2023</span></h3>
+                <h3 id="dosa">DOSA</h3>
+                <p class="research-meta">MICRO 2023</p>
                 <p class="research-authors"><strong>Charles Hong</strong>, Qijing Huang, Grace Dinh, Mahesh Subedar, Yakun Sophia Shao</p>
                 <p>Formulates accelerator/compiler co-design as a differentiable optimization problem. By efficiently searching both together, we cut Gemmini’s energy-delay product by 45% in RTL simulation.</p>
                 <div class="research-links">
@@ -195,13 +304,16 @@ responsive: true
                     <a href="https://people.eecs.berkeley.edu/~ysshao/assets/talks/dosa2023-micro-slides.pdf">Slides</a>
                 </div>
             </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/dosa.webp' | relative_url }}"
+                     width="1510" height="784"
+                     alt="DOSA workflow for jointly optimizing accelerator hardware and layer mappings" loading="lazy" decoding="async">
+            </div>
         </article>
         <article class="research-entry" aria-labelledby="vaesa">
-            <img class="research-thumbnail" src="{{ '/research/images/vaesa.webp' | relative_url }}"
-                 width="1548" height="840"
-                 alt="VAESA training pipeline with an encoder, decoder, and performance predictor" loading="lazy" decoding="async">
             <div>
-                <h3 id="vaesa">VAESA <span class="research-meta">ISPASS 2022</span></h3>
+                <h3 id="vaesa">VAESA</h3>
+                <p class="research-meta">ISPASS 2022</p>
                 <p class="research-authors">Qijing Huang, <strong>Charles Hong</strong>, John Wawrzynek, Mahesh Subedar, Yakun Sophia Shao</p>
                 <p>We train an autoencoder to turn discrete chip configurations into a continuous search space. Bayesian optimization finds near-optimal designs there with up to 85% fewer samples than in the original space.</p>
                 <div class="research-links">
@@ -209,6 +321,11 @@ responsive: true
                     <a href="https://github.com/ucb-bar/vaesa">Code</a>
                     <a href="https://people.eecs.berkeley.edu/~ysshao/assets/talks/vaesa2022-ispass-slides.pdf">Slides</a>
                 </div>
+            </div>
+            <div class="research-figure">
+                <img class="research-thumbnail" src="{{ '/research/images/vaesa.webp' | relative_url }}"
+                     width="1548" height="840"
+                     alt="VAESA training pipeline with an encoder, decoder, and performance predictor" loading="lazy" decoding="async">
             </div>
         </article>
     </section>
