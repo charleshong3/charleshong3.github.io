@@ -16,12 +16,13 @@ responsive: true
     .research-intro {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 31%);
-        align-items: end;
+        align-items: start;
         gap: 1rem clamp(1.5rem, 4vw, 2.75rem);
         padding: clamp(0.75rem, 2.5vw, 1.5rem) 0 clamp(1.75rem, 4vw, 2.75rem);
     }
     .research-intro h1 {
-        margin: 0 0 0.65rem;
+        grid-column: 1 / -1;
+        margin: 0 0 0.1rem;
         color: var(--research-ink);
         font-size: clamp(2.125rem, 5.5vw, 3rem);
         line-height: 1.1;
@@ -33,6 +34,9 @@ responsive: true
         color: var(--research-muted);
         font-size: 1.05rem;
         line-height: 1.6;
+    }
+    .research-intro p + p {
+        margin-top: 0.85em;
     }
     .research-resources {
         display: grid;
@@ -184,13 +188,14 @@ responsive: true
 
 <main class="research-page">
     <header class="research-intro">
+        <h1>Research</h1>
         <div>
-            <h1>Research</h1>
-            <p>I build tools that automate how we design and program hardware accelerators, from exploring chip architectures to generating and optimizing kernels.</p>
+            <p>I've long believed that chip design can be fully automated, from software to silicon. Today, it's the unquestionable future.</p>
+            <p>In my research, I build tools that automate how we design and program hardware accelerators, from exploring chip architectures to generating and optimizing kernels.</p>
         </div>
         <div class="research-resources">
-            <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2026/EECS-2026-167.html">PhD Dissertation <span aria-hidden="true">↗</span></a>
             <a href="https://scholar.google.com/citations?user=n-qES6QAAAAJ&amp;hl=en">Google Scholar <span aria-hidden="true">↗</span></a>
+            <a href="https://www2.eecs.berkeley.edu/Pubs/TechRpts/2026/EECS-2026-167.html">PhD Dissertation <span aria-hidden="true">↗</span></a>
         </div>
     </header>
 
